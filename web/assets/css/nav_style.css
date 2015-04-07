@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2015. 2. 28, 오후 9:07:50
+    Author     : DreamRealizer
+*/
+.table-nonfluid {
+   width: auto !important;
+   min-width: 1000px;
+   overflow-x:scroll;
+}
+
+.table-nonfluid-calander {
+   width: auto !important;
+   min-width: 2000px;
+   overflow-x:scroll;
+}
