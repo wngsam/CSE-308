@@ -6,6 +6,8 @@
 package controllers;
 
 import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
@@ -29,23 +31,25 @@ public class SignUpPageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView signUp(){
+        //Check if already logged in.
         ModelAndView mv = new ModelAndView("registrationPage");
         mv.addObject("user", new User());
         return mv;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView doSignUp(@ModelAttribute("user") User user, HttpSession session){
+    public ModelAndView doSignUp(@ModelAttribute("user") User user, HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         
+        boolean confirmation = false;
         user.setRole("User");
-        //Check User
-        //Add User to UserManager
-        //Add to DB?
-        //Log User In
-        session.setAttribute("currentPerson", user);
+        
+        if(userManager.registerUser(user)==true){
+            session.setAttribute("currentPerson", user);
+            confirmation = true;
+        }
         
         ModelAndView mv = new ModelAndView("registrationPage");
-        //Give greeting and/or redirect to profile
+        mv.addObject("confirmation", confirmation);
         return mv;
     }
 

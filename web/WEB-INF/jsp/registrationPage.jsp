@@ -26,7 +26,8 @@
 <!-- REGISTER BODY -->
 <div class="row row-offcanvas"><center>
         
-    Hi ${currentPerson.firstName} ${currentPerson.lastName} with the email ${currentPerson.email}!
+    Showing ${confirmation}
+    Hi ${currentPerson.firstName} ${currentPerson.lastName} with the email ${currentPerson.email} and password ${currentPerson.password}!
         
     <legend>
         <p class="text-primary" style="font-size:55px">Registration</p>
