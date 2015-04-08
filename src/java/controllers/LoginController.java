@@ -10,6 +10,7 @@ import managers.UserManager;
  * @author DreamRealizer
  */
 public class LoginController {
+    
     private UserManager userManager;
 
     
