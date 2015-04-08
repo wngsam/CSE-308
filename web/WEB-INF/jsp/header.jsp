@@ -25,16 +25,30 @@
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <div class="form-group">
-              <input type="text" placeholder="Email" class="form-control">
-            </div>
-            <div class="form-group">
-              <input type="password" placeholder="Password" class="form-control">
-            </div>
-            <a href="userpage.htm" class="btn btn-success">Sign In</a>
-            <a href="registrationPage.htm" class="btn btn-warning">Sign Up</a>
-          </form>  
+          <form id="login" method="POST" action="login.htm">
+                                Hi ${currentPerson.firstName} ${currentPerson.lastName}
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" name="email" >
+                                        <p class="help-block text-default">${cannotLogin}</p>
+                                    </div>
+                                </div>
+								
+                                <div class="row control-group">
+                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password">
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="form-group col-xs-12">
+                                        <button type="submit" class="btn btn-success btn-lg">Login</button>
+                                    </div>
+                                </div>
+								
+                            </form>  
         </div><!--/.nav-collapse -->
       </div>
     </nav>
