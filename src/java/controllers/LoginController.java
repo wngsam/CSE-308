@@ -5,13 +5,42 @@
  */
 package controllers;
 import managers.UserManager;
+import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.View;
+import org.springframework.web.bind.annotation.RequestParam;
+
 /**
  *
  * @author DreamRealizer
  */
+@Controller
+@RequestMapping("/loginPage")
 public class LoginController {
     
     private UserManager userManager;
+    
+  
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public ModelAndView login(@RequestParam(value = "email") String email,
+                    @RequestParam(value = "password") String password,
+                    HttpSession session){
+        
+        ModelAndView mv= new ModelAndView("index");
+        
+        userManager.authenticate(email, password);        
+        //return "/jupiter";
+        return mv;
+    }
 
     
     
