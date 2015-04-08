@@ -263,7 +263,4 @@
   </div>
 </nav>
 <!--/2ND NAV BAR-->
-<!-- AD -->	
-<center><img src="assets\img\ads.jpg"></center>
-<!-- /AD -->
 </div>

@@ -5,8 +5,12 @@
  */
 package controllers;
 
+import domains.User;
+import javax.servlet.http.HttpSession;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,15 +30,17 @@ public class SignUpPageController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView signUp(){
         ModelAndView mv = new ModelAndView("registrationPage");
+        mv.addObject("user", new User());
+        
         return mv;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView doSignUp(@RequestParam("fname") String fname){
+    public ModelAndView doSignUp(@ModelAttribute("user") User user, HttpSession session){
+        ModelAndView mv = new ModelAndView("registrationPage");
         
-        ModelAndView mv = new ModelAndView("index");
-        
-        
+        //Put new user into session
+        session.setAttribute("currentPerson", user);
         
         return mv;
     }

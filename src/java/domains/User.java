@@ -5,15 +5,16 @@
  */
 package domains;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author DreamRealizer
  */
-public class User {
-    String firstName;
-    String lastName;
+public class User implements Serializable{
+    private String firstName;
+    private String lastName;
     String email;
     String password;
     GregorianCalendar birthDate;
@@ -25,6 +26,22 @@ public class User {
     Collection<PaymentMethod> paymentMethods;
     PaymentMethod preferredPaymentMethod;
     List<Transaction> transactions;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
     
     
 }
