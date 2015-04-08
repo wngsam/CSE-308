@@ -23,18 +23,43 @@
 <body role="document">
 <jsp:include page="header.jsp" /><hr>
 
-Hiiiiii! ${currentPerson.firstName} ${currentPerson.lastName}
-
 <!-- REGISTER BODY -->
-<div class="col-xs-4 col-lg-4">
+<div class="row row-offcanvas"><center>
+        
+    Hi ${currentPerson.firstName} ${currentPerson.lastName} with the email ${currentPerson.email}!
+        
+    <legend>
+        <p class="text-primary" style="font-size:55px">Registration</p>
+	<p class="text-default" style="font-size:20px">JOIN SAMDANGO FOR FREE!</p>
+    </legend>
+    
     <form:form action="registrationPage.htm" modelAttribute="user" method="post">
-        First Name:
-        <form:input path="firstName"/>
-        Last Name:
-        <form:input path="lastName"/>
-        <button type="submit">Register</button>
+        
+        <div class="form-group">
+            <p class="text-warning" style="font-size:20px">First Name:</P>
+            <form:input path="firstName" placeholder="First Name"/>
+        </div>
+        
+        <div class="form-group">
+            <p class="text-warning" style="font-size:20px">Last Name:</P>
+            <form:input path="lastName" placeholder="Last Name"/>
+        </div>
+        
+        <div class="form-group">
+            <p class="text-warning" style="font-size:20px">E-mail:</P>
+            <form:input path="email" placeholder="E-mail"/>
+        </div>
+        
+        <div class="form-group">
+            <p class="text-warning" style="font-size:20px">Password:</P>
+            <form:password path="password" placeholder="Password"/>
+        </div>
+        
+        <br><button type="submit" class="btn btn-success" >Register</button></br>
+        
     </form:form>
-</div>
+        
+</center></div>
 <!-- /REGISTER BODY -->
 
 <jsp:include page="footer.jsp" />

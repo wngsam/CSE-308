@@ -15,17 +15,17 @@ import java.util.*;
 public class User implements Serializable{
     private String firstName;
     private String lastName;
-    String email;
-    String password;
-    GregorianCalendar birthDate;
-    String role;
-    int zipCode;
-    Collection<Movie> favoriteMovies;
-    Collection<Theater> favoriteTheaters;
-    List<Review> reviews;
-    Collection<PaymentMethod> paymentMethods;
-    PaymentMethod preferredPaymentMethod;
-    List<Transaction> transactions;
+    private String email;
+    private String password;
+    private GregorianCalendar birthDate;
+    private String role;
+    private int zipCode;
+    private Collection<Movie> favoriteMovies;
+    private Collection<Theater> favoriteTheaters;
+    private List<Review> reviews;
+    private Collection<PaymentMethod> paymentMethods;
+    private PaymentMethod preferredPaymentMethod;
+    private List<Transaction> transactions;
 
     public String getFirstName() {
         return firstName;
@@ -42,6 +42,53 @@ public class User implements Serializable{
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public GregorianCalendar getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(GregorianCalendar birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public PaymentMethod getPreferredPaymentMethod() {
+        return preferredPaymentMethod;
+    }
+
+    public void setPreferredPaymentMethod(PaymentMethod preferredPaymentMethod) {
+        this.preferredPaymentMethod = preferredPaymentMethod;
+    }
     
 }

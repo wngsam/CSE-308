@@ -31,17 +31,21 @@ public class SignUpPageController {
     public ModelAndView signUp(){
         ModelAndView mv = new ModelAndView("registrationPage");
         mv.addObject("user", new User());
-        
         return mv;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView doSignUp(@ModelAttribute("user") User user, HttpSession session){
-        ModelAndView mv = new ModelAndView("registrationPage");
         
-        //Put new user into session
+        user.setRole("User");
+        //Check User
+        //Add User to UserManager
+        //Add to DB?
+        //Log User In
         session.setAttribute("currentPerson", user);
         
+        ModelAndView mv = new ModelAndView("registrationPage");
+        //Give greeting and/or redirect to profile
         return mv;
     }
 
