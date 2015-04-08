@@ -22,6 +22,18 @@ public class UserManager {
         users = new HashMap();
     }
     
+    public User authenticate(String email, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        User user = users.get(email);
+        
+        if(user!=null){
+            if(!hash(password).equals(user.getPassword())){
+                user = null;
+            }
+        }
+        
+        return user;
+    }
+    
     public boolean registerUser(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         boolean confirmation = false;
         if(users.get(user.getEmail())==null){
