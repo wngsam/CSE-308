@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package manager;
+import domain.User;
 import java.util.*;
-
 /**
  *
  * @author DreamRealizer
  */
-public class Schedule {
-    Movie movie;
-    Theater theater;
-    List<GregorianCalendar> showTime;
-    int capacity;
+public class UserManager {
+    Map<String,User> users;    
+    
+    
 }
