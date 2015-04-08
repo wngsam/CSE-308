@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author DreamRealizer
  */
 @Controller
-@RequestMapping("/loginPage")
+@RequestMapping("/login")
 public class LoginController {
     
     private UserManager userManager;
@@ -33,12 +33,17 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView login(@RequestParam(value = "email") String email,
                     @RequestParam(value = "password") String password,
-                    HttpSession session){
+                    HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         
+        User user = userManager.authenticate(email, password); 
         ModelAndView mv= new ModelAndView("index");
         
-        userManager.authenticate(email, password);        
-        //return "/jupiter";
+        if(user!=null){
+            session.setAttribute("currentPerson", user);
+        }else{
+            mv.addObject("cannotLogin", "Wrong Password or Email");
+        } 
+        
         return mv;
     }
 
