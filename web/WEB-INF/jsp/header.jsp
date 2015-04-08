@@ -25,7 +25,7 @@
               </ul>
             </li>
           </ul>
-		  <form class="navbar-form navbar-right">
+          <form class="navbar-form navbar-right">
             <div class="form-group">
               <input type="text" placeholder="Email" class="form-control">
             </div>
@@ -34,7 +34,7 @@
             </div>
             <a href="userpage.htm" class="btn btn-success">Sign In</a>
             <a href="registrationPage.htm" class="btn btn-warning">Sign Up</a>
-          </form>
+          </form>  
         </div><!--/.nav-collapse -->
       </div>
     </nav>
