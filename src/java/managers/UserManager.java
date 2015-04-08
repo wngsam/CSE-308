@@ -13,10 +13,7 @@ import java.util.*;
 public class UserManager {
     Map<String,User> users;
     
-    public int x = 0;
-    
     UserManager(){
-        x++;
     }
     
 }
