@@ -33,7 +33,7 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
             <a href="userpage.htm" class="btn btn-success">Sign In</a>
-            <a href="registrationpage.htm" class="btn btn-warning">Sign Up</a>
+            <a href="registrationPage.htm" class="btn btn-warning">Sign Up</a>
           </form>
         </div><!--/.nav-collapse -->
       </div>

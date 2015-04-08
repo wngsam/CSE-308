@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package manager;
-import domain.User;
+package domains;
 import java.util.*;
 /**
  *
  * @author DreamRealizer
  */
-public class UserManager {
-    Map<String,User> users;    
-    
-    
+public class Review {
+    int id;
+    String title;
+    User reviewer;
+    String content;
+    Movie movie;
+    GregorianCalendar date;
+    int upvotes;
 }

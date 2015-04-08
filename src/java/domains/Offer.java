@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package domains;
+
 import java.util.*;
+
 /**
  *
  * @author DreamRealizer
  */
-public class Review {
-    int id;
-    String title;
-    User reviewer;
+public class Offer {
+    String name;
     String content;
-    Movie movie;
-    GregorianCalendar date;
-    int upvotes;
+    GregorianCalendar expiration;
+    
 }

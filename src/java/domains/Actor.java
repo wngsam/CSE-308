@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package domains;
+
+import java.net.URL;
 import java.util.*;
+
 /**
  *
  * @author DreamRealizer
  */
-public class Theater {
-    int id;
-    String name;
-    String address;
-    int zipCode;
-    String phone;
-    Map<String,Schedule> schedules;
-    String amenities;
-    
+public class Actor {
+    String firstName;
+    String lastName;
+    GregorianCalendar birthDate;
+    URL imdb;
+    URL image;
 }

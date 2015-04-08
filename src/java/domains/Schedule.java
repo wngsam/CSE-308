@@ -3,19 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
-
-import java.net.URL;
+package domains;
 import java.util.*;
 
 /**
  *
  * @author DreamRealizer
  */
-public class Actor {
-    String firstName;
-    String lastName;
-    GregorianCalendar birthDate;
-    URL imdb;
-    URL image;
+public class Schedule {
+    Movie movie;
+    Theater theater;
+    List<GregorianCalendar> showTime;
+    int capacity;
 }

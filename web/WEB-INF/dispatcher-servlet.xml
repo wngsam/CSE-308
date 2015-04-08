@@ -22,6 +22,21 @@
     <context:component-scan base-package="controllers"/>
     <mvc:annotation-driven/>
 
+    <bean id="userManager" class="managers.UserManager">
+    </bean>
+    
+    <bean id="loginController" class="controllers.LoginController">
+        <property name="userManager">
+            <ref bean ="userManager"></ref>
+        </property>
+    </bean>
+    
+    <bean id="signUpPageController" class="controllers.SignUpPageController">
+        <property name="userManager">
+            <ref bean ="userManager"></ref>
+        </property>
+    </bean>
+    
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"

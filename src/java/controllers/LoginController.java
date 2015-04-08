@@ -4,11 +4,22 @@
  * and open the template in the editor.
  */
 package controllers;
-import manager.UserManager;
+import managers.UserManager;
 /**
  *
  * @author DreamRealizer
  */
 public class LoginController {
-    UserManager userManager;
+    private UserManager userManager;
+
+    
+    
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
+    }
+    
 }

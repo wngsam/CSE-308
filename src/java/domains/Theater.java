@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package domains;
 import java.util.*;
-
 /**
  *
  * @author DreamRealizer
  */
-public class Transaction {
-    PaymentMethod paymentMethod;
-    Schedule schedule;
-    int quantity;
-    double cost;
-    GregorianCalendar date;
-    int number;
+public class Theater {
+    int id;
+    String name;
+    String address;
+    int zipCode;
+    String phone;
+    Map<String,Schedule> schedules;
+    String amenities;
+    
 }
