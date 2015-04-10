@@ -1,100 +1,65 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
-<!-- FIXED NAVBAR -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.htm">Yggdrasil</a>
+<!-- LOGIN NAVBAR -->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.htm">Samdango</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.htm">Giftcards</a></li>
+                <li><a href="index.htm">Offers</a></li>
+                <li><a href="index.htm">Visa Signature</a></li>
+                <c:choose>
+                    <c:when test="${ not empty currentPerson}">
+                        <li><a href="index.htm">Hi ${currentPerson.firstName}</a></li>
+                        <li><a href="logout.htm">Logout</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    <li><a href="index.htm" style="color:#003366"><b>${cannotLogin}</b></a></li>
+                        <li><form class="navbar-form navbar-right" id="login" method="POST" action="login.htm">
+                            <input type="text" class="form-control input-sm" name="email" placeholder="E-mail">
+                            <input type="password" class="form-control input-sm" name="password"placeholder="Password">
+                            <button type="submit" class="btn btn-success btn-sm">Login</button>
+                            <a href="registrationPage.htm" class="btn btn-warning btn-sm">Register</a>
+                        </form></li>
+                        
+                    </c:otherwise>
+                </c:choose>
+            </ul>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="adminpage.htm">Home</a></li>
-            <li><a href="">About</a></li>
-            <li><a href="">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Special Offers<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Gift Cards</a></li>
-                <li><a href="offerspage.htm">Offers</a></li>
-                <li><a href="#">Visa Signature</a></li>                          
-              </ul>
-            </li>
-          </ul>
-          <form id="login" method="POST" action="login.htm">
-                                Hi ${currentPerson.firstName} ${currentPerson.lastName}
-                                <div class="row control-group">
-                                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" name="email" >
-                                        <p class="help-block text-default">${cannotLogin}</p>
-                                    </div>
-                                </div>
-								
-                                <div class="row control-group">
-                                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password">
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="form-group col-xs-12">
-                                        <button type="submit" class="btn btn-success btn-lg">Login</button>
-                                    </div>
-                                </div>
-								
-                            </form>  
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
-<!--/FIXED NAVBAR -->
-	
-	
-	
+<!--/LOGIN NAVBAR -->
 <!--MOVIE SLIDE -->
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
-		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 	</ol>
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
-		<div class="item active">
-			<img src="assets\img\slide03.jpg" alt="...">
-			<div class="carousel-caption">
-				<h3>Now Playing!</h3>
-			</div>
-		</div>
-		<div class="item">
-			<img src="assets\img\slide01.jpg" alt="...">
-			<div class="carousel-caption">
-			</div>
-		</div>
-		<div class="item">
-			<img src="assets\img\slide02.jpg" alt="...">
-			<div class="carousel-caption">
-			</div>
-		</div>
+            <div class="item active">
+                <img src="assets\img\slide03.jpg" alt="...">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="assets\img\slide01.jpg" alt="...">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="assets\img\slide02.jpg" alt="...">
+                <div class="carousel-caption"></div>
+            </div>    
 	</div>
-	<!-- Controls -->
-	<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span></a>
-	<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
 <!--/MOVIE SLIDE -->
-
-	
-	
-<!--2ND NAV BAR-->
-	<nav class="navbar navbar-default">
+<!--CONTENT NAV BAR-->
+    <nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -270,11 +235,9 @@
         </div>
         <button type="submit" class="btn btn-success">Go</button>
       </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-      </ul>
     </div>
   </div>
-</nav>
-<!--/2ND NAV BAR-->
+    </nav>
+<!--/CONTENT NAV BAR-->
+
 </div>

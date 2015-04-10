@@ -23,14 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author DreamRealizer
  */
 @Controller
-@RequestMapping("/login")
 public class LoginController {
     
     private UserManager userManager;
     
   
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam(value = "email") String email,
                     @RequestParam(value = "password") String password,
                     HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
@@ -41,8 +40,17 @@ public class LoginController {
         if(user!=null){
             session.setAttribute("currentPerson", user);
         }else{
-            mv.addObject("cannotLogin", "Wrong Password or Email");
+            mv.addObject("cannotLogin", "Wrong Password or Email!");
         } 
+        
+        return mv;
+    }
+    
+    @RequestMapping(value="/logout")
+    public ModelAndView logout(HttpSession session){
+        ModelAndView mv = new ModelAndView("index");
+        
+        session.removeAttribute("currentPerson");
         
         return mv;
     }
