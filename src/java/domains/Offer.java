@@ -12,8 +12,34 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Offer {
-    String name;
-    String content;
-    GregorianCalendar expiration;
+    private String name;
+    private String content;
+    private GregorianCalendar expiration;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public GregorianCalendar getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(GregorianCalendar expiration) {
+        this.expiration = expiration;
+    }
+    
+    
     
 }
