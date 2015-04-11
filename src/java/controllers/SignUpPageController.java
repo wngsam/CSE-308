@@ -40,16 +40,16 @@ public class SignUpPageController {
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView doSignUp(@ModelAttribute("user") User user, HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         
-        boolean confirmation = false;
+        ModelAndView mv = new ModelAndView("index");
         user.setRole("User");
         
         if(userManager.registerUser(user)==true){
             session.setAttribute("currentPerson", user);
-            confirmation = true;
+        }else{
+            mv = new ModelAndView("registrationPage");
+            mv.addObject("confirmation", false);
         }
         
-        ModelAndView mv = new ModelAndView("registrationPage");
-        mv.addObject("confirmation", confirmation);
         return mv;
     }
 

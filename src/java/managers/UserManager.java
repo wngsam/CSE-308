@@ -18,8 +18,20 @@ public class UserManager {
     
     private HashMap<String,User> users;
     
-    UserManager(){
+    UserManager() throws UnsupportedEncodingException, NoSuchAlgorithmException{
         users = new HashMap();
+        createTestUsers();
+    }
+    
+    public void createTestUsers() throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        User userOne = new User("Sam", "Wang", "sam.wang@stonybrook.edu", hash("abc123"), "User");
+        User userTwo = new User("Youngseo", "Son", "youngseo.son@stonybrook.edu", hash("123abc"), "User");
+        User userThree = new User("Jaewoong", "Shin", "@jaewoong.shin@stonybrook.edu", hash("cba321"), "User");
+        User userFour = new User("David", "Lui", "david.lui@stonybrook.edu", hash("321cba"), "User");
+        users.put(userOne.getEmail(),userOne);
+        users.put(userTwo.getEmail(),userTwo);
+        users.put(userThree.getEmail(),userThree);
+        users.put(userFour.getEmail(),userFour);
     }
     
     public User authenticate(String email, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{

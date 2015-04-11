@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
@@ -25,9 +26,9 @@
 
 <!-- REGISTER BODY -->
 <div class="row row-offcanvas"><center>
-        
-    Showing ${confirmation}
-    Hi ${currentPerson.firstName} ${currentPerson.lastName} with the email ${currentPerson.email} and password ${currentPerson.password}!
+    <c:if test="${confirmation eq false}">
+        <p style="color:red">E-mail already taken. Please try a different e-mail.</p>
+    </c:if>
         
     <legend>
         <p class="text-primary" style="font-size:55px">Registration</p>
@@ -62,6 +63,19 @@
         
 </center></div>
 <!-- /REGISTER BODY -->
+<!-- PICS -->
+<br><center>
+<img src="assets\img\reg1.png">
+&nbsp&nbsp&nbsp&nbsp
+<img src="assets\img\reg2.png">
+&nbsp&nbsp&nbsp&nbsp
+<img src="assets\img\reg3.png">
+&nbsp&nbsp&nbsp&nbsp
+<img src="assets\img\reg4.png">
+<br></br>
+<br><img src="assets\img\reg5.png"></br>
+</center></br>
+<!-- /PICS -->
 
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript

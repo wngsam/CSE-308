@@ -10,7 +10,7 @@
 				
 				<br><br>
 
-				<table align="center" width="100%"  bgcolor="#00FF00"><tr valign="top"><td width="25%"><p style="font-size:20px">Get Updates On All Things Movies:</p><p>Sign up for FamMail</p>
+				<table align="center" width="100%"  bgcolor="#00FF00"><tr valign="top"><td width="25%"><p style="font-size:20px">Get Updates On All Things Movies:</p><p>Sign up for FanMail</p>
 					<form class="navbar-form navbar-center">
 						<div class="form-group">
 							<input type="Enter Email Address" placeholder="Enter Email Address" class="form-control"><button type="submit" class="btn btn-success">Submit</button>
