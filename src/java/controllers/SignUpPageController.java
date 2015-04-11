@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author Sam W
+ * @author Sam W.
  */
 
 @Controller
