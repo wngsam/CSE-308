@@ -14,7 +14,7 @@ import java.util.HashMap;
  */
 public class TheaterManager {
     
-    HashMap<String,Theater> theaters;
+    private HashMap<String,Theater> theaters;
     
     public TheaterManager(){
         theaters = new HashMap();

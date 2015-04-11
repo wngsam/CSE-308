@@ -22,7 +22,16 @@
     <context:component-scan base-package="controllers"/>
     <mvc:annotation-driven/>
 
-    <bean id="userManager" class="managers.UserManager">
+    <bean id="userManager" class="managers.UserManager"></bean>
+    <bean id="theaterManager" class="managers.TheaterManager"></bean>
+    <bean id="offerManager" class="managers.OfferManager"></bean>
+    <bean id="movieManager" class="managers.MovieManager"></bean>
+    <bean id="checkOutManager" class="managers.CheckOutManager"></bean>
+    
+    <bean id="userPageController" class="controllers.UserPageController">
+        <property name="userManager">
+            <ref bean ="userManager"></ref>
+        </property>
     </bean>
     
     <bean id="loginController" class="controllers.LoginController">
@@ -34,6 +43,15 @@
     <bean id="signUpPageController" class="controllers.SignUpPageController">
         <property name="userManager">
             <ref bean ="userManager"></ref>
+        </property>
+    </bean>
+    
+    <bean id="searchController" class="controllers.SearchController">
+        <property name="movieManager">
+            <ref bean ="movieManager"></ref>
+        </property>
+        <property name="theaterManager">
+            <ref bean ="theaterManager"></ref>
         </property>
     </bean>
     
