@@ -30,8 +30,8 @@
 
  <!-- USER NAV BAR -->
  <div class="container-fluid">
-     <div class="row">
-         <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-12">
              <div class="page-header">
                  <h1 id="navbar">${currentPerson.firstName}'s Account</h1>
              </div>
@@ -41,30 +41,26 @@
                  <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Account Settings</a></li>
                  <li class=""><a href="#payment" data-toggle="tab" aria-expanded="false">PAYMENT METHOD</a></li>
              </ul>
-             <div id="myTabContent" class="tab-content">
-                 <div class="tab-pane fade active in" id="overview">
-                     <div class="container">                        
-                         <center><p class="text-danger">MY THEATERS</p></center>
-                             <hr>
-                         <center><p class="text-danger">MY MOVIES</p></center>    
-                         <hr>
-                         <center><p class="text-danger">MY REVIEWS</p></center>    
-                         <hr>                             
-                     </div>
-                 </div>
-                 <div class="tab-pane fade" id="history">
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="overview">
+                    <div class="container">                        
+                        <center><p class="text-danger">MY THEATERS</p></center><hr>
+                        <center><p class="text-danger">MY MOVIES</p></center><hr>
+                        <center><p class="text-danger">MY REVIEWS</p></center><hr>                           
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="history">
                      <p>Purchase History</p>
-                 </div>
-                 <div class="tab-pane fade" id="settings">
+                </div>
+                <div class="tab-pane fade" id="settings">
                      <p>Account Settings</p>
-                 </div>
-                 <div class="tab-pane fade" id="payment">
-                     <p>Payment Method</p>
-                 </div>
-                 
-             </div>
-         </div>
-     </div>
+                </div>
+                <div class="tab-pane fade" id="payment">
+                     <p>Payment Methods</p>
+                </div>
+            </div>
+        </div>
+    </div>
  </div>
 <!--/USER NAV BAR-->
 
