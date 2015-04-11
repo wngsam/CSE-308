@@ -29,50 +29,37 @@
 <jsp:include page="header.jsp" />
 
  <!-- USER NAV BAR -->
- <div class="bs-docs-section clearfix">
+ <div class="container-fluid">
      <div class="row">
          <div class="col-lg-12">
              <div class="page-header">
-                 <h1 id="navbar">My Account</h1>
+                 <h1 id="navbar">${currentPerson.firstName}'s Account</h1>
              </div>
              <ul class="nav nav-tabs">
                  <li class="active"><a href="#overview" data-toggle="tab" aria-expanded="true">OVERVIEW</a></li>
-                 <li class=""><a href="#change-email" data-toggle="tab" aria-expanded="false">CHANGE EMAIL</a></li>
-                 <li class=""><a href="#change-password" data-toggle="tab" aria-expanded="false">CHANGE PASSWORD</a></li>
-                 <li class=""><a href="#payment-method" data-toggle="tab" aria-expanded="false">PAYMENT METHOD</a></li>
-                 <li class=""><a href="#theater-rewards" data-toggle="tab" aria-expanded="false">THEATER REWARDS</a></li>
+                 <li class=""><a href="#history" data-toggle="tab" aria-expanded="false">Purchase History</a></li>
+                 <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Account Settings</a></li>
+                 <li class=""><a href="#payment" data-toggle="tab" aria-expanded="false">PAYMENT METHOD</a></li>
              </ul>
              <div id="myTabContent" class="tab-content">
                  <div class="tab-pane fade active in" id="overview">
                      <div class="container">                        
-                         <center><h1><p class="text-danger">MY THEATERS</p></h1></center>
+                         <center><p class="text-danger">MY THEATERS</p></center>
                              <hr>
-                             <div class="row row-offcanvas">                             
-                             <p>You have no favorite theaters.</p>
-                            </div>
-                         <center><h1><p class="text-danger">MY MOVIES</p></h1></center>    
+                         <center><p class="text-danger">MY MOVIES</p></center>    
                          <hr>
-                         <div class="row row-offcanvas">
-                             <p>You are not following any movies</p>               
-                         </div>
-                         <center><h1><p class="text-danger">MY REVIEWS</p></h1></center>    
-                         <hr>
-                         <div class="row row-offcanvas">
-                             <p>Have something to say about a movie you've seen?</p>               
-                         </div>                              
+                         <center><p class="text-danger">MY REVIEWS</p></center>    
+                         <hr>                             
                      </div>
                  </div>
-                 <div class="tab-pane fade" id="change-email">
-                     <p>change-email</p>
+                 <div class="tab-pane fade" id="history">
+                     <p>Purchase History</p>
                  </div>
-                 <div class="tab-pane fade" id="change-password">
-                     <p>change password</p>
+                 <div class="tab-pane fade" id="settings">
+                     <p>Account Settings</p>
                  </div>
-                 <div class="tab-pane fade" id="payment-method">
-                     <p>payment method.</p>
-                 </div>
-                 <div class="tab-pane fade" id="theater-rewards">
-                     <p>theater rewards</p>
+                 <div class="tab-pane fade" id="payment">
+                     <p>Payment Method</p>
                  </div>
                  
              </div>
