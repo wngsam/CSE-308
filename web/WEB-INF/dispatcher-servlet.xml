@@ -21,12 +21,31 @@
 
     <context:component-scan base-package="controllers"/>
     <mvc:annotation-driven/>
+    <!--
+    <bean id="springDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" >
+        <property name="url" value="jdbc:mysql://localhost/samdango" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+        <property name="initialSize" value="10" />
+        <property name="maxTotal" value="30" />
+    </bean>
 
+    <bean id="MovieDatabaseBean" class="dao.MovieDAO">
+        <property name="dataSource" ref="springDataSource"/>
+    </bean>
+    -->
     <bean id="userManager" class="managers.UserManager"></bean>
     <bean id="theaterManager" class="managers.TheaterManager"></bean>
     <bean id="offerManager" class="managers.OfferManager"></bean>
     <bean id="movieManager" class="managers.MovieManager"></bean>
     <bean id="checkOutManager" class="managers.CheckOutManager"></bean>
+    
+    <bean id="movieListController" class="controllers.MovieListController">
+        <property name="movieManager">
+            <ref bean ="movieManager"></ref>
+        </property>
+    </bean>
     
     <bean id="offerPageController" class="controllers.OfferPageController">
         <property name="offerManager">

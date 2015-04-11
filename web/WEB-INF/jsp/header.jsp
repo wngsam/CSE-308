@@ -118,7 +118,7 @@
                                 <tr>                            
                                     <td><a href="">SEE ALL NOW PLAYING</a></td>
                                     <td><a href="">SEE ALL OPENING THIS WEEK</a></td>
-                                    <td><a href="">SEE ALL COMING SOON</a></td>
+                                    <td><a href="comingSoonPage.htm">SEE ALL COMING SOON</a></td>
                                 </tr>
                             </tbody>
                         </table></li>
