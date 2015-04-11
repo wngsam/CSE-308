@@ -8,7 +8,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.htm">Giftcards</a></li>
-                <li><a href="index.htm">Offers</a></li>
+                <li><a href="offersPage.htm">Offers</a></li>
                 <li><a href="index.htm">Visa Signature</a></li>
                 <c:choose>
                     <c:when test="${ not empty currentPerson}">

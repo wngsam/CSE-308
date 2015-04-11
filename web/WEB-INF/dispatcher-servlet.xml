@@ -28,6 +28,12 @@
     <bean id="movieManager" class="managers.MovieManager"></bean>
     <bean id="checkOutManager" class="managers.CheckOutManager"></bean>
     
+    <bean id="offerPageController" class="controllers.OfferPageController">
+        <property name="offerManager">
+            <ref bean ="offerManager"></ref>
+        </property>
+    </bean>
+    
     <bean id="userPageController" class="controllers.UserPageController">
         <property name="userManager">
             <ref bean ="userManager"></ref>
