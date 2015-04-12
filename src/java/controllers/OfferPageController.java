@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import domains.Offer;
+import java.util.List;
 import managers.OfferManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,9 @@ public class OfferPageController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView viewOffers(){
         ModelAndView mv = new ModelAndView("offersPage");
-        
+        System.out.println(offerManager.getOffers().size());
+        List<Offer> offers= offerManager.getOffers();
+        mv.addObject("offers", offers);
         return mv;
     }
 

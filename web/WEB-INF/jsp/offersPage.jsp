@@ -33,29 +33,16 @@
 <!-- OFFERS MAIN BODY -->
 <center><h1><p class="text-success" style="font-size:55px">OFFERS</p></h1><hr>
 <div class="row">
+    <c:forEach var="listVar" items="${offers}">     
+
 			<div class="col-xs-6 col-lg-3">
 			  <img src="assets\img\offer1.jpg" width="275" height="275"><br></br>
-              <center><p>Sign Up for our Daily Newsletter for the latest movie news and great deals!</p></center>
+                          <center><p><c:out value="${listVar.name}"/></p></center>
+              <center><p><c:out value="${listVar.content}"/></p></center>
               <center><p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal4">View details &raquo;</button></p></center>
             </div><!--/.col-xs-6.col-lg-4-->
 			
-			<div class="col-xs-6 col-lg-3">
-			  <img src="assets\img\offer2.jpg" width="275" height="275"><br></br>
-              <p>Enter Today for a chance to win a trip to Australia!</p><p><h6> Offer ends Jan 20, 2016. </h6></p>
-              <center><p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal5">View details &raquo;</button></p></center>
-            </div><!--/.col-xs-6.col-lg-4-->
-			
-			<div class="col-xs-6 col-lg-3">
-			  <img src="assets\img\offer3.jpg" width="275" height="275"><br></br>
-				<center><p>Family Deal! Purchase 2 or more tickets and get the next ticket 50% off!</p></center>
-              <center><p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal6">View details &raquo;</button></p></center>
-            </div><!--/.col-xs-6.col-lg-4-->
-			
-			<div class="col-xs-6 col-lg-3">
-			  <img src="assets\img\offer4.jpg" width="275" height="275"><br></br>
-              <center> <p>Go to any theater in Stony Brook and mention us to get a free large soda!</p></center>
-              <center><p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal7">View details &raquo;</button></p></center>
-            </div><!--/.col-xs-6.col-lg-4-->
+        </c:forEach>			
 	  </div></center>
 <!-- INFO POPUP MODALS -->
 <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
