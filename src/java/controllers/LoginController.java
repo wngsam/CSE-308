@@ -26,9 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
     
     private UserManager userManager;
-    
-  
-    
+   
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam(value = "email") String email,
                     @RequestParam(value = "password") String password,
