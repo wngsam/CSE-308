@@ -5,7 +5,8 @@
  */
 package controllers;
 
-import domains.User;
+import java.util.*;
+import domains.Movie;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
@@ -28,7 +29,8 @@ public class MovieListController {
     @RequestMapping(value="/comingSoonPage", method=RequestMethod.GET)
     public ModelAndView viewComingSoon(){
         ModelAndView mv = new ModelAndView("comingSoonPage");
-        
+        List<Movie> comingSoonMovies = movieManager.getComingSoonMovies();
+        mv.addObject("comingSoonMovies", comingSoonMovies);
         
         
         return mv;
