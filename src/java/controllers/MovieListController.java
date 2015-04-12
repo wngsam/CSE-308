@@ -5,8 +5,13 @@
  */
 package controllers;
 
+import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import javax.servlet.http.HttpSession;
 import managers.MovieManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,10 +28,14 @@ public class MovieListController {
     @RequestMapping(value="/comingSoonPage", method=RequestMethod.GET)
     public ModelAndView viewComingSoon(){
         ModelAndView mv = new ModelAndView("comingSoonPage");
-
+        
+        
+        
         return mv;
     }
 
+    
+    
     public MovieManager getMovieManager() {
         return movieManager;
     }

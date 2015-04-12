@@ -19,6 +19,7 @@ public class Movie {
     int rating;
     String synopsis;
     List<Actor> actors;
+    URL poster;
     Collection<URL> images;
     boolean recent;
     double  weekendGross;
@@ -29,4 +30,27 @@ public class Movie {
     URL trailer;
     List<Review> reviews;
     Map<String,Schedule> schedule; // Map<Theater Name, Schedule>
+
+    public Movie(){
+        
+    }
+    
+    public Movie(int id, String title, GregorianCalendar releaseDate, int rating, URL poster, Collection<String> genre){
+        this.id=id;
+        this.title=title;
+        this.releaseDate=releaseDate;
+        this.rating = rating;
+        this.poster=poster;
+        this.genre = genre;
+    }
+    
+    public void setGenre(Collection<String> genre){
+        this.genre=genre;
+    }
+    public Collection<String> setGenre(){
+        return this.genre;
+    }
+    public int getId(){
+        return this.id;
+    }
 }

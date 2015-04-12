@@ -31,7 +31,7 @@ public class SignUpPageController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView signUp(){
-        //Check if already logged in.
+        
         ModelAndView mv = new ModelAndView("registrationPage");
         mv.addObject("user", new User());
         return mv;
