@@ -3,6 +3,7 @@
     Created on : Apr 11, 2015, 2:21:37 PM
     Author     : Desktop
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
@@ -37,7 +38,7 @@
 
 			<div class="col-xs-6 col-lg-3">
 			  <img src="assets\img\offer1.jpg" width="275" height="275"><br></br>
-                          <center><p><c:out value="${listVar.name}"/></p></center>
+                          <center><p>${listVar.name}</p></center>
               <center><p><c:out value="${listVar.content}"/></p></center>
               <center><p><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal4">View details &raquo;</button></p></center>
             </div><!--/.col-xs-6.col-lg-4-->
