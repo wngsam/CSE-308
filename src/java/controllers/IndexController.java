@@ -18,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class IndexController {
     
-    private MovieManager movieManager;
-    
     @RequestMapping(value="/index")
     public ModelAndView displayIndex(){
         ModelAndView mv = new ModelAndView("index");
