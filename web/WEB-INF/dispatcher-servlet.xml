@@ -53,6 +53,7 @@
         </property>
     </bean>
     
+    
     <bean id="userPageController" class="controllers.UserPageController">
         <property name="userManager">
             <ref bean ="userManager"></ref>

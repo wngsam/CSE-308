@@ -20,4 +20,13 @@ public class TheaterManager {
         theaters = new HashMap();
     }
     
+    public void createTestTheaters(){
+        Theater theaterOne = new Theater();
+        Theater theaterTwo = new Theater();
+        Theater theaterThree = new Theater();
+        theaters.put(theaterOne.getName(), theaterOne);
+        theaters.put(theaterTwo.getName(), theaterTwo);
+        theaters.put(theaterThree.getName(), theaterThree);
+    }
+    
 }

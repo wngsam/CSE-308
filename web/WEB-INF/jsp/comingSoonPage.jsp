@@ -3,8 +3,9 @@
     Created on : Apr 11, 2015, 3:29:53 PM
     Author     : Desktop
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
   <head>
@@ -68,11 +69,26 @@
 <center>           
     <table>
         <tr>
+            <td>
+                <c:forEach var="listVar" items="${comingSoonMovies}">     
+
+			<div class="col-xs-6 col-lg-3">
+			 <!-- <img src="assets\img\offer1.jpg" width="145" height="220"><br></br>-->
+                           <center><p><c:out value="${listVar.poster}"/></p></center>
+                          <center><p><c:out value="${listVar.title}"/></p></center>
+                          <center><p><c:out value="${listVar.genre}"/></p></center>
+                          <center><p><c:out value="${listVar.releaseDate}"/></p></center>
+            </div><!--/.col-xs-6.col-lg-4-->
+			
+            </c:forEach>
+        </td>
+    </tr>			
+        <!--<tr>
             <td width="145px" height="220px">
                 <a href=""><img src="assets\img\danny.jpg" width="140" height="209"><br></br></a>
                <p style="font-size:20px">Danny</p> 
                <p>Fri, Mar 13, 2015</p>
-            </td><!--/.col-xs-6.col-lg-4-->
+            </td>
             <td width="50px"></td>
             <td width="145px" height="220px">
                 <a href=""><img src="assets\img\Cinderella.jpg" width="140" height="209"><br></br></a>
@@ -97,8 +113,8 @@
                 <p style="font-size:20px">Kumiko</p> 
                <p>Fri, Mar 13, 2015</p>  
             </td>
-        </tr>
-        
+        </tr> -->
+        <!--
         <tr>	
            <td width="145px" height="220px">
                 <a href=""><img src="assets\img\insurgent.jpg" width="140" height="209"><br></br></a>
@@ -129,7 +145,7 @@
                <p style="font-size:20px">Cupcakes</p> 
                <p>Fri, Mar 13, 2015</p>
            </td>
-        </tr>
+        </tr>-->
     </table>
 	  
     </div>

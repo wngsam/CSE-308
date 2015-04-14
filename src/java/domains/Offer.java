@@ -15,6 +15,12 @@ public class Offer {
     private String name;
     private String content;
     private GregorianCalendar expiration;
+    
+    public Offer(String name, String content, GregorianCalendar expiration) {
+        this.name = name;
+        this.content = content;
+        this.expiration = expiration;
+    }
 
     public String getName() {
         return name;

@@ -7,6 +7,8 @@ package managers;
 
 import domains.Offer;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  *
@@ -14,14 +16,24 @@ import java.util.ArrayList;
  */
 public class OfferManager {
     
-    private ArrayList<Offer> offers;
+    private List<Offer> offers;
+    
     
     public OfferManager(){
-        offers = new ArrayList();
+        offers = new ArrayList<Offer>();
+        createTestOffer();        
     }
     
-    public ArrayList<Offer> getOffers(){
+    public List<Offer> getOffers(){
+        System.out.print(offers.get(0).getName());
         return offers;
+    }
+    
+    public void createTestOffer() {
+        Offer testOffer = new Offer("Sponge Bob 3D Discount", "Discount 30% for each ticket!", new GregorianCalendar(4,12,2015,11,59));
+        Offer testOffer2 = new Offer("Run the Night Discount", "Discount 40% for each ticket!", new GregorianCalendar(4,12,2015,11,59));
+        offers.add(testOffer);
+        offers.add(testOffer2);
     }
     
 }
