@@ -32,7 +32,11 @@ public class MovieListController {
         List<Movie> comingSoonMovies = movieManager.getComingSoonMovies();
         mv.addObject("comingSoonMovies", comingSoonMovies);
         
+        System.out.println("34!!!");
+       /* for(int i=0; i<comingSoonMovies.size(); i++)
+            System.out.print(comingSoonMovies.get(i));
         
+        System.out.println("38!!!");*/
         return mv;
     }
 
