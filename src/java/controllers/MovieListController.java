@@ -40,7 +40,16 @@ public class MovieListController {
         return mv;
     }
 
-    
+
+    @RequestMapping(value="/boxOfficePage", method=RequestMethod.GET)
+    public ModelAndView viewBoxOffice(){
+        ModelAndView mv = new ModelAndView("boxOfficePage");
+        List<Movie> boxOfficeMovies = movieManager.getBoxOfficeMovies();
+        mv.addObject("boxOfficeMovies", boxOfficeMovies);
+        
+        
+        return mv;
+    }
     
     public MovieManager getMovieManager() {
         return movieManager;

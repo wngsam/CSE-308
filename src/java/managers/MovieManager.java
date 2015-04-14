@@ -35,6 +35,15 @@ public class MovieManager {
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
         createTestcomingSoon();
+        createFakeBoxOffice();
+    }
+    
+    public void createFakeBoxOffice() {
+        Movie batman = new Movie("batman");
+        Movie bootman = new Movie ("bootman");
+        
+        topBoxOffice.add(batman);
+        topBoxOffice.add(bootman);
     }
     
     public void createTestcomingSoon() throws MalformedURLException{
