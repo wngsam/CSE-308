@@ -43,14 +43,141 @@ public class Movie {
         this.poster=poster;
         this.genre = genre;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public GregorianCalendar getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(GregorianCalendar releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    public URL getPoster() {
+        return poster;
+    }
+
+    public void setPoster(URL poster) {
+        this.poster = poster;
+    }
+
+    public Collection<URL> getImages() {
+        return images;
+    }
+
+    public void setImages(Collection<URL> images) {
+        this.images = images;
+    }
+
+    public boolean isRecent() {
+        return recent;
+    }
+
+    public void setRecent(boolean recent) {
+        this.recent = recent;
+    }
+
+    public double getWeekendGross() {
+        return weekendGross;
+    }
+
+    public void setWeekendGross(double weekendGross) {
+        this.weekendGross = weekendGross;
+    }
+
+    public int getNumOfTheaters() {
+        return numOfTheaters;
+    }
+
+    public void setNumOfTheaters(int numOfTheaters) {
+        this.numOfTheaters = numOfTheaters;
+    }
+
+    public double getTheaterAvg() {
+        return theaterAvg;
+    }
+
+    public void setTheaterAvg(double theaterAvg) {
+        this.theaterAvg = theaterAvg;
+    }
+
+    public String getStudio() {
+        return studio;
+    }
+
+    public void setStudio(String studio) {
+        this.studio = studio;
+    }
+
+    public Collection<String> getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Collection<String> genre) {
+        this.genre = genre;
+    }
+
+    public URL getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(URL trailer) {
+        this.trailer = trailer;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public Map<String, Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Map<String, Schedule> schedule) {
+        this.schedule = schedule;
+    }
     
-    public void setGenre(Collection<String> genre){
-        this.genre=genre;
-    }
-    public Collection<String> setGenre(){
-        return this.genre;
-    }
-    public int getId(){
-        return this.id;
-    }
 }
