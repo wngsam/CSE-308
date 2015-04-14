@@ -119,7 +119,7 @@ public class Movie {
         this.recent = recent;
     }
 
-<<<<<<< HEAD
+
     public double getWeekendGross() {
         return weekendGross;
     }
@@ -182,14 +182,6 @@ public class Movie {
 
     public void setSchedule(Map<String, Schedule> schedule) {
         this.schedule = schedule;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-
     }
     
 }
