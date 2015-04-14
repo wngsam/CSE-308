@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Movie {
     int id;
-    String title;
+    private String title;
     GregorianCalendar releaseDate;
     int rating;
     String synopsis;
@@ -34,7 +34,10 @@ public class Movie {
     public Movie(){
         
     }
-    
+    public Movie(String mtitle) {
+        title = mtitle;
+        
+    }
     public Movie(int id, String title, GregorianCalendar releaseDate, int rating, URL poster, Collection<String> genre){
         this.id=id;
         this.title=title;
@@ -53,4 +56,13 @@ public class Movie {
     public int getId(){
         return this.id;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
 }
