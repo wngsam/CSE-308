@@ -119,7 +119,6 @@ public class Movie {
         this.recent = recent;
     }
 
-
     public double getWeekendGross() {
         return weekendGross;
     }
@@ -183,5 +182,8 @@ public class Movie {
     public void setSchedule(Map<String, Schedule> schedule) {
         this.schedule = schedule;
     }
+    
+    
+    
     
 }

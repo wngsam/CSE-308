@@ -2,7 +2,7 @@
 <div>
 <!-- LOGIN NAVBAR -->
     <nav class="navbar navbar-inverse">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="index.htm">Samdango</a>
             </div>
@@ -92,7 +92,7 @@
                                     <td><a href="">Kingsman: The Secret Service</a></td>
                                     <td><a href="">Focus</a></td>
                                     <td><a href="">Unfinished Business</a></td>
-                                    <td><a href="">TOP BOX OFFICES</a></td>
+                                    <td><a href="boxOfficePage.htm">TOP BOX OFFICES</a></td>
                                 </tr>
                                 <tr>
                                     <td><a href="">The SopngeBob Movie: Sponge Out of Water</a></td>
@@ -106,9 +106,9 @@
                                     <td><a href="">The Divergent Series: Insurgent</a></td>                            
                                 </tr>
                                 <tr>
-                                    <td><a href="movieinfopage.htm">The DUFF</a></td>
-                                    <td><a href="movieinfopage.htm">** Eastern Boys</a></td>
-                                    <td><a href="movieinfopage.htm">The Divergent Series: Insurgent</a></td>                            
+                                    <td><a href="">The DUFF</a></td>
+                                    <td><a href="">** Eastern Boys</a></td>
+                                    <td><a href="">The Divergent Series: Insurgent</a></td>                            
                                 </tr>
                                 <tr>
                                     <td><a href="">American Sniper</a></td>

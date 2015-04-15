@@ -34,6 +34,14 @@ public class OfferManager {
         Offer testOffer2 = new Offer("Run the Night Discount", "Discount 40% for each ticket!", new GregorianCalendar(4,12,2015,11,59));
         offers.add(testOffer);
         offers.add(testOffer2);
+        Offer testOffer3 = new Offer("33", "DTest!", new GregorianCalendar(4,12,2015,11,59));
+        Offer testOffer4 = new Offer("44", "DiTest!", new GregorianCalendar(4,12,2015,11,59));
+        offers.add(testOffer3);
+        offers.add(testOffer4);
+        Offer testOffer5 = new Offer("555", "Discount ", new GregorianCalendar(4,12,2015,11,59));
+        Offer testOffer6 = new Offer("66", "FREE", new GregorianCalendar(4,12,2015,11,59));
+        offers.add(testOffer5);
+        offers.add(testOffer6);
     }
     
 }
