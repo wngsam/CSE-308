@@ -39,7 +39,7 @@ public class OfferManager {
     }
     
     public void updateOffers(){
-        offers = offerDAO.getOffers();
+        offers = offerDAO.update();
         //offerDAO.dummy();
     }
     

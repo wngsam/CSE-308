@@ -13,46 +13,35 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Movie {
-    private int id;
+    
+    private int movieId;
     private String title;
     private GregorianCalendar releaseDate;
-    private int rating;
+    private String rating;
     private String synopsis;
-    private List<Actor> actors;
-    private URL poster;
-    private Collection<URL> images;
-    private boolean recent;
-    private double  weekendGross;
+    private String poster;
+    private double weekendGross;
     private int numOfTheaters;
-    private double theaterAvg;
+    private double theaterAverage;
     private String studio;
-    private Collection<String> genre;
-    private URL trailer;
-    private List<Review> reviews;
-    private Map<String,Schedule> schedule; // Map<Theater Name, Schedule>
-
+    private String trailer;
+            
+    private boolean fresh=false;
+            
     public Movie(){
         
     }
-    public Movie(String mtitle) {
-        title = mtitle;
-        
+    
+    public void checkFresh(){
+        fresh=true;
     }
-    public Movie(int id, String title, GregorianCalendar releaseDate, int rating, URL poster, Collection<String> genre){
-        this.id=id;
-        this.title=title;
-        this.releaseDate=releaseDate;
-        this.rating = rating;
-        this.poster=poster;
-        this.genre = genre;
+    
+    public int getMovieId() {
+        return movieId;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
 
     public String getTitle() {
@@ -69,13 +58,14 @@ public class Movie {
 
     public void setReleaseDate(GregorianCalendar releaseDate) {
         this.releaseDate = releaseDate;
+        checkFresh();
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -87,36 +77,12 @@ public class Movie {
         this.synopsis = synopsis;
     }
 
-    public List<Actor> getActors() {
-        return actors;
-    }
-
-    public void setActors(List<Actor> actors) {
-        this.actors = actors;
-    }
-
-    public URL getPoster() {
+    public String getPoster() {
         return poster;
     }
 
-    public void setPoster(URL poster) {
-        this.poster = poster;
-    }
-
-    public Collection<URL> getImages() {
-        return images;
-    }
-
-    public void setImages(Collection<URL> images) {
-        this.images = images;
-    }
-
-    public boolean isRecent() {
-        return recent;
-    }
-
-    public void setRecent(boolean recent) {
-        this.recent = recent;
+    public void setPoster(String poster) {
+        this.poster = "assets\\img\\"+poster;
     }
 
     public double getWeekendGross() {
@@ -135,12 +101,12 @@ public class Movie {
         this.numOfTheaters = numOfTheaters;
     }
 
-    public double getTheaterAvg() {
-        return theaterAvg;
+    public double getTheaterAverage() {
+        return theaterAverage;
     }
 
-    public void setTheaterAvg(double theaterAvg) {
-        this.theaterAvg = theaterAvg;
+    public void setTheaterAverage(double theaterAverage) {
+        this.theaterAverage = theaterAverage;
     }
 
     public String getStudio() {
@@ -151,39 +117,20 @@ public class Movie {
         this.studio = studio;
     }
 
-    public Collection<String> getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Collection<String> genre) {
-        this.genre = genre;
-    }
-
-    public URL getTrailer() {
+    public String getTrailer() {
         return trailer;
     }
 
-    public void setTrailer(URL trailer) {
+    public void setTrailer(String trailer) {
         this.trailer = trailer;
     }
 
-    public List<Review> getReviews() {
-        return reviews;
+    public boolean isFresh() {
+        return fresh;
     }
 
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setFresh(boolean fresh) {
+        this.fresh = fresh;
     }
-
-    public Map<String, Schedule> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Map<String, Schedule> schedule) {
-        this.schedule = schedule;
-    }
-    
-    
-    
     
 }

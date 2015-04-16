@@ -32,7 +32,7 @@ public class OfferDAO {
         
     }
     
-    public List<Offer> getOffers(){
+    public List<Offer> update(){
         List<Offer> offers = this.jdbcTemplate.query(
                 "SELECT * FROM offers;",
                 new RowMapper<Offer>(){
@@ -53,18 +53,6 @@ public class OfferDAO {
         );
         
         return offers;
-    }
-    
-    public Offer mapOffer(ResultSet rs) throws SQLException{
-        Offer offer = new Offer();
-        offer.setOfferId(rs.getInt("OfferId"));
-        offer.setName(rs.getString("Name"));
-        offer.setContent(rs.getString("Content"));
-        GregorianCalendar cal = new GregorianCalendar();
-        cal.setTime(rs.getDate("Expiration"));
-        offer.setExpiration(cal);
-        offer.setImageLink(rs.getString("ImageLink"));
-        return offer;
     }
     
 }

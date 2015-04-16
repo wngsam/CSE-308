@@ -52,7 +52,7 @@
                     <td>${listVar.title}</td>
                     <td>${listVar.weekendGross}</td>
                     <td>${listVar.numOfTheaters}</td>
-                    <td>${listVar.theaterAvg}</td>
+                    <td>${listVar.theaterAverage}</td>
                     <td>X</td>
                     <td>X</td>
                 </tr>
