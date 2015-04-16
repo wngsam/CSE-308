@@ -5,6 +5,7 @@
  */
 package managers;
 
+import dao.OfferDAO;
 import domains.Offer;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -16,17 +17,30 @@ import java.util.List;
  */
 public class OfferManager {
     
+    private OfferDAO offerDAO;
     private List<Offer> offers;
     
     
     public OfferManager(){
         offers = new ArrayList<Offer>();
-        createTestOffer();        
+        //createTestOffer();     
+    }
+
+    public OfferDAO getOfferDAO() {
+        return offerDAO;
+    }
+
+    public void setOfferDAO(OfferDAO offerDAO) {
+        this.offerDAO = offerDAO;
     }
     
     public List<Offer> getOffers(){
-        System.out.print(offers.get(0).getName());
         return offers;
+    }
+    
+    public void updateOffers(){
+        offers = offerDAO.getOffers();
+        //offerDAO.dummy();
     }
     
     public void createTestOffer() {

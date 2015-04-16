@@ -5,14 +5,11 @@
  */
 package managers;
 
+import dao.MovieDAO;
 import domains.Movie;
-import domains.User;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -22,6 +19,7 @@ import java.util.HashMap;
  */
 public class MovieManager {
     
+    private MovieDAO movieDAO;
     private HashMap<String,Movie> movies;
     private ArrayList<Movie> topBoxOffice;
     private ArrayList<Movie> comingSoon;
@@ -36,6 +34,14 @@ public class MovieManager {
         openingThisWeek = new ArrayList();
         createTestcomingSoon();
         createFakeBoxOffice();
+    }
+
+    public MovieDAO getMovieDAO() {
+        return movieDAO;
+    }
+
+    public void setMovieDAO(MovieDAO movieDAO) {
+        this.movieDAO = movieDAO;
     }
     
     public void createFakeBoxOffice() {
