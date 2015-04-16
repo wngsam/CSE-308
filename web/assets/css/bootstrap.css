@@ -6784,23 +6784,3 @@ a.list-group-item-danger.active:focus {
 .popover-title {
   border: none;
 }
-
-.highlight_footerIcon {
-width:155px;
-height:50px;
-}
-.highlight_footerIcon:hover{
--webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transform: scale(1.2);
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
-}
-
-
-.btn-favoriteMovie {
-  color: #ffffff;
-  background-color: #f0ad4e;
-  border-color: transparent;
-}

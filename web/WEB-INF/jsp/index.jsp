@@ -16,6 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
   </head>
 <!-- /HEADER -->
   
