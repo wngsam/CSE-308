@@ -5,16 +5,14 @@
  */
 package managers;
 
+import dao.MovieDAO;
 import domains.Movie;
-import domains.User;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -22,6 +20,7 @@ import java.util.HashMap;
  */
 public class MovieManager {
     
+    private MovieDAO movieDAO;
     private HashMap<String,Movie> movies;
     private ArrayList<Movie> topBoxOffice;
     private ArrayList<Movie> comingSoon;
@@ -34,44 +33,29 @@ public class MovieManager {
         comingSoon = new ArrayList();
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
-        createTestcomingSoon();
-        createFakeBoxOffice();
+        //createTestcomingSoon();
+        //createFakeBoxOffice();
     }
     
-    public void createFakeBoxOffice() {
-        Movie batman = new Movie("batman");
-        Movie bootman = new Movie ("bootman");
+    public void updateMovies(){
+        movies = new HashMap();
+        List<Movie> moviesList = movieDAO.update();
         
-        topBoxOffice.add(batman);
-        topBoxOffice.add(bootman);
+        for(Movie m : moviesList){
+            movies.put(m.getTitle(),m);
+            topBoxOffice.add(m);
+            comingSoon.add(m);
+        }
+        
     }
     
-    public void createTestcomingSoon() throws MalformedURLException{
-        
-        ArrayList<String> firstGenre = new ArrayList<String>();
-        firstGenre.add("Thriller");
-        firstGenre.add("Romance");
-        Movie comingSoonOne = new Movie(0, "Danny", (GregorianCalendar) GregorianCalendar.getInstance(), 95,
-                new URL("http://localhost:8080/samdango/assets/img/danny.jpg"), firstGenre) ;
-        
-        ArrayList<String> secondGenre = new ArrayList<String>();
-        secondGenre.add("Documentary");
-        secondGenre.add("History");
-        Movie comingSoonTwo = new Movie(0, "Cinderella", (GregorianCalendar) GregorianCalendar.getInstance(), 75,
-                new URL("http://localhost:8080/samdango/assets/img/Cinderella.jpg"), secondGenre);
-        
-        ArrayList<String> thirdGenre = new ArrayList<String>();
-        thirdGenre.add("Action/Adventure");
-        thirdGenre.add("Health & Fitness");
-        Movie comingSoonThree = new Movie(0, "Cupcakes", (GregorianCalendar) GregorianCalendar.getInstance(), 63,
-                new URL("http://localhost:8080/samdango/assets/img/cupcakes.jpg"), thirdGenre);
-       
-        comingSoon.add(comingSoonOne.getId(), comingSoonOne);
-        comingSoon.add(comingSoonTwo.getId(), comingSoonTwo);
-        comingSoon.add(comingSoonThree.getId(), comingSoonThree);
+    public MovieDAO getMovieDAO() {
+        return movieDAO;
     }
-        
-    
+
+    public void setMovieDAO(MovieDAO movieDAO) {
+        this.movieDAO = movieDAO;
+    }
     
     public ArrayList<Movie> getBoxOfficeMovies(){
         return topBoxOffice;

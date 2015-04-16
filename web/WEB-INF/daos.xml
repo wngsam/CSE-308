@@ -19,7 +19,11 @@
        http://www.springframework.org/schema/tx 
        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <bean id="MovieDatabaseBean" class="dao.MovieDAO">
+    <bean id="movieDAO" class="dao.MovieDAO">
+        <property name="dataSource" ref="springDataSource"/>
+    </bean>
+    
+    <bean id="offerDAO" class="dao.OfferDAO">
         <property name="dataSource" ref="springDataSource"/>
     </bean>
     
