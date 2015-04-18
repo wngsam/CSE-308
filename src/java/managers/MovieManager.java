@@ -57,6 +57,10 @@ public class MovieManager {
         this.movieDAO = movieDAO;
     }
     
+    public Movie getCurrentMovie(String movieTitle){
+        return movies.get(movieTitle);
+    }
+    
     public ArrayList<Movie> getBoxOfficeMovies(){
         return topBoxOffice;
     }

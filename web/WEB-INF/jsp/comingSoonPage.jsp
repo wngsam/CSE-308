@@ -22,6 +22,7 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
+    <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
 <!-- /HEADER -->
@@ -74,8 +75,8 @@
 			<div class="col-xs-6 col-lg-3">
 			
                            <center><p><img src="${listVar.poster}" width="145" height="220">
-                          <!--<c:out value="${listVar.releaseDate}"/></p></center>-->
-            </div><!--/.col-xs-6.col-lg-4-->
+                          <!--<c:out value="${listVar.releaseDate}"/></center>--></p>
+            </div>
 			
             </c:forEach>
         </td>
