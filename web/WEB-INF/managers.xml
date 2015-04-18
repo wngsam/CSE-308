@@ -20,8 +20,16 @@
        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
     
     <bean id="checkOutManager" class="managers.CheckOutManager"></bean>
-    <bean id="movieManager" class="managers.MovieManager"></bean>
-    <bean id="offerManager" class="managers.OfferManager"></bean>
+    <bean id="movieManager" class="managers.MovieManager">
+        <property name="movieDAO">
+            <ref bean ="movieDAO"></ref>
+        </property>
+    </bean>
+    <bean id="offerManager" class="managers.OfferManager">
+        <property name="offerDAO">
+            <ref bean ="offerDAO"></ref>
+        </property>
+    </bean>
     <bean id="theaterManager" class="managers.TheaterManager"></bean>
     <bean id="userManager" class="managers.UserManager"></bean>
     <bean id="locationManager" class="managers.LocationManager"></bean>

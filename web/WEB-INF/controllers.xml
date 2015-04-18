@@ -60,5 +60,11 @@
             <ref bean ="userManager"></ref>
         </property>
     </bean>
+    
+    <bean id="movieInfoController" class="controllers.MovieInfoController">
+        <property name="movieManager">
+            <ref bean ="movieManager"></ref>
+        </property>
+    </bean>
 
 </beans>

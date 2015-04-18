@@ -27,6 +27,7 @@ public class OfferPageController {
     public ModelAndView viewOffers(){
         ModelAndView mv = new ModelAndView("offersPage");
         System.out.println(offerManager.getOffers().size());
+        offerManager.updateOffers();
         List<Offer> offers= offerManager.getOffers();
         mv.addObject("offers", offers);
         return mv;
