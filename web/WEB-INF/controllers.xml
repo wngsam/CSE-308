@@ -23,6 +23,9 @@
         <property name="userManager">
             <ref bean ="userManager"></ref>
         </property>
+        <property name="locationManager">
+            <ref bean ="locationManager"></ref>
+        </property>
     </bean>
     
     <bean id="movieListController" class="controllers.MovieListController">

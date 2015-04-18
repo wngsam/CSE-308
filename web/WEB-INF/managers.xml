@@ -24,5 +24,5 @@
     <bean id="offerManager" class="managers.OfferManager"></bean>
     <bean id="theaterManager" class="managers.TheaterManager"></bean>
     <bean id="userManager" class="managers.UserManager"></bean>
-    
+    <bean id="locationManager" class="managers.LocationManager"></bean>
 </beans>

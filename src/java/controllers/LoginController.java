@@ -9,6 +9,7 @@ import domains.User;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
+import managers.LocationManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
     
     private UserManager userManager;
-   
+    private LocationManager locationManager;
+    
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam(value = "email") String email,
                     @RequestParam(value = "password") String password,
@@ -44,6 +46,27 @@ public class LoginController {
         
         return mv;
     }
+    
+    
+    @RequestMapping(value="/zipcode", method = RequestMethod.POST)
+    public ModelAndView zipcode(@RequestParam(value = "searchParameter") int zip,
+                    HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException, Exception{
+        
+        String city = locationManager.findLocation(zip);
+//        User user = userManager.authenticate(email, password); 
+        ModelAndView mv= new ModelAndView("index");
+        mv.addObject("City", zip + " belongs in " +city);
+//        
+//        if(user!=null){
+//            session.setAttribute("currentPerson", user);
+//        }else{
+//            mv = new ModelAndView("index");
+//            mv.addObject("cannotLogin", "Wrong Password or Email!");
+//        } 
+//        
+        return mv;
+    }
+    
     
     @RequestMapping(value="/logout")
     public ModelAndView logout(HttpSession session){
@@ -63,5 +86,13 @@ public class LoginController {
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }
+    public LocationManager getLocationManager() {
+        return locationManager;
+    }
+
+    public void setLocationManager(LocationManager locationManager) {
+        this.locationManager = locationManager;
+    }
+
     
 }
