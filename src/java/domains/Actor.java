@@ -13,12 +13,20 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Actor {
+    private int id;
     private String firstName;
     private String lastName;
     private GregorianCalendar birthDate;
-    private URL imdb;
-    private URL image;
+    private String imdb;
 
+    public int getActorId() {
+        return id;
+    }
+
+    public void setActorId(int actorId) {
+        this.id = actorId;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
@@ -43,22 +51,12 @@ public class Actor {
         this.birthDate = birthDate;
     }
 
-    public URL getImdb() {
+    public String getImdb() {
         return imdb;
     }
 
-    public void setImdb(URL imdb) {
+    public void setImdb(String imdb) {
         this.imdb = imdb;
     }
-
-    public URL getImage() {
-        return image;
-    }
-
-    public void setImage(URL image) {
-        this.image = image;
-    }
-    
-    
     
 }
