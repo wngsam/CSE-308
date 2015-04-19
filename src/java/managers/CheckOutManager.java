@@ -23,5 +23,13 @@ public class CheckOutManager {
     public boolean addTransaction(Transaction transaction){
         return transactions.add(transaction);
     }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }    
     
 }
