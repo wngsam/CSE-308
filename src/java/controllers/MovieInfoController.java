@@ -33,7 +33,7 @@ public class MovieInfoController {
        // public ModelAndView viewMovieInfo(){
        
      
-    @RequestMapping(value="/comingSoonPage/{title}", method = RequestMethod.GET)
+    @RequestMapping(value="/viewMovieInfo/{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle) {
             
         System.out.println("123456");

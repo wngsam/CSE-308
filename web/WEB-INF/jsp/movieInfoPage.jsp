@@ -31,7 +31,8 @@
 
 
 <body role="document" class="movieinfo_bg">
-    <jsp:includepage="header.jsp" />
+    
+    
     <div  style="margin-left:70px;" >
     <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
     <br>
