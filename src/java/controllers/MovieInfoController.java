@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,12 +29,16 @@ public class MovieInfoController {
      private MovieManager movieManager;
 
   
-       @RequestMapping(value="/movieInfoPage", method=RequestMethod.GET)
-        public ModelAndView viewMovieInfo(){
+     //  @RequestMapping(value="/movieInfoPage", method=RequestMethod.GET)
+       // public ModelAndView viewMovieInfo(){
        
-            System.out.println("123456");
+     
+    @RequestMapping(value="/comingSoonPage/{title}", method = RequestMethod.GET)
+    public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle) {
+            
+        System.out.println("123456");
         ModelAndView mv = new ModelAndView("movieInfoPage");
-        Movie currentMovie = movieManager.getCurrentMovie("Danny Collins");
+        Movie currentMovie = movieManager.getCurrentMovie(movieTitle);
         
         mv.addObject("currentMovie", currentMovie);
         

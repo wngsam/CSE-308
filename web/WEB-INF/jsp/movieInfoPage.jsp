@@ -42,7 +42,7 @@
                     <tr width="380px" bgcolor="#5d6078" >
                        <td valign="middle" align="center" colspan=1 height="260px">
                            <img src="${currentMovie.poster}" width="180" height="250"></td>
-                       <td valign="top" align="center" colspan=1 height="260px"><font size="4"><br>Opens<br> <fmt:formatDate type="both" dateStyle="full" value="${currentMovie.releaseDate.time}"></fmt:formatDate><br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
+                       <td valign="top" align="center" colspan=1 height="260px"><font size="4"><br>Opens<br> <fmt:formatDate type="Date" dateStyle="Long" value="${currentMovie.releaseDate.time}"></fmt:formatDate><br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
                            85 Fan Ratings<br>See it in<br>IMAX 3D<br>Digital 3D</font></td>
                    </tr>
                    <tr width="380px">
