@@ -13,11 +13,12 @@ import java.util.*;
 public class Transaction {
     
     private int Id;
-    private int paymentMethodId;
-    private int showTimeId;
     private int quantity;
     private double cost;
     private GregorianCalendar date;
+    private PaymentMethod paymentMethod;
+    private String theater;
+    private String movie;
 
     public int getId() {
         return Id;
@@ -27,22 +28,30 @@ public class Transaction {
         this.Id = Id;
     }
 
-    public int getPaymentMethodId() {
-        return paymentMethodId;
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setPaymentMethodId(int paymentMethodId) {
-        this.paymentMethodId = paymentMethodId;
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public int getShowTimeId() {
-        return showTimeId;
+    public String getTheater() {
+        return theater;
     }
 
-    public void setShowTimeId(int showTimeId) {
-        this.showTimeId = showTimeId;
+    public void setTheater(String theater) {
+        this.theater = theater;
     }
 
+    public String getMovie() {
+        return movie;
+    }
+
+    public void setMovie(String movie) {
+        this.movie = movie;
+    }
+    
     public int getQuantity() {
         return quantity;
     }

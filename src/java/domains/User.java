@@ -22,23 +22,63 @@ public class User implements Serializable{
     private GregorianCalendar birthDate;
     private String role;
     private int zipCode;
-    private Collection<Movie> favoriteMovies;
-    private Collection<Theater> favoriteTheaters;
+    private List<String> favoriteMovies;
+    private List<String> favoriteTheaters;
     private List<Review> reviews;
-    private Collection<PaymentMethod> paymentMethods;
-    private PaymentMethod preferredPaymentMethod;
     private List<Transaction> transactions;
+    private List<PaymentMethod> paymentMethods;
+    private PaymentMethod preferredPaymentMethod;
     
     public User(){
         
     }
+
+    public List<String> getFavoriteMovies() {
+        return favoriteMovies;
+    }
+
+    public void setFavoriteMovies(List<String> favoriteMovies) {
+        this.favoriteMovies = favoriteMovies;
+    }
+
+    public List<String> getFavoriteTheaters() {
+        return favoriteTheaters;
+    }
+
+    public void setFavoriteTheaters(List<String> favoriteTheaters) {
+        this.favoriteTheaters = favoriteTheaters;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<PaymentMethod> getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public void setPaymentMethods(List<PaymentMethod> paymentMethods) {
+        this.paymentMethods = paymentMethods;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
     
-    public User(String firstName, String lastName, String email, String password, String role){
-        this.firstName=firstName;
-        this.lastName=lastName;
-        this.email=email;
-        this.password=password;
-        this.role=role;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getFirstName() {

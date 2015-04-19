@@ -14,7 +14,7 @@ public class PaymentMethod {
     private int userId;
     private String firstName;
     private String lastName;
-    private String creditCardNum;
+    private int creditCardNum;
     private int cvv;
     private String address;
     private int zipCode;
@@ -52,11 +52,11 @@ public class PaymentMethod {
         this.lastName = lastName;
     }
 
-    public String getCreditCardNum() {
+    public int getCreditCardNum() {
         return creditCardNum;
     }
 
-    public void setCreditCardNum(String creditCardNum) {
+    public void setCreditCardNum(int creditCardNum) {
         this.creditCardNum = creditCardNum;
     }
 
