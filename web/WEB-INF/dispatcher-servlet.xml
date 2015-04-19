@@ -35,7 +35,7 @@
         <property name="url" value="jdbc:mysql://localhost/samdango" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="username" value="root" />
-        <property name="password" value="jss123" />
+        <property name="password" value="mysql" />
         <property name="initialSize" value="10" />
         <property name="maxTotal" value="30" />
     </bean> 
