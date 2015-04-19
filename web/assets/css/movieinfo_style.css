@@ -1,0 +1,19 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 17, 2015, 4:42:53 PM
+    Author     : JaeWoong
+*/
+
+    
+    .movieinfo_bg {
+    background-image: URL("http://www.highsnobiety.com/wp-content/blogs.dir/12/files/2015/01/watch-the-official-trailer-for-run-all-night-starring-liam-neeson01.jpg");
+    background-repeat: repeat-y;
+    background-position-x: center;
+    backgroud-position-y: center;
+    background-size:100%,100%;
+    }
+    
