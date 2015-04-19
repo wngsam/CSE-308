@@ -12,7 +12,7 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Offer {
-    private int offerId;
+    private int id;
     private String name;
     private String content;
     private GregorianCalendar expiration;
@@ -29,11 +29,11 @@ public class Offer {
     }
 
     public int getOfferId() {
-        return offerId;
+        return id;
     }
 
-    public void setOfferId(int offerId) {
-        this.offerId = offerId;
+    public void setOfferId(int id) {
+        this.id = id;
     }
 
     public String getImageLink() {

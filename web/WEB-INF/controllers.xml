@@ -23,6 +23,9 @@
         <property name="userManager">
             <ref bean ="userManager"></ref>
         </property>
+        <property name="locationManager">
+            <ref bean ="locationManager"></ref>
+        </property>
     </bean>
     
     <bean id="movieListController" class="controllers.MovieListController">
@@ -37,14 +40,14 @@
         </property>
     </bean>
     
-    <bean id="searchController" class="controllers.SearchController">
+<!--    <bean id="searchController" class="controllers.SearchController">
         <property name="movieManager">
             <ref bean ="movieManager"></ref>
         </property>
         <property name="theaterManager">
             <ref bean ="theaterManager"></ref>
         </property>
-    </bean>
+    </bean>-->
     
     <bean id="signUpPageController" class="controllers.SignUpPageController">
         <property name="userManager">
@@ -55,6 +58,12 @@
     <bean id="userPageController" class="controllers.UserPageController">
         <property name="userManager">
             <ref bean ="userManager"></ref>
+        </property>
+    </bean>
+    
+    <bean id="movieInfoController" class="controllers.MovieInfoController">
+        <property name="movieManager">
+            <ref bean ="movieManager"></ref>
         </property>
     </bean>
 

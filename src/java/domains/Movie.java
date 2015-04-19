@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Movie {
     
-    private int movieId;
+    private int id;
     private String title;
     private GregorianCalendar releaseDate;
     private String rating;
@@ -25,25 +25,37 @@ public class Movie {
     private double theaterAverage;
     private String studio;
     private String trailer;
+    private List<String> genres;
+    private List<Actor> cast;
+    private List<String> images;
+    private List<Review> reviews;
             
     private boolean fresh=false;
             
     public Movie(){
         
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
     
     public void checkFresh(){
-        fresh=true;
+        fresh=true; //CHECK IF THE MOVIE IS FRESH BY COMPARING IT TO A CERTAIN DATE
     }
     
-    public int getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -122,7 +134,7 @@ public class Movie {
     }
 
     public void setTrailer(String trailer) {
-        this.trailer = trailer;
+        this.trailer = "https://www.youtube.com/embed/" + trailer;
     }
 
     public boolean isFresh() {
@@ -131,6 +143,30 @@ public class Movie {
 
     public void setFresh(boolean fresh) {
         this.fresh = fresh;
+    }
+
+    public List<String> getGenre() {
+        return genres;
+    }
+
+    public void setGenre(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public List<Actor> getCast() {
+        return cast;
+    }
+
+    public void setCast(List<Actor> cast) {
+        this.cast = cast;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
     
 }

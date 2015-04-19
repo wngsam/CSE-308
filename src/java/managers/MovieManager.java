@@ -57,6 +57,10 @@ public class MovieManager {
         this.movieDAO = movieDAO;
     }
     
+    public Movie getCurrentMovie(String movieTitle){
+        return movies.get(movieTitle);
+    }
+    
     public ArrayList<Movie> getBoxOfficeMovies(){
         return topBoxOffice;
     }
@@ -72,5 +76,39 @@ public class MovieManager {
     public ArrayList<Movie> getOpeningThisWeek(){
         return openingThisWeek;
     }
+
+    public HashMap<String, Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(HashMap<String, Movie> movies) {
+        this.movies = movies;
+    }
+
+    public ArrayList<Movie> getTopBoxOffice() {
+        return topBoxOffice;
+    }
+
+    public void setTopBoxOffice(ArrayList<Movie> topBoxOffice) {
+        this.topBoxOffice = topBoxOffice;
+    }
+
+    public ArrayList<Movie> getComingSoon() {
+        return comingSoon;
+    }
+
+    public void setComingSoon(ArrayList<Movie> comingSoon) {
+        this.comingSoon = comingSoon;
+    }
+
+    public ArrayList<Movie> getPlayingNow() {
+        return playingNow;
+    }
+
+    public void setPlayingNow(ArrayList<Movie> playingNow) {
+        this.playingNow = playingNow;
+    }
+    
+    
 
 }

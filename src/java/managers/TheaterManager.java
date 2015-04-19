@@ -28,5 +28,15 @@ public class TheaterManager {
         theaters.put(theaterTwo.getName(), theaterTwo);
         theaters.put(theaterThree.getName(), theaterThree);
     }
+
+    public HashMap<String, Theater> getTheaters() {
+        return theaters;
+    }
+
+    public void setTheaters(HashMap<String, Theater> theaters) {
+        this.theaters = theaters;
+    }
+    
+    
     
 }

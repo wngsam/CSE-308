@@ -4,6 +4,7 @@
     Author     : Desktop
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
@@ -22,12 +23,14 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
+    <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
 <!-- /HEADER -->
   
 <body role="document">
 <jsp:include page="header.jsp" />
+
 
 <!--MAINBODY-->
 <div class="container">
@@ -66,83 +69,23 @@
                       <li><a href="#">Western</a></li>
                     </ul>
                   </div><br><br><br>
-<center>           
+<center>
+    
     <table>
         <tr>
             <td>
-                <c:forEach var="listVar" items="${comingSoonMovies}">     
+                <c:forEach items="${comingSoonMovies}" varStatus="status" var="listVar" >     
 			<div class="col-xs-6 col-lg-3">
-			
-                           <center><p><img src="${listVar.poster}" width="145" height="220">
-                          <!--<c:out value="${listVar.releaseDate}"/></p></center>-->
-            </div><!--/.col-xs-6.col-lg-4-->
-			
-            </c:forEach>
+                            <c:url value='/viewMovieInfo/${listVar.title}' /><br>
+                            ${listVar.title}<br>
+                            <center><p><a href="/viewMovieInfo/${listVar.title}">
+                                    <img src="${listVar.poster}" width="145" height="220"></a><br>
+                            <fmt:formatDate type="Date" dateStyle="Long" value="${listVar.releaseDate.time}"></fmt:formatDate></center>
+                        </div>
+                </c:forEach>
         </td>
     </tr>			
-        <!--<tr>
-            <td width="145px" height="220px">
-                <a href=""><img src="assets\img\danny.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Danny</p> 
-               <p>Fri, Mar 13, 2015</p>
-            </td>
-            <td width="50px"></td>
-            <td width="145px" height="220px">
-                <a href=""><img src="assets\img\Cinderella.jpg" width="140" height="209"><br></br></a>
-                <p style="font-size:20px">Cinderella</p> 
-               <p>Fri, Mar 13, 2015</p>            
-            </td>
-            <td width="50px"></td>
-            <td width="145px" height="215">
-                <a href=""><img src="assets\img\cupcakes.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Cupcakes</p> 
-               <p>Fri, Mar 13, 2015</p>
-            </td>
-            <td width="50px"></td>
-            <td width="145px" height="220px">
-               <a href=""><img src="assets\img\home.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Home</p> 
-               <p>Fri, Mar 13, 2015</p>
-            </td>
-            <td width="50px"></td>
-            <td width="145px" height="220px">
-                <a href=""><img src="assets\img\kumiko.jpg" width="140" height="209"><br></br></a>
-                <p style="font-size:20px">Kumiko</p> 
-               <p>Fri, Mar 13, 2015</p>  
-            </td>
-        </tr> -->
-        <!--
-        <tr>	
-           <td width="145px" height="220px">
-                <a href=""><img src="assets\img\insurgent.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Insurgent</p> 
-               <p>Fri, Mar 13, 2015</p>
-           </td>
-            <td width="40px"></td>
-            <td width="145px" height="220px">
-               <a href=""><img src="assets\img\getHard.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Get Hard</p> 
-               <p>Fri, Mar 13, 2015</p>
-            </td>
-	   <td width="50px"></td>	
-           <td width="145px" height="220px">
-                <a href=""><img src="assets\img\ItFollows.jpg" width="140" height="209"><br></br></a>
-                <p style="font-size:20px">It Follows</p> 
-               <p>Fri, Mar 13, 2015</p>          
-            </td>
-	   <td width="50px"></td>	
-           <td width="145px" height="220px">
-                <a href=""><img src="assets\img\manfromreno.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Man From Reno</p> 
-               <p>Fri, Mar 13, 2015</p>
-            </td>
-            <td width="50px"></td>
-            <td width="145px" height="220px">
-                <a href=""><img src="assets\img\cupcakes.jpg" width="140" height="209"><br></br></a>
-               <p style="font-size:20px">Cupcakes</p> 
-               <p>Fri, Mar 13, 2015</p>
-           </td>
-        </tr>-->
+      
     </table>
 	  
     </div>
