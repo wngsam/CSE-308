@@ -24,9 +24,14 @@
                             <input type="password" class="form-control input-sm" name="password"placeholder="Password">
                             <button type="submit" class="btn btn-success btn-sm">Login</button>
                             <a href="registrationPage.htm" class="btn btn-warning btn-sm">Register</a>
+                      
                         </form></li>
+                        
+              
+          
                     </c:otherwise>
                 </c:choose>
+
             </ul>
         </div>
     </nav>
@@ -166,11 +171,18 @@
                 
             </ul>
             
-            <form class="navbar-form navbar-left" id="search" method="POST" action="search.htm">
+            
+            <form class="navbar-form navbar-left" id="search" method="POST" action="zipcode.htm">
                 <input type="text" class="form-control" name="searchParameter" placeholder="Enter City + State, ZIP Code, or Movie">
                 <button type="submit" class="btn btn-success">Go</button></li>
             </form>
-            
+                    
+            <c:choose>
+                    <c:when test="${ not empty City}">
+                        <font style="color:red" size = "20"><b>${City}</b></a>
+                    </c:when>
+                  
+            </c:choose>
         </div>
     </nav>
 <!--/CONTENT NAV BAR-->
