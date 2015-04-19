@@ -40,14 +40,14 @@
         </property>
     </bean>
     
-    <bean id="searchController" class="controllers.SearchController">
+<!--    <bean id="searchController" class="controllers.SearchController">
         <property name="movieManager">
             <ref bean ="movieManager"></ref>
         </property>
         <property name="theaterManager">
             <ref bean ="theaterManager"></ref>
         </property>
-    </bean>
+    </bean>-->
     
     <bean id="signUpPageController" class="controllers.SignUpPageController">
         <property name="userManager">
