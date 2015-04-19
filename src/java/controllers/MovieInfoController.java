@@ -27,10 +27,7 @@ public class MovieInfoController {
     
      private MovieManager movieManager;
 
-     // need to fix this later
-     //@RequestMapping(value="/movieInfoPage", method = RequestMethod.GET)
-   // public ModelAndView viewComingSoon(@RequestParam(value = "movieTitle") String movieTitle){
-     
+  
        @RequestMapping(value="/movieInfoPage", method=RequestMethod.GET)
         public ModelAndView viewMovieInfo(){
        

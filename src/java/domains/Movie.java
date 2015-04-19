@@ -134,7 +134,7 @@ public class Movie {
     }
 
     public void setTrailer(String trailer) {
-        this.trailer = trailer;
+        this.trailer = "https://www.youtube.com/embed/" + trailer;
     }
 
     public boolean isFresh() {

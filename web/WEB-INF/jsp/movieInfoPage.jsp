@@ -3,7 +3,8 @@
     Created on : Apr 17, 2015, 4:41:22 PM
     Author     : JaeWoong
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
@@ -24,19 +25,15 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
 
-  
+
   </head>
 <!-- /HEADER <!-- background-size: 1200px,800px;-->
 
 
 <body role="document" class="movieinfo_bg">
     <jsp:includepage="header.jsp" />
-   
-        1111 ${currentMovie.title}
-        2222 ${currentMovie.rating}
-          
     <div  style="margin-left:70px;" >
-    <hr> <h1 style="font-weight: bold">RUN ALL NIGHT (2015)</h1>
+    <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
     <br>
     <table>
         <tr>
@@ -44,8 +41,8 @@
                 <table valign="top" align="left" width="380px">
                     <tr width="380px" bgcolor="#5d6078" >
                        <td valign="middle" align="center" colspan=1 height="260px">
-                           <a href=""><img src="http://ia.media-imdb.com/images/M/MV5BMTU2ODI3ODEyOV5BMl5BanBnXkFtZTgwMTM3NTQzNDE@._V1_SX214_AL_.jpg" width="180" height="250"></a></td>
-                       <td valign="top" align="center" colspan=1 height="260px"><font size="4"><br>Opens<br>MAY 1, 2015<br>Action/Adventure<br>Sci-Fi/Fantasy<br>
+                           <img src="${currentMovie.poster}" width="180" height="250"></td>
+                       <td valign="top" align="center" colspan=1 height="260px"><font size="4"><br>Opens<br> <fmt:formatDate type="both" dateStyle="full" value="${currentMovie.releaseDate.time}"></fmt:formatDate><br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
                            85 Fan Ratings<br>See it in<br>IMAX 3D<br>Digital 3D</font></td>
                    </tr>
                    <tr width="380px">
@@ -77,7 +74,7 @@
             <td valign="top" align="left">
                 <table>
                     <tr>
-                        <td><embed width="800" height="590"src="https://www.youtube.com/embed/7uDuFh-nC-c"></td>
+                        <td><embed width="800" height="590"src="${currentMovie.trailer}"></td>
                     </tr>
                     <tr>
                         <td><font size="5"><br><br>RUN ALL NIGHT<br>
@@ -90,8 +87,8 @@
     </table>
     <br><br><br>
     <div align="center"><font size="6" familey="Times New Roman" >
-        Run All Night Synopsis<br>
-         Brooklyn mobster and prolific hit man Jimmy Conlon (Neeson), once known as The Gravedigger, has seen better days.</font>
+        ${currentMovie.title} Synopsis<br>
+         ${currentMovie.synopsis}</font>
     </div>
     <br><br><br>
 </div>    
