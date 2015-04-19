@@ -78,12 +78,30 @@ public class MovieDAO {
         return genres;
     }
     
+    public List<Actor> getCasts(int movieId){
+        String query = "SELECT * FROM moviecasts"
+              + " WHERE MovieId="+movieId+";";
+        List<String> actorIds = this.jdbcTemplate.query(
+                query,
+                new RowMapper<String>(){
+                    @Override
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return Integer.toString(rs.getInt("ActorId"));
+                    }
+                }
+        );
+        
+        List<Actor> actors = new ArrayList();
+        for(String i : actorIds){
+            actors.add(getActor(Integer.parseInt(i)));
+        }
+        return actors;
+    }
+    
     public Actor getActor(int actorId){
-        String query = "SELECT * FROM actors"
-              + " WHERE ActorId="+actorId+";";
         Actor actor = this.jdbcTemplate.queryForObject(
-                query, new Object[]{1212L},
-                new RowMapper<Actor>(){
+                "SELECT * FROM actors" +
+                " WHERE ActorId="+actorId+";", new RowMapper<Actor>(){
                     @Override
                     public Actor mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Actor actor = new Actor();
@@ -99,26 +117,6 @@ public class MovieDAO {
                 }
         );
         return actor;
-    }
-    
-    public List<Actor> getCasts(int movieId){
-        String query = "SELECT * FROM moviecasts"
-              + " WHERE MovieId="+movieId+";";
-        List<String> actorIds = this.jdbcTemplate.query(
-                query,
-                new RowMapper<String>(){
-                    @Override
-                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return String.valueOf(rs.getInt("ActorId"));
-                    }
-                }
-        );
-        
-        List<Actor> actors = new ArrayList();
-        for(String i : actorIds){
-            actors.add(getActor(Integer.parseInt(i)));
-        }
-        return actors;
     }
     
     public List<String> getImages(int movieId){

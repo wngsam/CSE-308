@@ -132,8 +132,7 @@ public class UserDAO {
         String query = "SELECT * FROM transactions"
               + " WHERE PaymentMethodId="+pmId+";";
         Transaction transaction = this.jdbcTemplate.queryForObject(
-                query, new Object[]{1212L},
-                new RowMapper<Transaction>(){
+                query, new RowMapper<Transaction>(){
                     @Override
                     public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Transaction transaction = new Transaction();
@@ -193,8 +192,7 @@ public class UserDAO {
                        +"                     FROM showtimes"
                        +"                     WHERE showTimeId = "+showTimeId+"));";
         String name = this.jdbcTemplate.queryForObject(
-                query, new Object[]{1212L},
-                new RowMapper<String>(){
+                query, new RowMapper<String>(){
                     @Override
                     public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                         return rs.getString("Name");
@@ -214,8 +212,7 @@ public class UserDAO {
                        +"                     FROM showtimes"
                        +"                     WHERE showTimeId = "+showTimeId+"));";
         String title = this.jdbcTemplate.queryForObject(
-                query, new Object[]{1212L},
-                new RowMapper<String>(){
+                query, new RowMapper<String>(){
                     @Override
                     public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                         return rs.getString("Title");
