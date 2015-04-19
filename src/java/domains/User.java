@@ -13,6 +13,8 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class User implements Serializable{
+    
+    private int id;
     private String firstName;
     private String lastName;
     private String email;

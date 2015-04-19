@@ -37,7 +37,7 @@ public class MovieInfoController {
         
         mv.addObject("currentMovie", currentMovie);
         
-        System.out.println("jasonshin " + currentMovie.getMovieId() + " "+ currentMovie.getTitle());
+        //System.out.println("jasonshin " + currentMovie.getMovieId() + " "+ currentMovie.getTitle());
       
         return mv;
     }

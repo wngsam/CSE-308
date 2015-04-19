@@ -10,11 +10,60 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Review {
-    int id;
-    String title;
-    User reviewer;
-    String content;
-    Movie movie;
-    GregorianCalendar date;
-    int upvotes;
+    
+    private String title;
+    private int userId;
+    private String content;
+    private int movieId;
+    private GregorianCalendar date;
+    private int upvotes;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getMovieId() {
+        return movieId;
+    }
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public GregorianCalendar getDate() {
+        return date;
+    }
+
+    public void setDate(GregorianCalendar date) {
+        this.date = date;
+    }
+
+    public int getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(int upvotes) {
+        this.upvotes = upvotes;
+    }
+    
 }
