@@ -65,7 +65,7 @@ public class MovieDAO {
     
     public List<String> getGenres(int movieId){
         String query = "SELECT * FROM moviegenres"
-              + "WHERE MovieId="+movieId+";";
+              + " WHERE MovieId="+movieId+";";
         List<String> genres = this.jdbcTemplate.query(
                 query,
                 new RowMapper<String>(){
@@ -80,7 +80,7 @@ public class MovieDAO {
     
     public Actor getActor(int actorId){
         String query = "SELECT * FROM actors"
-              + "WHERE ActorId="+actorId+";";
+              + " WHERE ActorId="+actorId+";";
         Actor actor = this.jdbcTemplate.queryForObject(
                 query, new Object[]{1212L},
                 new RowMapper<Actor>(){
@@ -103,7 +103,7 @@ public class MovieDAO {
     
     public List<Actor> getCasts(int movieId){
         String query = "SELECT * FROM moviecasts"
-              + "WHERE MovieId="+movieId+";";
+              + " WHERE MovieId="+movieId+";";
         List<String> actorIds = this.jdbcTemplate.query(
                 query,
                 new RowMapper<String>(){
@@ -123,7 +123,7 @@ public class MovieDAO {
     
     public List<String> getImages(int movieId){
         String query = "SELECT * FROM movieimages"
-              + "WHERE MovieId="+movieId+";";
+              + " WHERE MovieId="+movieId+";";
         List<String> images = this.jdbcTemplate.query(
                 query,
                 new RowMapper<String>(){
@@ -138,7 +138,7 @@ public class MovieDAO {
     
     public List<Review> getReviews(int movieId){
         String query = "SELECT * FROM reviews"
-              + "WHERE MovieId="+movieId+";";
+              + " WHERE MovieId="+movieId+";";
         List<Review> reviews = this.jdbcTemplate.query(
                 query,
                 new RowMapper<Review>(){
