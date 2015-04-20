@@ -22,16 +22,14 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
-    <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
-
-
+    <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
 <!-- /HEADER <!-- background-size: 1200px,800px;-->
 
 
 <body role="document" class="movieinfo_bg">
-    <jsp:includepage="header.jsp" />
+    <jsp:include page="header.jsp" />
     <div  style="margin-left:70px;" >
     <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
     <br>
