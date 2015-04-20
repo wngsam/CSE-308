@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
@@ -94,7 +95,6 @@
 
 <!-- /MAIN MOVIE BODY -->
 <br><hr>
- </body>
 
 		
 <jsp:include page="footer.jsp" />
@@ -103,5 +103,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
- 
+  </body>
+
 </html>

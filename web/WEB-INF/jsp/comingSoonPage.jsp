@@ -75,10 +75,8 @@
         <tr>
             <td>
                 <c:forEach items="${comingSoonMovies}" varStatus="status" var="listVar" >     
-			<div class="col-xs-6 col-lg-3">
-                            <c:url value='viewMovieInfo/${listVar.title}' /><br>
-                            ${listVar.title}<br>
-                            <center><p><a href="viewMovieInfo/${listVar.title}.htm">
+                    <div class="col-xs-6 col-lg-3">
+                            <center><p><a href="${listVar.title}.htm">
                                     <img src="${listVar.poster}" width="145" height="220"></a><br>
                             <fmt:formatDate type="Date" dateStyle="Long" value="${listVar.releaseDate.time}"></fmt:formatDate></center>
                         </div>
