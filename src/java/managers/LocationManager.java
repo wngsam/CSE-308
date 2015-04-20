@@ -100,15 +100,13 @@ public class LocationManager {
         lastOccurence = occurence; occurence2 = occurence;
         int theaterCount = 0;
         while ((occurence = response.indexOf("<description><", lastOccurence)) != -1) {
-            
-            
             occurence2 = response.indexOf("</description>", occurence);
             String movieSection = response.substring(occurence, occurence2);
             int movieOccurence = 0; int movieOccurence2 = 0;  int lastOccurence2 = 0;
+            
             while ((movieOccurence = movieSection.indexOf("\">", lastOccurence2)) != -1) {
                 movieOccurence2 = movieSection.indexOf("</a>", movieOccurence);
                 moviesPlaying[theaterCount].add(movieSection.substring(movieOccurence, movieOccurence2));
-                
                 lastOccurence2 = movieOccurence2;
                 movieOccurence = movieOccurence2;
             }
@@ -124,11 +122,7 @@ public class LocationManager {
             for (int a = 0; a < moviesPlaying[i-2].size(); a++) {
                 System.out.println(moviesPlaying[i-2].get(a));
             }
-        }
-        
-        
-        
-        
+        } 
     
     }
 }

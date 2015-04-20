@@ -24,14 +24,9 @@
                             <input type="password" class="form-control input-sm" name="password"placeholder="Password">
                             <button type="submit" class="btn btn-success btn-sm">Login</button>
                             <a href="registrationPage.htm" class="btn btn-warning btn-sm">Register</a>
-                      
                         </form></li>
-                        
-              
-          
                     </c:otherwise>
                 </c:choose>
-
             </ul>
         </div>
     </nav>
@@ -181,10 +176,8 @@
                     <c:when test="${ not empty City}">
                         <font style="color:red" size = "20"><b>${City}</b></a>
                     </c:when>
-                  
             </c:choose>
         </div>
     </nav>
 <!--/CONTENT NAV BAR-->
-
 </div>

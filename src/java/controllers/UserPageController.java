@@ -25,7 +25,6 @@ public class UserPageController {
     @RequestMapping(method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
-        
         return mv;
     }
     
@@ -36,8 +35,5 @@ public class UserPageController {
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }
-    
-    
-    
     
 }
