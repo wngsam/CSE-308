@@ -5,6 +5,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
@@ -31,8 +32,7 @@
 
 
 <body role="document" class="movieinfo_bg">
-    
-    
+    <jsp:include page="header.jsp" />
     <div  style="margin-left:70px;" >
     <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
     <br>
@@ -87,18 +87,17 @@
         </tr>
     </table>
     <br><br><br>
-    <div align="center"><font size="6" familey="Times New Roman" >
+    <div align="center">
+        <font size="6" familey="Times New Roman" >
         ${currentMovie.title} Synopsis<br>
          ${currentMovie.synopsis}</font>
     </div>
     <br><br><br>
-</div>    
+    </div>    
     
 
 <!-- /MAIN MOVIE BODY -->
 <br><hr>
- </body>
-
 		
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
@@ -106,5 +105,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
- 
+  </body>
+
 </html>

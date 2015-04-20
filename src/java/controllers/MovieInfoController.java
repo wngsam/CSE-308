@@ -33,7 +33,7 @@ public class MovieInfoController {
        // public ModelAndView viewMovieInfo(){
        
      
-    @RequestMapping(value="/viewMovieInfo/{title}", method = RequestMethod.GET)
+    @RequestMapping(value="{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle) {
             
         System.out.println("123456");
@@ -41,9 +41,7 @@ public class MovieInfoController {
         Movie currentMovie = movieManager.getCurrentMovie(movieTitle);
         
         mv.addObject("currentMovie", currentMovie);
-        
-        //System.out.println("jasonshin " + currentMovie.getMovieId() + " "+ currentMovie.getTitle());
-      
+       
         return mv;
     }
      
