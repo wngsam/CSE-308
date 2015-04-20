@@ -54,7 +54,7 @@ public class MovieListController {
 
     public void setMovieManager(MovieManager movieManager) {
         this.movieManager = movieManager;
-        movieManager.updateMovies();
+        //movieManager.updateMovies();
     }
     
 }

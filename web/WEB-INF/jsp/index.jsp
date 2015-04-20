@@ -23,7 +23,9 @@
 <body role="document">
 <jsp:include page="header.jsp" />
 
-<div class="container"></div>
+<div class="container">
+    
+</div>
 
 <hr><jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
