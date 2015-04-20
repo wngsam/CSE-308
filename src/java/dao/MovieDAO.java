@@ -57,9 +57,7 @@ public class MovieDAO {
                         return movie;
                     }
                 }
-        
         );
-        
         return offers;
     }
     

@@ -23,10 +23,8 @@
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
-    <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
-
-
+    <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
 <!-- /HEADER <!-- background-size: 1200px,800px;-->
 

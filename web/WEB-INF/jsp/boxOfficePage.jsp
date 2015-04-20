@@ -30,7 +30,6 @@
 <body role="document">
 <jsp:include page="header.jsp" />
 
-<!-- MAIN BOXOFFICE BODY-->
 <center><h1><p class="text-danger" style="font-size:55px">Top Box Office + Weekend Results</p></h1></center>
 <div class="container">
     <table class="table table-striped table-hover" style="font-size:25px">
@@ -46,14 +45,13 @@
             </tr>
         </thead>
         <tbody>
-      
-            <c:forEach var="listVar" items="${boxOfficeMovies}" varStatus="count"> 
+            <c:forEach var="movie" items="${boxOfficeMovies}" varStatus="count"> 
                 <tr class="default">
                     <td>${count.count}</td>
-                    <td>${listVar.title}</td>
-                    <td>${listVar.weekendGross}</td>
-                    <td>${listVar.numOfTheaters}</td>
-                    <td>${listVar.theaterAverage}</td>
+                    <td>${movie.title}</td>
+                    <td>${movie.weekendGross}</td>
+                    <td>${movie.numOfTheaters}</td>
+                    <td>${movie.theaterAverage}</td>
                     <td>X</td>
                     <td>X</td>
                 </tr>
@@ -61,7 +59,6 @@
         </tbody>
     </table> 
 </div>
-<!-- /MAIN BOXOFFICE BODY -->
 
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
