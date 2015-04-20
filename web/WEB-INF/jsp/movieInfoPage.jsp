@@ -96,6 +96,7 @@
 
 <!-- /MAIN MOVIE BODY -->
 <br><hr>
+
 		
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
