@@ -73,9 +73,9 @@
 <img src="assets\img\reg3.png">
 &nbsp&nbsp&nbsp&nbsp
 <img src="assets\img\reg4.png">
-<br></br>
+<br><br>
 <br><img src="assets\img\reg5.png"></br>
-</center></br>
+</center><br>
 <!-- /PICS -->
 
 <jsp:include page="footer.jsp" />

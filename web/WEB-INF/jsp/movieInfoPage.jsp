@@ -28,7 +28,6 @@
   </head>
 <!-- /HEADER <!-- background-size: 1200px,800px;-->
 
-
 <body role="document" class="movieinfo_bg">
     <jsp:include page="header.jsp" />
     <div  style="margin-left:70px;" >
@@ -52,7 +51,8 @@
 			    ENTER ZIP OR CITY, STATE
                             <form class="navbar-form navbar-center"><div class="form-group">
 				<input type="ENTER ZIP OR CITY, STATE" placeholder="City, State or Zip Code" class="form-control"><button type="GO" class="btn btn-success">GO</button>
-                                </div></form><hr>
+                                </div></form>
+                            <hr>
 			</td>                
                    </tr>
                    <tr>
@@ -65,8 +65,7 @@
                        <td align="center" valign="middle"><hr><a href="registrationpage.htm" class="btn btn-warning">Favorite this Movie!</a></td> 
                        <td align="center" valign="middle"><hr><a href="checkoutpage.htm" class="btn btn-success">Purchase Tickets!</a></td>                
                    </tr>
-                    <tr><td><br></td></tr>
-                   
+                    <tr><td><br></td></tr>                   
                </table>
             </td>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -91,12 +90,10 @@
          ${currentMovie.synopsis}</font>
     </div>
     <br><br><br>
-    </div>    
-    
+    </div>       
 
 <!-- /MAIN MOVIE BODY -->
 <br><hr>
-
 		
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript

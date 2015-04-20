@@ -30,8 +30,7 @@ public class SignUpPageController {
     private UserManager userManager;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView signUp(){
-        
+    public ModelAndView signUp(){        
         ModelAndView mv = new ModelAndView("registrationPage");
         mv.addObject("user", new User());
         return mv;
@@ -39,7 +38,6 @@ public class SignUpPageController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView doSignUp(@ModelAttribute("user") User user, HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
-        
         ModelAndView mv = new ModelAndView("index");
         user.setRole("User");
         
@@ -48,8 +46,7 @@ public class SignUpPageController {
         }else{
             mv = new ModelAndView("registrationPage");
             mv.addObject("confirmation", false);
-        }
-        
+        }        
         return mv;
     }
 

@@ -32,8 +32,7 @@ public class LoginController {
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam(value = "email") String email,
                     @RequestParam(value = "password") String password,
-                    HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
-        
+                    HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{        
         User user = userManager.authenticate(email, password); 
         ModelAndView mv= new ModelAndView("userPage");
         
@@ -90,6 +89,7 @@ public class LoginController {
         return locationManager;
     }
 
+    
     public void setLocationManager(LocationManager locationManager) {
         this.locationManager = locationManager;
     }

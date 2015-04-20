@@ -25,7 +25,6 @@ public class OfferDAO {
     
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-        
     }
     
     public void dummy(){
@@ -48,11 +47,8 @@ public class OfferDAO {
                         offer.setImageLink(rs.getString("ImageLink"));
                         return offer;
                     }
-                }
-        
-        );
-        
+                }        
+        );        
         return offers;
-    }
-    
+    }    
 }

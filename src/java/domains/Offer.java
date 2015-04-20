@@ -66,6 +66,6 @@ public class Offer {
 
     public void setExpiration(GregorianCalendar expiration) {
         this.expiration = expiration;
-    }
+    }  
     
 }

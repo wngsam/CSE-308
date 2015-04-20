@@ -27,16 +27,11 @@ public class SearchController {
     
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView search(@RequestParam(value = "searchParameter") String searchParameter){
-        
-        ModelAndView mv = new ModelAndView("index");
-        
-        
-        
-        return mv;
-        
+        ModelAndView mv = new ModelAndView("index");               
+        return mv;        
     }
 
-    public MovieManager getMovieManager() {
+    public MovieManager getMovieManager() {        
         return movieManager;
     }
 
@@ -44,7 +39,7 @@ public class SearchController {
         this.movieManager = movieManager;
     }
 
-    public TheaterManager getTheaterManager() {
+    public TheaterManager getTheaterManager() {        
         return theaterManager;
     }
 
