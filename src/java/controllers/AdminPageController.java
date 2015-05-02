@@ -5,17 +5,24 @@
  */
 package controllers;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author Sam W.
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("/adminpage")
 public class AdminPageController {
     
-    
+    @RequestMapping(method=RequestMethod.GET)
+    public ModelAndView viewAdminPage(HttpSession session){
+        ModelAndView mv = new ModelAndView("adminPage");
+        return mv;
+    }
     
 }
