@@ -53,9 +53,11 @@ public class UserManager {
         boolean confirmation = false;
         if(users.get(user.getEmail())==null){
             user.setPassword(hash(user.getPassword()));
-            System.out.println(user.getPassword());
-            users.put(user.getEmail(),user);
-            confirmation = true;
+            //System.out.println(user.getPassword());
+            if(userDAO.addUser(user)==true){
+                users.put(user.getEmail(),user);
+                confirmation = true;
+            }
         }
         
         return confirmation;

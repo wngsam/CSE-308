@@ -14,6 +14,7 @@ import domains.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +32,15 @@ public class UserDAO {
     
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+    
+    public Boolean addUser(User user){
+        Boolean confirmation = false;
+        this.jdbcTemplate.update(
+        "INSERT INTO users values (?,?,?,?,?,?,?,?)",
+        10,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),null,user.getRole(),null);
+        confirmation = true;
+        return confirmation;
     }
     
     public List<User> update(){
