@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package managers;
+import dao.UserDAO;
 import domains.User;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -16,18 +17,25 @@ import java.util.*;
  */
 public class UserManager {
     
+    private UserDAO userDAO;
     private HashMap<String,User> users;
     
     UserManager() throws UnsupportedEncodingException, NoSuchAlgorithmException{
-        users = new HashMap();
+        //users = new HashMap();
     }
-    
-    
-        //User userOne = new User("Sam", "Wang", "sam.wang@stonybrook.edu", hash("abc123"), "User");
-        //User userTwo = new User("Youngseo", "Son", "youngseo.son@stonybrook.edu", hash("123abc"), "User");
-        //User userThree = new User("Jaewoong", "Shin", "jaewoong.shin@stonybrook.edu", hash("cba321"), "User");
-        //User userFour = new User("David", "Lui", "david.lui@stonybrook.edu", hash("321cba"), "User");
-        
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+        List<User> toBeAdded = userDAO.update();
+        users = new HashMap();
+        for(User u : toBeAdded){
+            users.put(u.getEmail(),u);
+        }
+    }
     
     public User authenticate(String email, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         User user = users.get(email);
@@ -45,6 +53,7 @@ public class UserManager {
         boolean confirmation = false;
         if(users.get(user.getEmail())==null){
             user.setPassword(hash(user.getPassword()));
+            System.out.println(user.getPassword());
             users.put(user.getEmail(),user);
             confirmation = true;
         }
