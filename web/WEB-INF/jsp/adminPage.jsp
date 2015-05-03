@@ -3,6 +3,7 @@
     Created on : May 2, 2015, 2:06:15 PM
     Author     : Sam W.
 --%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
@@ -37,16 +38,58 @@
                  <h1>${currentPerson.firstName}'s Account</h1>
              </div>
              <ul class="nav nav-tabs">
-                 <li class="active"><a href="#overview" data-toggle="tab" aria-expanded="true">OVERVIEW</a></li>
+                 <li class="active"><a href="#overview" data-toggle="tab" aria-expanded="true">ADD</a></li>
+                 <li><a href="#adduser" data-toggle="tab" aria-expanded="false">FIND USER</a></li>
+                 <li><a href="#addmovie" data-toggle="tab" aria-expanded="false">FIND MOVIE</a></li>
              </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="overview">
                     <div class="container">                        
-                        <center><p class="text-danger">Find Movie</p></center><hr>
-                        <center><p class="text-danger">Add Movie</p></center><hr>
-                        <center><p class="text-danger">Find User</p></center><hr>
-                        <center><p class="text-danger">Add User</p></center><hr> 
+                        <center><p class="text-danger">ADD USER</p></center><hr>
+                        <form:form action="adduser.htm" modelAttribute="user" method="post">
+        
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">First Name:</P>
+                                <form:input path="firstName" placeholder="First Name"/>
+                            </div>
+        
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Last Name:</P>
+                                <form:input path="lastName" placeholder="Last Name"/>
+                            </div>
+        
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">E-mail:</P>
+                                <form:input path="email" placeholder="E-mail"/>
+                            </div>
+        
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Password:</P>
+                                <form:password path="password" placeholder="Password"/>
+                            </div>
+        
+                            <br><button type="submit" class="btn btn-success" >Add User</button></br>
+                        </form:form>
+                        
+                        <center><p class="text-danger">ADD MOVIE</p></center><hr>
+                        
+                        
+                        
                     </div>
+                </div>
+                <div class="tab-pane fade" id="adduser">
+                     <p>Find User</p>
+                        <form id="findUser" method="POST" action="finduser.htm">
+                            <input type="email" class="form-control input-sm" name="email" placeholder="E-mail">
+                            <button type="submit" class="btn btn-success btn-sm">Search</button>
+                        </form>
+                </div>
+                <div class="tab-pane fade" id="addmovie">
+                     <p>Find Movie</p>
+                        <form id="findMovie" method="POST" action="findmovie.htm">
+                            <input type="input" class="form-control input-sm" name="name" placeholder="Movie Name">
+                            <button type="submit" class="btn btn-success btn-sm">Search</button>
+                        </form>
                 </div>
             </div>
         </div>

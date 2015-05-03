@@ -40,6 +40,7 @@ public class LoginController {
             session.setAttribute("currentPerson", user);
             if(user.getRole().equals("Admin")){
                 mv = new ModelAndView("adminPage");
+                mv.addObject("user", new User());
             }
         }else{
             mv = new ModelAndView("index");
