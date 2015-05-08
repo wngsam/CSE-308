@@ -31,6 +31,10 @@
         </property>
     </bean>
     <bean id="theaterManager" class="managers.TheaterManager"></bean>
-    <bean id="userManager" class="managers.UserManager"></bean>
+    <bean id="userManager" class="managers.UserManager">
+        <property name="userDAO">
+            <ref bean ="userDAO"></ref>
+        </property>
+    </bean>
     <bean id="locationManager" class="managers.LocationManager"></bean>
 </beans>
