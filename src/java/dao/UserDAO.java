@@ -14,6 +14,7 @@ import domains.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -28,9 +29,19 @@ import org.springframework.jdbc.core.RowMapper;
 public class UserDAO {
     
     private JdbcTemplate jdbcTemplate;
+    static int count = 0;
     
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+    
+    public Boolean addUser(User user){
+        Boolean confirmation = false;
+        this.jdbcTemplate.update(
+        "INSERT INTO users values (?,?,?,?,?,?,?,?)",
+        ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),"19000101",user.getRole(),"00000");
+        confirmation = true;
+        return confirmation;
     }
     
     public List<User> update(){
@@ -40,6 +51,7 @@ public class UserDAO {
                     @Override
                     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                         User user = new User();
+                        count++;
                         int userId = rs.getInt("UserId");
                         user.setId(userId);
                         user.setFirstName(rs.getString("FirstName"));

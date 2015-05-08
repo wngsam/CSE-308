@@ -61,6 +61,10 @@
         </property>
     </bean>
     
+    <bean id="adminPageController" class="controllers.AdminPageController">
+        
+    </bean>
+    
     <bean id="movieInfoController" class="controllers.MovieInfoController">
         <property name="movieManager">
             <ref bean ="movieManager"></ref>

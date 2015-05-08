@@ -27,4 +27,8 @@
         <property name="dataSource" ref="springDataSource"/>
     </bean>
     
+    <bean id="userDAO" class="dao.UserDAO">
+        <property name="dataSource" ref="springDataSource"/>
+    </bean>
+    
 </beans>

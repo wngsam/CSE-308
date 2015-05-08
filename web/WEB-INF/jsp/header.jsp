@@ -12,7 +12,14 @@
                 <li><a href="index.htm">Visa Signature</a></li>
                 <c:choose>
                     <c:when test="${ not empty currentPerson}">
-                        <li><a href="userpage.htm">Hi ${currentPerson.firstName}</a></li>
+                        <c:choose>
+                            <c:when test="${currentPerson.role == 'Admin'}">
+                                <li><a href="adminpage.htm">Hi ${currentPerson.firstName}</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="userpage.htm">Hi ${currentPerson.firstName}</a></li>
+                            </c:otherwise>
+                        </c:choose>
                         <li><a href="logout.htm">Logout</a></li>
                     </c:when>
                     <c:otherwise>
