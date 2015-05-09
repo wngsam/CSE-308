@@ -81,8 +81,41 @@
                         <hr><p class="text-danger">ADD MOVIE</p>
                         
                         <form:form action="addmovie.htm" modelAttribute="movie" method="post">
-        
                             
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Title:</P>
+                                <form:input path="title" placeholder="Title"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Rating:</P>
+                                <form:input path="rating" placeholder="PG"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Synopsis:</P>
+                                <form:input path="synopsis" placeholder="ABOUT THE MOVIE"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Poster URL:</P>
+                                <form:input path="poster" placeholder="URL"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Weekend Gross:</P>
+                                <form:input path="weekendGross" placeholder="10000"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Num of Theaters:</P>
+                                <form:input path="numOfTheaters" placeholder="11"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Trailer Code:</P>
+                                <form:input path="trailer" placeholder="YOUTUBE"/>
+                            </div>
                             
                             <br><button type="submit" class="btn btn-success" >Add Movie</button></br>
                         </form:form>
