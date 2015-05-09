@@ -34,10 +34,14 @@ public class LoginController {
                     @RequestParam(value = "password") String password,
                     HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{        
         User user = userManager.authenticate(email, password); 
-        ModelAndView mv= new ModelAndView("userPage");
+        ModelAndView mv = new ModelAndView("userPage");
         
         if(user!=null){
             session.setAttribute("currentPerson", user);
+            if(user.getRole().equals("Admin")){
+                mv = new ModelAndView("adminPage");
+                mv.addObject("user", new User());
+            }
         }else{
             mv = new ModelAndView("index");
             mv.addObject("cannotLogin", "Wrong Password or Email!");

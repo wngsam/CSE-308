@@ -71,16 +71,14 @@
     
     <table>
         <tr>
-           
-                <c:forEach items="${comingSoonMovies}" varStatus="status" var="listVar" >
-                     <td>
-                    
+            <c:forEach items="${comingSoonMovies}" varStatus="status" var="listVar" >     
+                <td>    
                     <div class="col-xs-6 col-lg-3">
                             <center><p><a href="${listVar.title}.htm">
                                     <img src="${listVar.poster}" width="145" height="220"></a><br>
                             <fmt:formatDate type="Date" dateStyle="Long" value="${listVar.releaseDate.time}"></fmt:formatDate></center>
-                        </div>
-                        </td>
+                    </div>
+                </td>    
                 </c:forEach>
         
     </tr>			
