@@ -21,7 +21,7 @@
 
     <context:component-scan base-package="controllers"/>
     <mvc:annotation-driven/>
-    <!--
+    
     <bean id="springDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" >
         <property name="url" value="jdbc:mysql://mysql2.cs.stonybrook.edu/yggdrasil" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -30,15 +30,15 @@
         <property name="initialSize" value="2" />
         <property name="maxTotal" value="5" />
     </bean>
-    -->
-    <bean id="springDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" >
-        <property name="url" value="jdbc:mysql://localhost/samdango" />
+    
+<!--    <bean id="springDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close" >
+        <property name="url" value="jdbc:mysql://localhost/yggdrasil" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="username" value="root" />
         <property name="password" value="jss123" />
         <property name="initialSize" value="10" />
         <property name="maxTotal" value="30" />
-    </bean> 
+    </bean> -->
     
    
      <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >

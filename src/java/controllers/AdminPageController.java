@@ -5,9 +5,15 @@
  */
 package controllers;
 
+import domains.Movie;
 import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
+import managers.MovieManager;
+import managers.UserManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,47 +26,96 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminPageController {
     
+    private UserManager userManager;
+    private MovieManager movieManager;
+    
     @RequestMapping(value="/adminpage")
     public ModelAndView viewAdminPage(HttpSession session){
         ModelAndView mv = new ModelAndView("adminPage");
         mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/findmovie", method=RequestMethod.POST)
     public ModelAndView findMovie(@RequestParam(value = "name") String name){
         ModelAndView mv = new ModelAndView("adminEditMovie");
+        mv.addObject("foundMovie", movieManager.findMovie(name));
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/editmovie", method=RequestMethod.POST)
-    public ModelAndView editMovie(){
+    public ModelAndView editMovie(@ModelAttribute("foundMovie") Movie movie){
         ModelAndView mv = new ModelAndView("adminEditMovie");
+        //edit movie info
+        mv.addObject("foundMovie", movie);
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/addmovie", method=RequestMethod.POST)
-    public ModelAndView addMovie(){
-        ModelAndView mv = new ModelAndView("adminEditMovie");
+    public ModelAndView addMovie(@ModelAttribute("movie") Movie movie){
+        ModelAndView mv = new ModelAndView("adminPage");
+        if(!movieManager.addMovie(movie)){
+            mv.addObject("mconfirmation", false);
+        }else{
+            mv.addObject("mconfirmation", true);
+        }
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/finduser", method=RequestMethod.POST)
     public ModelAndView findUser(@RequestParam(value = "email") String email){
         ModelAndView mv = new ModelAndView("adminEditUser");
+        mv.addObject("foundUser", userManager.findUser(email));
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/edituser", method=RequestMethod.POST)
-    public ModelAndView editUser(){
+    public ModelAndView editUser(@ModelAttribute("foundUser") User user){
         ModelAndView mv = new ModelAndView("adminEditUser");
+        //edit user info
+        mv.addObject("foundUser", user);
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/adduser", method=RequestMethod.POST)
-    public ModelAndView addUser(){
-        ModelAndView mv = new ModelAndView("adminEditUser");
+    public ModelAndView addUser(@ModelAttribute("user") User user) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        ModelAndView mv = new ModelAndView("adminPage");
+        user.setRole("User");
+        if(!userManager.registerUser(user)){
+            mv.addObject("confirmation", false);
+        }else{
+            mv.addObject("confirmation", true);
+        }
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
+    }
+
+    public MovieManager getMovieManager() {
+        return movieManager;
+    }
+
+    public void setMovieManager(MovieManager movieManager) {
+        this.movieManager = movieManager;
     }
     
 }

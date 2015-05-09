@@ -8,6 +8,7 @@ package dao;
 import domains.Movie;
 import domains.PaymentMethod;
 import domains.Review;
+import domains.Schedule;
 import domains.Theater;
 import domains.Transaction;
 import domains.User;
@@ -37,9 +38,20 @@ public class UserDAO {
     
     public Boolean addUser(User user){
         Boolean confirmation = false;
+        
+        String birthdate = "19000101";
+        int zipcode = 00000;
+        
+        if(user.getZipCode()!=-1){
+            zipcode = user.getZipCode();
+        }
+        if(user.getBirthDate()!=null){
+            
+        }
+        
         this.jdbcTemplate.update(
         "INSERT INTO users values (?,?,?,?,?,?,?,?)",
-        ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),"19000101",user.getRole(),"00000");
+        ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),zipcode);
         confirmation = true;
         return confirmation;
     }
@@ -108,7 +120,7 @@ public class UserDAO {
     }
     
     public List<Review> getUserReviews(int userId){
-        String query = "SELECT * FROM reviews"
+        String query = "SELECT * FROM comments"
               + " WHERE UserId="+userId+";";
         List<Review> reviews = this.jdbcTemplate.query(
                 query,
@@ -123,7 +135,7 @@ public class UserDAO {
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getDate("Date"));
                         review.setDate(cal);
-                        review.setUpvotes(rs.getInt("Upvotes"));
+                        review.setStars(rs.getInt("Stars"));
                         return review;
                     }
                 }
@@ -155,9 +167,10 @@ public class UserDAO {
                         cal.setTime(rs.getDate("Date"));
                         transaction.setDate(cal);
                         transaction.setPaymentMethod(pm);
-                        int showTimeId = rs.getInt("ShowTimeId");
-                        transaction.setTheater(getTheaterName(showTimeId));
-                        transaction.setMovie(getMovieTitle(showTimeId));
+                        //int showTimeId = rs.getInt("ShowTimeId");
+                        //transaction.setTheater(getTheaterName(showTimeId));
+                        //transaction.setMovie(getMovieTitle(showTimeId));
+                        transaction.setSchedule(getShowtime(rs.getInt("ShowTimeId")));
                         return transaction;
                     }
                 }
@@ -192,6 +205,28 @@ public class UserDAO {
                 }
         );
         return paymentMethods;
+    }
+    
+    public Schedule getShowtime(int showTimeId){
+        String query = "SELECT *"
+                +" FROM showtimes"
+                +" WHERE ShowTimeId ="+showTimeId
+                ;
+        
+        Schedule showtime = this.jdbcTemplate.queryForObject(
+        query, new RowMapper<Schedule>(){
+            @Override
+            public Schedule mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Schedule showtime = new Schedule();
+                showtime.setId(rs.getInt("ShowTimeId"));
+                showtime.setMovieId(rs.getInt("MovieId"));
+                showtime.setTheaterId(rs.getInt("TheaterId"));
+                //showtime.setShowTime();
+                showtime.setCapacity(rs.getInt("Capacity"));
+                return showtime;
+            }
+        });
+        return showtime;
     }
     
     public String getTheaterName(int showTimeId){

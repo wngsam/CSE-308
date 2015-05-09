@@ -11,12 +11,14 @@ import java.util.*;
  *
  * @author DreamRealizer
  */
+//OFFER ID = OFFER'S CODE TO REDEEM
 public class Offer {
     private int id;
     private String name;
     private String content;
     private GregorianCalendar expiration;
     private String imageLink;
+    private int discount;
     
     public Offer(){
         
@@ -28,6 +30,22 @@ public class Offer {
         this.expiration = expiration;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+    
     public int getOfferId() {
         return id;
     }

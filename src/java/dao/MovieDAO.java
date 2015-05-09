@@ -48,7 +48,7 @@ public class MovieDAO {
                         movie.setWeekendGross(rs.getBigDecimal("WeekendGross").doubleValue());
                         movie.setNumOfTheaters(rs.getInt("NumOfTheaters"));
                         movie.setTheaterAverage(rs.getBigDecimal("TheaterAverage").doubleValue());
-                        movie.setStudio(rs.getString("Studio"));
+                        //movie.setStudio(rs.getString("Studio"));
                         movie.setTrailer(rs.getString("Trailer"));
                         movie.setGenre(getGenres(movieId));
                         movie.setCast(getCasts(movieId));
@@ -133,7 +133,7 @@ public class MovieDAO {
     }
     
     public List<Review> getReviews(int movieId){
-        String query = "SELECT * FROM reviews"
+        String query = "SELECT * FROM comments"
               + " WHERE MovieId="+movieId+";";
         List<Review> reviews = this.jdbcTemplate.query(
                 query,
@@ -148,7 +148,7 @@ public class MovieDAO {
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getDate("Date"));
                         review.setDate(cal);
-                        review.setUpvotes(rs.getInt("Upvotes"));
+                        review.setStars(rs.getInt("Stars"));
                         return review;
                     }
                 }
