@@ -40,9 +40,9 @@
                         <td width="25%">
                             <p style="font-size:20px">Get Updates On All Things Movies:</p>
                             <p>Sign up for FanMail</p>
-                            <form class="navbar-form navbar-center">
+                            <form class="navbar-form navbar-center" method="POST" action="subscribe.htm">
                                 <div class="form-group">
-                                    <input type="Enter Email Address" placeholder="Enter Email Address" class="form-control"><button type="submit" class="btn btn-success">Submit</button>
+                                    <input type="email" placeholder="E-mail" class="form-control" name="email"><button type="submit" class="btn btn-success">Submit</button>
                                 </div>
                             </form>
                             <br><br><br>
@@ -68,7 +68,7 @@
         <br><br><br>
         <!-- 2nd Half -->
         <div style="text-align:center;" class="container">
-            <p><a href="">HELP</a> | <a href="">FEEDBACK</a> | <a href="">MY SAMDANGO</a> | <a href="">LIVE CHAT</a></P><br>
+            <p><a href="helpPage.htm">HELP</a> | <a href="fnqPage.htm">FAQ</a> |<a href="">FEEDBACK</a> | <a href="">MY SAMDANGO</a> | <a href="">LIVE CHAT</a></P><br>
             <P><a href="">About Samdango</a> | <a href="">Careers</a> | <a href="">Advertising</a> | <a href="">Link to Us</a> | <a href="">Affiliate Program</a> | <a href="">Promo Codes</a> | <a href="">Exhibitor Help</a> | <a href="">Movies.com</a> | <a href="">Samdango</a></p> 
             <p><a href="">Site Index</a> | <a href="">Your Privacy Rights - Privacy Policy</a> | <a href="">Terms of Use</a> | <a href="">Purchase Policy</a></p>
             <P> AdChoices Copyright 2015 Samdango. All rights reserved. Your Personal Box Office</p>

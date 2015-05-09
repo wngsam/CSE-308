@@ -35,11 +35,26 @@
         <property name="url" value="jdbc:mysql://localhost/samdango" />
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="password" value="jss123" />
         <property name="initialSize" value="10" />
         <property name="maxTotal" value="30" />
     </bean> 
     
+   
+     <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+       <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="samdangoWebmaster@gmail.com" />
+        <property name="password" value="samdango123" />
+        <property name="javaMailProperties">
+        <props>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+            <prop key="mail.smtp.auth">true</prop>
+        </props>
+        
+        </property>
+    </bean>
+
     <import resource="daos.xml"/>
     <import resource="managers.xml"/>
     <import resource="controllers.xml"/>
