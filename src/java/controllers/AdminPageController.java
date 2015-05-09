@@ -5,9 +5,14 @@
  */
 package controllers;
 
+import domains.Movie;
 import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
+import managers.UserManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +25,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminPageController {
     
+    private UserManager userManager;
+    
     @RequestMapping(value="/adminpage")
     public ModelAndView viewAdminPage(HttpSession session){
         ModelAndView mv = new ModelAndView("adminPage");
         mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
@@ -48,19 +56,42 @@ public class AdminPageController {
     @RequestMapping(value="/finduser", method=RequestMethod.POST)
     public ModelAndView findUser(@RequestParam(value = "email") String email){
         ModelAndView mv = new ModelAndView("adminEditUser");
+        mv.addObject("foundUser", userManager.findUser(email));
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/edituser", method=RequestMethod.POST)
-    public ModelAndView editUser(){
+    public ModelAndView editUser(@ModelAttribute("foundUser") User user){
         ModelAndView mv = new ModelAndView("adminEditUser");
+        //edit user info
+        mv.addObject("foundUser", user);
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/adduser", method=RequestMethod.POST)
-    public ModelAndView addUser(){
-        ModelAndView mv = new ModelAndView("adminEditUser");
+    public ModelAndView addUser(@ModelAttribute("user") User user) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        ModelAndView mv = new ModelAndView("adminPage");
+        user.setRole("User");
+        if(!userManager.registerUser(user)){
+            mv.addObject("confirmation", false);
+        }else{
+            mv.addObject("confirmation", true);
+        }
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
-    
+
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
+    }
+
 }

@@ -21,7 +21,7 @@ public class User implements Serializable{
     private String password;
     private GregorianCalendar birthDate;
     private String role;
-    private int zipCode;
+    private int zipCode =-1;
     private List<String> favoriteMovies;
     private List<String> favoriteTheaters;
     private List<Review> reviews;

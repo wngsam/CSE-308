@@ -37,9 +37,19 @@ public class UserDAO {
     
     public Boolean addUser(User user){
         Boolean confirmation = false;
+        String birthdate = "19000101";
+        int zipcode = 00000;
+        
+        if(user.getZipCode()!=-1){
+            zipcode = user.getZipCode();
+        }
+        if(user.getBirthDate()!=null){
+            
+        }
+        
         this.jdbcTemplate.update(
         "INSERT INTO users values (?,?,?,?,?,?,?,?)",
-        ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),"19000101",user.getRole(),"00000");
+        ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),zipcode);
         confirmation = true;
         return confirmation;
     }

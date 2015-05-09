@@ -62,7 +62,9 @@
     </bean>
     
     <bean id="adminPageController" class="controllers.AdminPageController">
-        
+        <property name="userManager">
+            <ref bean ="userManager"></ref>
+        </property>
     </bean>
     
     <bean id="movieInfoController" class="controllers.MovieInfoController">

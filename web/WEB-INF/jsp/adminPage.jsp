@@ -45,7 +45,7 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="overview">
                     <div class="container">                        
-                        <center><p class="text-danger">ADD USER</p></center><hr>
+                        <hr><p class="text-danger">ADD USER</p>
                         <form:form action="adduser.htm" modelAttribute="user" method="post">
         
                             <div class="form-group">
@@ -67,29 +67,47 @@
                                 <p class="text-warning" style="font-size:20px">Password:</P>
                                 <form:password path="password" placeholder="Password"/>
                             </div>
-        
+                            
+                            
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Zipcode:</P>
+                                <form:input path="zipCode" placeholder="11790"/>
+                            </div>
+                            
                             <br><button type="submit" class="btn btn-success" >Add User</button></br>
                         </form:form>
                         
-                        <center><p class="text-danger">ADD MOVIE</p></center><hr>
+                        <hr><p class="text-danger">ADD MOVIE</p>
                         
+                        <form:form action="addmovie.htm" modelAttribute="movie" method="post">
+        
+                            
+                            
+                            <br><button type="submit" class="btn btn-success" >Add Movie</button></br>
+                        </form:form>
                         
+                        <hr>
                         
                     </div>
                 </div>
                 <div class="tab-pane fade" id="adduser">
+                    <div class="fluid-container">
                      <p>Find User</p>
                         <form id="findUser" method="POST" action="finduser.htm">
                             <input type="email" class="form-control input-sm" name="email" placeholder="E-mail">
                             <button type="submit" class="btn btn-success btn-sm">Search</button>
                         </form>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="addmovie">
+                    <div class="fluid-container">
                      <p>Find Movie</p>
                         <form id="findMovie" method="POST" action="findmovie.htm">
                             <input type="input" class="form-control input-sm" name="name" placeholder="Movie Name">
                             <button type="submit" class="btn btn-success btn-sm">Search</button>
                         </form>
+                    </div>
                 </div>
             </div>
         </div>

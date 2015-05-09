@@ -18,6 +18,7 @@ public class Actor {
     private String lastName;
     private GregorianCalendar birthDate;
     private String imdb;
+    private String picture;
 
     public int getActorId() {
         return id;

@@ -37,6 +37,10 @@ public class UserManager {
         }
     }
     
+    public User findUser(String email){
+        return users.get(email);
+    }
+    
     public User authenticate(String email, String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         User user = users.get(email);
         
