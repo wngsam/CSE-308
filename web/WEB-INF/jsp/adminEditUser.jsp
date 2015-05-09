@@ -45,48 +45,8 @@
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane" id="overview">
                     <div class="container">                        
-                        <hr><p class="text-danger">ADD USER</p>
-                        <form:form action="adduser.htm" modelAttribute="user" method="post">
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">First Name:</P>
-                                <form:input path="firstName" placeholder="First Name"/>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">Last Name:</P>
-                                <form:input path="lastName" placeholder="Last Name"/>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">E-mail:</P>
-                                <form:input path="email" placeholder="E-mail"/>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">Password:</P>
-                                <form:password path="password" placeholder="Password"/>
-                            </div>
-                            
-                            
-                            
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">Zipcode:</P>
-                                <form:input path="zipCode" placeholder="11790"/>
-                            </div>
-                            
-                            <br><button type="submit" class="btn btn-success" >Add User</button></br>
-                        </form:form>
-                        
-                        <hr><p class="text-danger">ADD MOVIE</p>
-                        
-                        <form:form action="addmovie.htm" modelAttribute="movie" method="post">
-        
-                            
-                            
-                            <br><button type="submit" class="btn btn-success" >Add Movie</button></br>
-                        </form:form>
-                        
+                        <hr>
+                        <jsp:include page="adminAdd.jsp"/>
                         <hr>
                         
                     </div>
