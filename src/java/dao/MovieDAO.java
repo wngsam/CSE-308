@@ -47,8 +47,7 @@ public class MovieDAO {
                         movie.setPoster(rs.getString("Poster"));
                         movie.setWeekendGross(rs.getBigDecimal("WeekendGross").doubleValue());
                         movie.setNumOfTheaters(rs.getInt("NumOfTheaters"));
-                        movie.setTheaterAverage(rs.getBigDecimal("TheaterAverage").doubleValue());
-                        movie.setStudio(rs.getString("Studio"));
+                        movie.setTheaterAverage(rs.getBigDecimal("TheaterAverage").doubleValue());                        
                         movie.setTrailer(rs.getString("Trailer"));
                         movie.setGenre(getGenres(movieId));
                         movie.setCast(getCasts(movieId));
@@ -133,7 +132,7 @@ public class MovieDAO {
     }
     
     public List<Review> getReviews(int movieId){
-        String query = "SELECT * FROM reviews"
+        String query = "SELECT * FROM comments"
               + " WHERE MovieId="+movieId+";";
         List<Review> reviews = this.jdbcTemplate.query(
                 query,

@@ -23,7 +23,6 @@ public class Movie {
     private double weekendGross;
     private int numOfTheaters;
     private double theaterAverage;
-    private String studio;
     private String trailer;
     private List<String> genres;
     private List<Actor> cast;
@@ -121,13 +120,7 @@ public class Movie {
         this.theaterAverage = theaterAverage;
     }
 
-    public String getStudio() {
-        return studio;
-    }
 
-    public void setStudio(String studio) {
-        this.studio = studio;
-    }
 
     public String getTrailer() {
         return trailer;
