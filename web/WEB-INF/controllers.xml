@@ -82,8 +82,7 @@
      <bean id="fandQPageController" class="controllers.FandQPageController">
     </bean>
     
-     
-     <bean id="emailController" class="controllers.EmailController">
+    <bean id="emailController" class="controllers.EmailController">
     </bean>
     
 
