@@ -148,7 +148,7 @@ public class MovieDAO {
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getDate("Date"));
                         review.setDate(cal);
-                        review.setUpvotes(rs.getInt("Upvotes"));
+                        review.setStars(rs.getInt("Stars"));
                         return review;
                     }
                 }
