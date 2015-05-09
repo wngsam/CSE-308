@@ -37,4 +37,6 @@
         </property>
     </bean>
     <bean id="locationManager" class="managers.LocationManager"></bean>
+     <bean id="emailManager" class="managers.EmailManager"></bean>
+    
 </beans>

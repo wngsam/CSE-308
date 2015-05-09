@@ -75,5 +75,16 @@
             <ref bean ="movieManager"></ref>
         </property>
     </bean>
+    
+     <bean id="helpPageController" class="controllers.HelpPageController">
+    </bean>
+    
+     <bean id="fandQPageController" class="controllers.FandQPageController">
+    </bean>
+    
+     
+     <bean id="emailController" class="controllers.EmailController">
+    </bean>
+    
 
 </beans>
