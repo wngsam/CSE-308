@@ -49,7 +49,7 @@ public class Movie {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
-        System.out.println("~~~!!!!! "+reviews.get(0).getTitle());
+        //System.out.println("~~~!!!!! "+reviews.get(0).getTitle());
     }
     
     public void checkFresh(){
