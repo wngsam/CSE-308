@@ -42,6 +42,11 @@ public class LoginController {
                 mv = new ModelAndView("adminPage");
                 mv.addObject("user", new User());
             }
+            else
+            {
+                mv.addObject("modifiedUser", new User());
+                mv.addObject("user", user);
+            }
         }else{
             mv = new ModelAndView("index");
             mv.addObject("cannotLogin", "Wrong Password or Email!");

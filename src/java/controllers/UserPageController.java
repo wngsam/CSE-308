@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import domains.User;
 import javax.servlet.http.HttpSession;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,21 +19,28 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Sam W.
  */
 @Controller
-@RequestMapping("/userpage")
 public class UserPageController {
     
     private UserManager userManager;
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(value="/userpage", method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
+        return mv;
+    }
+    
+    @RequestMapping(value="/editUser" ,method=RequestMethod.POST)
+    public ModelAndView editUser(HttpSession session, @ModelAttribute("modifiedUser") User modifiedUser){
+        ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
     
     public UserManager getUserManager() {
         return userManager;
     }
-
+        
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }
