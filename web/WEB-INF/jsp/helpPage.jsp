@@ -27,7 +27,8 @@
   
 <body role="document">
 <jsp:include page="header.jsp" />
-<p style="font-size:50px">&nbsp;&nbsp;&nbsp;HELP</p>    
+<div  style="margin-left:70px;" >
+<p style="font-size:50px">HELP</p>    
 <center>
  <p style="font-size:20px" data-toggle="modal" data-target="#myModal1">Never Received/Deleted My Confirmation Email</p>
  <p style="font-size:20px" data-toggle="modal" data-target="#myModal21">Live Chat Contact</p>
@@ -223,7 +224,7 @@ If you purchased from a Print at Home enabled theater, you can print your ticket
     </div>
   </div>
 </div>
- 
+ </div>
  
  <hr>
 <jsp:include page="footer.jsp" />
