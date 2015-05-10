@@ -47,7 +47,8 @@ public class MovieDAO {
                         movie.setPoster(rs.getString("Poster"));
                         movie.setWeekendGross(rs.getBigDecimal("WeekendGross").doubleValue());
                         movie.setNumOfTheaters(rs.getInt("NumOfTheaters"));
-                        movie.setTheaterAverage(rs.getBigDecimal("TheaterAverage").doubleValue());                        
+                        movie.setTheaterAverage(rs.getBigDecimal("TheaterAverage").doubleValue());
+                        //movie.setStudio(rs.getString("Studio"));
                         movie.setTrailer(rs.getString("Trailer"));
                         movie.setGenre(getGenres(movieId));
                         movie.setCast(getCasts(movieId));

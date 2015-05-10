@@ -108,7 +108,7 @@ public class UserDAO {
     }
     
     public List<Review> getUserReviews(int userId){
-        String query = "SELECT * FROM reviews"
+        String query = "SELECT * FROM comments"
               + " WHERE UserId="+userId+";";
         List<Review> reviews = this.jdbcTemplate.query(
                 query,
