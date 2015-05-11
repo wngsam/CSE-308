@@ -89,6 +89,13 @@
         ${currentMovie.title} Synopsis<br>
          ${currentMovie.synopsis}</font>
     </div>
+    
+    <div align="center">
+        <font size="5" familey="Times New Roman" >
+        ${currentMovie.reviews.get(0).title}<br>
+         ${currentMovie.reviews.get(0).content}</font>
+    </div>
+    
     <br><br><br>
     </div>       
 

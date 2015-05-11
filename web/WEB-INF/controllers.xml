@@ -85,5 +85,9 @@
     <bean id="emailController" class="controllers.EmailController">
     </bean>
     
+     <bean id="movieNewsController" class="controllers.MovieNewsController">
+    </bean>
+    
+    
 
 </beans>

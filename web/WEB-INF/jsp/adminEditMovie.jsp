@@ -39,59 +39,19 @@
              </div>
              <ul class="nav nav-tabs">
                  <li><a href="#overview" data-toggle="tab" aria-expanded="false">ADD</a></li>
-                 <li class="active"><a href="#adduser" data-toggle="tab" aria-expanded="true">FIND USER</a></li>
-                 <li><a href="#addmovie" data-toggle="tab" aria-expanded="false">FIND MOVIE</a></li>
+                 <li><a href="#adduser" data-toggle="tab" aria-expanded="false">FIND USER</a></li>
+                 <li class="active"><a href="#addmovie" data-toggle="tab" aria-expanded="true">FIND MOVIE</a></li>
              </ul>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane" id="overview">
                     <div class="container">                        
-                        <hr><p class="text-danger">ADD USER</p>
-                        <form:form action="adduser.htm" modelAttribute="user" method="post">
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">First Name:</P>
-                                <form:input path="firstName" placeholder="First Name"/>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">Last Name:</P>
-                                <form:input path="lastName" placeholder="Last Name"/>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">E-mail:</P>
-                                <form:input path="email" placeholder="E-mail"/>
-                            </div>
-        
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">Password:</P>
-                                <form:password path="password" placeholder="Password"/>
-                            </div>
-                            
-                            
-                            
-                            <div class="form-group">
-                                <p class="text-warning" style="font-size:20px">Zipcode:</P>
-                                <form:input path="zipCode" placeholder="11790"/>
-                            </div>
-                            
-                            <br><button type="submit" class="btn btn-success" >Add User</button></br>
-                        </form:form>
-                        
-                        <hr><p class="text-danger">ADD MOVIE</p>
-                        
-                        <form:form action="addmovie.htm" modelAttribute="movie" method="post">
-        
-                            
-                            
-                            <br><button type="submit" class="btn btn-success" >Add Movie</button></br>
-                        </form:form>
-                        
+                        <hr>
+                        <jsp:include page="adminAdd.jsp"/>
                         <hr>
                         
                     </div>
                 </div>
-                <div class="tab-pane fade active in" id="adduser">
+                <div class="tab-pane fade" id="adduser">
                     <div class="fluid-container">
                      <p>Find User</p>
                         <form id="findUser" method="POST" action="finduser.htm">
@@ -101,7 +61,7 @@
                      
                     </div>
                 </div>
-                <div class="tab-pane fade" id="addmovie">
+                <div class="tab-pane fade active in" id="addmovie">
                     <div class="fluid-container">
                      <p>Find Movie</p>
                         <form id="findMovie" method="POST" action="findmovie.htm">
