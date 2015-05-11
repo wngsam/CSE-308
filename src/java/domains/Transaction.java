@@ -17,9 +17,10 @@ public class Transaction {
     private double cost;
     private GregorianCalendar date;
     private PaymentMethod paymentMethod;
-    private String theater;
-    private String movie;
-
+    //private String theater;
+    //private String movie;
+    private Schedule showtime;
+    
     public int getId() {
         return Id;
     }
@@ -36,20 +37,12 @@ public class Transaction {
         this.paymentMethod = paymentMethod;
     }
 
-    public String getTheater() {
-        return theater;
+    public Schedule getSchedule() {
+        return showtime;
     }
 
-    public void setTheater(String theater) {
-        this.theater = theater;
-    }
-
-    public String getMovie() {
-        return movie;
-    }
-
-    public void setMovie(String movie) {
-        this.movie = movie;
+    public void setSchedule(Schedule schedule) {
+        showtime = schedule;
     }
     
     public int getQuantity() {

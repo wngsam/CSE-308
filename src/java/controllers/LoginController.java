@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package controllers;
+import domains.Movie;
 import managers.UserManager;
 import domains.User;
 import java.io.UnsupportedEncodingException;
@@ -41,6 +42,7 @@ public class LoginController {
             if(user.getRole().equals("Admin")){
                 mv = new ModelAndView("adminPage");
                 mv.addObject("user", new User());
+                mv.addObject("movie", new Movie());
             }
             else
             {
