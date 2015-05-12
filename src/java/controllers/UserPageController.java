@@ -5,28 +5,71 @@
  */
 package controllers;
 
+import domains.PaymentMethod;
+import domains.Transaction;
+import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author Sam W.
  */
+
 @Controller
-@RequestMapping("/userpage")
 public class UserPageController {
     
     private UserManager userManager;
 
-    @RequestMapping(method=RequestMethod.GET)
+    @RequestMapping(value="/userPage",method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("paymentMethod", new PaymentMethod());
+                
         return mv;
     }
+    @RequestMapping(value="/edit={creditCardId}", method = RequestMethod.GET)
+    public ModelAndView editPayment(@PathVariable("creditCardId") int creditCardId) {
+            
+        ModelAndView mv = new ModelAndView("userPage");
+        
+        mv.addObject("success", "Success");
+        
+        return mv;
+    }
+   
+   // @RequestMapping(method = RequestMethod.POST) 
+    @RequestMapping(value="/userPage", method = RequestMethod.POST)
+    public ModelAndView savePayment(
+            @ModelAttribute("paymentMethod") PaymentMethod paymentMethod,
+            HttpSession session)
+            throws UnsupportedEncodingException, NoSuchAlgorithmException {
+
+        ((User)session.getAttribute("currentPerson")).getPaymentMethods().add(paymentMethod);
+       
+        ModelAndView mv = new ModelAndView("/userPage");
+        
+        List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        if (!payments.contains(paymentMethod)) {
+            paymentMethod.setId(123);
+            
+            payments.add(paymentMethod);
+            mv.addObject("Success", "Success");
+        }
+        mv.addObject("payments", payments);
+        return mv;
+    }
+    
     
     public UserManager getUserManager() {
         return userManager;
