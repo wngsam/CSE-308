@@ -5,6 +5,7 @@
  */
 package controllers;
 import domains.Movie;
+import domains.PaymentMethod;
 import managers.UserManager;
 import domains.User;
 import java.io.UnsupportedEncodingException;
@@ -36,7 +37,7 @@ public class LoginController {
                     HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{        
         User user = userManager.authenticate(email, password); 
         ModelAndView mv = new ModelAndView("userPage");
-        
+        mv.addObject("paymentMethod", new PaymentMethod());
         if(user!=null){
             session.setAttribute("currentPerson", user);
             if(user.getRole().equals("Admin")){

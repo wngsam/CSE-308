@@ -22,6 +22,7 @@ public class giftcardController {
     
      private MovieManager movieManager;
 
+
 /*
      
     @RequestMapping(value="{title}", method = RequestMethod.GET)
@@ -36,6 +37,9 @@ public class giftcardController {
         return mv;
     }
      
+=======
+    
+>>>>>>> origin/master
     public MovieManager getMovieManager() {
            return movieManager;
        }

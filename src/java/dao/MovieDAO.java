@@ -144,7 +144,7 @@ public class MovieDAO {
                         review.setTitle(rs.getString("Title"));
                         review.setUserId(rs.getInt("UserId"));
                         review.setContent(rs.getString("Content"));
-                        review.setMovieId(movieId);
+                        review.setMovieId(rs.getInt("MovieId"));
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getDate("Date"));
                         review.setDate(cal);

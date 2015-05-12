@@ -4,8 +4,9 @@
     Author     : Sam W.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
@@ -78,8 +79,115 @@
                     </form:form>
                 </div>
                 <div class="tab-pane fade" id="payment">
-                     <p>Payment Methods</p>
+                    <h1>Payment Methods</h1>
+                    <div  style="margin-left:70px;" >
+                    
+                        <table>
+                            <tr>
+                                <td  valign = "top">
+
+                                    <h2>Add Payment Method</h2>
+
+                                    <form:form action="userPage.htm" method="post" modelAttribute="paymentMethod">
+
+
+                                        <div class="form-group">
+                                            <p class="text-warning" style="font-size:20px">First Name:</P>
+                                            <form:input path="firstName" placeholder="First Name"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="text-warning" style="font-size:20px">Last Name:</P>
+                                            <form:input path="lastName" placeholder="Last Name"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="text-warning" style="font-size:20px">Credit Card Number:</P>
+                                            <form:input path="creditCardNum" placeholder="Credit Card Number"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="text-warning" style="font-size:20px">CCV:</P>
+                                            <form:input path="ccv" placeholder="CCV"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="text-warning" style="font-size:20px">Address:</P>
+                                            <form:input path="address" placeholder="Address"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="text-warning" style="font-size:20px">Zip Code</P>
+                                            <form:input path="zipCode" placeholder="Zip Code"/>
+                                        </div>
+
+
+                                        <p class="text-warning" style="font-size:20px">Preferred Payment? 
+                                            <form:checkbox width="100px" height="100px" path="isPreferred"/></p>
+
+                                        <br><button type="submit" class="btn btn-success" >Add Payment</button></br>
+
+                                    </form:form>
+
+                                </td>
+                                
+                                <td valign = "top">
+                                    <div  style="margin-left:70px;" >
+                                    <h2>Current Payment Methods</h2>
+                                    
+                                    
+                                    <c:forEach var="listVar" items="${payments}">     
+                                        <h3>    
+                                        <center><p>${listVar.creditCardNum}</p></center>
+                                        <center><a href="edit=${listVar.id}.htm"><p>Edit Payment Method</p></a></center>
+                                        <center><a href="delete=${listVar.id}.htm"><p>Delete Payment Method</p></a></center>
+                                        <center><a href="preferred=${listVar.id}.htm"><p>Set As Preferred</p></a></center>
+                                        </h3>
+                                        <br>
+                                    </c:forEach>
+                                    <c:if test="${empty payments}">
+                                        <h3>No payments saved.</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty Success}">
+                                            <h3>Successfully Saved.</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty failure}">
+                                            <h3>Failed to save payment method.</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty delete}">
+                                            <h3>Successfully deleted payment method.</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                                
+                        </table>
+                    
+                    </div>
+                        <br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
+                
+                
+                
+                
             </div>
         </div>
     </div>
