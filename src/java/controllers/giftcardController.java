@@ -22,7 +22,7 @@ public class giftcardController {
     
      private MovieManager movieManager;
 
-
+/*
      
     @RequestMapping(value="{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle) {
@@ -44,6 +44,6 @@ public class giftcardController {
         this.movieManager = movieManager;
         movieManager.updateMovies();
     }
-    
+    */
     
 }
