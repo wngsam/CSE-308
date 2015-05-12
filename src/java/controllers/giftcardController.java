@@ -22,20 +22,7 @@ public class giftcardController {
     
      private MovieManager movieManager;
 
-
-     
-    @RequestMapping(value="{title}", method = RequestMethod.GET)
-    public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle) {
-            
-        System.out.println("123456");
-        ModelAndView mv = new ModelAndView("movieInfoPage");
-        Movie currentMovie = movieManager.getCurrentMovie(movieTitle);
-        
-        mv.addObject("currentMovie", currentMovie);
-       
-        return mv;
-    }
-     
+    
     public MovieManager getMovieManager() {
            return movieManager;
        }

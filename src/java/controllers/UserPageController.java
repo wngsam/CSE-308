@@ -37,46 +37,88 @@ public class UserPageController {
         ModelAndView mv = new ModelAndView("userPage");
         mv.addObject("paymentMethod", new PaymentMethod());
                 
-
         mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
     
     @RequestMapping(value="/editUser" ,method=RequestMethod.POST)
-    public ModelAndView editUser(HttpSession session, @ModelAttribute("modifiedUser") User modifiedUser){
+    public ModelAndView editUser(HttpSession session, @ModelAttribute("user") User modifiedUser){
         ModelAndView mv = new ModelAndView("userPage");
         mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
+    
     @RequestMapping(value="/edit={creditCardId}", method = RequestMethod.GET)
-    public ModelAndView editPayment(@PathVariable("creditCardId") int creditCardId) {
+    public ModelAndView editPayment(HttpSession session, 
+            @PathVariable("creditCardId") int creditCardId) {
             
         ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
+        mv.addObject("paymentMethod", new PaymentMethod());
+                 
+        List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        mv.addObject("payments", payments);
+        mv.addObject("edit", "dag");
         
-        mv.addObject("success", "Success");
+        return mv;
+    }
+    @RequestMapping(value="/delete={creditCardId}", method = RequestMethod.GET)
+    public ModelAndView deletePayment(HttpSession session, 
+            @PathVariable("creditCardId") int creditCardId) {
+            
+        ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
+        mv.addObject("paymentMethod", new PaymentMethod());
+        
+        
+        
+        List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        for (PaymentMethod method:payments) {
+            if (method.getId() == creditCardId) {
+                
+                payments.remove(method);
+                mv.addObject("payments", payments);
+                
+                mv.addObject("delete", "dag");
+        
+                return mv;
+            }
+        }
+        
+        
+        mv.addObject("payments", payments);
+        
+        
         
         return mv;
     }
    
-   // @RequestMapping(method = RequestMethod.POST) 
     @RequestMapping(value="/userPage", method = RequestMethod.POST)
     public ModelAndView savePayment(
             @ModelAttribute("paymentMethod") PaymentMethod paymentMethod,
             HttpSession session)
             throws UnsupportedEncodingException, NoSuchAlgorithmException {
-
-        ((User)session.getAttribute("currentPerson")).getPaymentMethods().add(paymentMethod);
-       
+        
         ModelAndView mv = new ModelAndView("/userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
         
         List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
-        if (!payments.contains(paymentMethod)) {
-            paymentMethod.setId(123);
-            
-            payments.add(paymentMethod);
-            mv.addObject("Success", "Success");
+        for (PaymentMethod method:payments) {
+            if (method.getCreditCardNum() == paymentMethod.getCreditCardNum()) {
+                mv.addObject("failure","dang");
+                
+                mv.addObject("payments", payments);
+                return mv;
+            }
         }
-        mv.addObject("payments", payments);
+            
+            
+            paymentMethod.setId(123);
+            ((User)session.getAttribute("currentPerson")).getPaymentMethods().add(paymentMethod);
+       
+            mv.addObject("Success", "Success");
+        
+            mv.addObject("payments", payments);
         return mv;
     }
     

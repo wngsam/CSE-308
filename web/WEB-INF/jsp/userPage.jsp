@@ -132,17 +132,34 @@
                                     
                                     
                                     <c:forEach var="listVar" items="${payments}">     
-                                            
+                                        <h3>    
                                         <center><p>${listVar.creditCardNum}</p></center>
-                                        <center><a href="edit=${listVar.id}.htm"><p>Edit Payment</p></a></center>
+                                        <center><a href="edit=${listVar.id}.htm"><p>Edit Payment Method</p></a></center>
+                                        <center><a href="delete=${listVar.id}.htm"><p>Delete Payment Method</p></a></center>
+                                        <center><a href="preferred=${listVar.id}.htm"><p>Set As Preferred</p></a></center>
+                                        </h3>
                                         <br>
                                     </c:forEach>
                                     <c:if test="${empty payments}">
-                                            No payments saved.
+                                        <h3>No payments saved.</h3>
                                             <br>
                                     
                                     </c:if>
+                                    <c:if test="${not empty Success}">
+                                            <h3>Successfully Saved.</h3>
+                                            <br>
                                     
+                                    </c:if>
+                                    <c:if test="${not empty failure}">
+                                            <h3>Failed to save payment method.</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty delete}">
+                                            <h3>Successfully deleted payment method.</h3>
+                                            <br>
+                                    
+                                    </c:if>
                                     </div>
                                 </td>
                                 
