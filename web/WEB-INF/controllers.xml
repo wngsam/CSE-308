@@ -65,6 +65,9 @@
         <property name="userManager">
             <ref bean ="userManager"></ref>
         </property>
+        <property name="movieManager">
+            <ref bean ="movieManager"></ref>
+        </property>
     </bean>
     
     <bean id="movieInfoController" class="controllers.MovieInfoController">
@@ -72,5 +75,19 @@
             <ref bean ="movieManager"></ref>
         </property>
     </bean>
+    
+     <bean id="helpPageController" class="controllers.HelpPageController">
+    </bean>
+    
+     <bean id="fandQPageController" class="controllers.FandQPageController">
+    </bean>
+    
+    <bean id="emailController" class="controllers.EmailController">
+    </bean>
+    
+     <bean id="movieNewsController" class="controllers.MovieNewsController">
+    </bean>
+    
+    
 
 </beans>

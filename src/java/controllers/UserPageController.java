@@ -11,6 +11,7 @@ import domains.User;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import domains.User;
 import javax.servlet.http.HttpSession;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
@@ -31,11 +32,20 @@ public class UserPageController {
     
     private UserManager userManager;
 
-    @RequestMapping(value="/userPage",method=RequestMethod.GET)
+    @RequestMapping(value="/userpage", method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
         mv.addObject("paymentMethod", new PaymentMethod());
                 
+
+        mv.addObject("user", session.getAttribute("currentPerson"));
+        return mv;
+    }
+    
+    @RequestMapping(value="/editUser" ,method=RequestMethod.POST)
+    public ModelAndView editUser(HttpSession session, @ModelAttribute("modifiedUser") User modifiedUser){
+        ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
     @RequestMapping(value="/edit={creditCardId}", method = RequestMethod.GET)
@@ -74,7 +84,7 @@ public class UserPageController {
     public UserManager getUserManager() {
         return userManager;
     }
-
+        
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;
     }

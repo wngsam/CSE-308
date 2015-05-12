@@ -37,6 +37,10 @@ public class MovieManager {
         //createFakeBoxOffice();
     }
     
+    public Movie findMovie(String name){
+        return movies.get(name);
+    }
+    
     public void updateMovies(){
         movies = new HashMap();
         List<Movie> moviesList = movieDAO.update();
@@ -47,6 +51,18 @@ public class MovieManager {
             comingSoon.add(m);
         }
         
+    }
+    
+    public boolean addMovie(Movie movie){
+        boolean confirmation = false;
+        if(movies.get(movie.getTitle())==null){
+//            if(movieDAO.addMovie(movie)==true){
+//                movies.put(movie.getTitle(),movie);
+//                confirmation = true;
+//            }
+        }
+        
+        return confirmation;
     }
     
     public MovieDAO getMovieDAO() {

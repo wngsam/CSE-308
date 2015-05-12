@@ -10,6 +10,7 @@ import domains.User;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
+import managers.MovieManager;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminPageController {
     
     private UserManager userManager;
+    private MovieManager movieManager;
     
     @RequestMapping(value="/adminpage")
     public ModelAndView viewAdminPage(HttpSession session){
@@ -38,18 +40,32 @@ public class AdminPageController {
     @RequestMapping(value="/findmovie", method=RequestMethod.POST)
     public ModelAndView findMovie(@RequestParam(value = "name") String name){
         ModelAndView mv = new ModelAndView("adminEditMovie");
+        mv.addObject("foundMovie", movieManager.findMovie(name));
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/editmovie", method=RequestMethod.POST)
-    public ModelAndView editMovie(){
+    public ModelAndView editMovie(@ModelAttribute("foundMovie") Movie movie){
         ModelAndView mv = new ModelAndView("adminEditMovie");
+        //edit movie info
+        mv.addObject("foundMovie", movie);
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/addmovie", method=RequestMethod.POST)
-    public ModelAndView addMovie(){
-        ModelAndView mv = new ModelAndView("adminEditMovie");
+    public ModelAndView addMovie(@ModelAttribute("movie") Movie movie){
+        ModelAndView mv = new ModelAndView("adminPage");
+        if(!movieManager.addMovie(movie)){
+            mv.addObject("mconfirmation", false);
+        }else{
+            mv.addObject("mconfirmation", true);
+        }
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
         return mv;
     }
     
@@ -94,4 +110,12 @@ public class AdminPageController {
         this.userManager = userManager;
     }
 
+    public MovieManager getMovieManager() {
+        return movieManager;
+    }
+
+    public void setMovieManager(MovieManager movieManager) {
+        this.movieManager = movieManager;
+    }
+    
 }

@@ -56,8 +56,27 @@
                 <div class="tab-pane fade" id="history">
                      <p>Purchase History</p>
                 </div>
-                <div class="tab-pane fade" id="settings">
-                     <p>Account Settings</p>
+                <div class="tab-pane fade" id="settings">                    
+                    <form:form action="editUser.htm" modelAttribute="user" method="post">                        
+                        <div class="form-group">
+                            <p class="text-warning" style="font-size:20px">First Name:</P>
+                            <form:input path="firstName" placeholder="First Name"/>
+                        </div>
+                            
+                        <div class="form-group">
+                            <p class="text-warning" style="font-size:20px">Last Name:</P>
+                            <form:input path="lastName" placeholder="Last Name"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <p class="text-warning" style="font-size:20px">Birth Date:</P>
+                            <fmt:formatDate type="Date" dateStyle="Long" var="birthDateString" value="${currentPerson.birthDate.time}" pattern="dd/MM/yyyy"></fmt:formatDate>
+                            <form:input path="birthDate" value="${birthDateString}"/>
+                        </div>
+                            
+                            
+                        <br><button type="submit" class="btn btn-success" >Update</button></br>                            
+                    </form:form>
                 </div>
                 <div class="tab-pane fade" id="payment">
                     <h1>Payment Methods</h1>
