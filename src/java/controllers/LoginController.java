@@ -47,7 +47,7 @@ public class LoginController {
             }
             else
             {
-                mv.addObject("user", user);                
+                mv.addObject("user", user);   
             }
         }else{
             mv = new ModelAndView("index");

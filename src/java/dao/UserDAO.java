@@ -54,11 +54,10 @@ public class UserDAO {
         ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),zipcode);
         confirmation = true;
         return confirmation;
-    }
+    }  
     
     public Boolean editUser(User user){
-        Boolean confirmation = false;    
-        String birthDate = "19000101";
+        Boolean confirmation = false;            
         this.jdbcTemplate.update(
         "UPDATE users SET FirstName=?,"
                 + " LastName=?,"
@@ -66,6 +65,16 @@ public class UserDAO {
                 + " Zipcode=?"
                 + " WHERE UserId=?",
         user.getFirstName(),user.getLastName(),user.getBirthDate(),user.getZipCode(),user.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
+    public Boolean editPassword(User user, String newPwd){
+        Boolean confirmation = false;            
+        this.jdbcTemplate.update(
+        "UPDATE users SET Password=?"
+                + " WHERE UserId=?",
+        newPwd,user.getId());
         confirmation = true;
         return confirmation;
     }

@@ -45,6 +45,7 @@
                  <li><a href="#settings" data-toggle="tab" aria-expanded="false">ACCOUNT SETTINGS</a></li>
                  <li><a href="#payment" data-toggle="tab" aria-expanded="false">PAYMENT METHOD</a></li>
              </ul>
+
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="overview">
                     <div class="container">                        
@@ -80,6 +81,68 @@
                             
                         <br><button type="submit" class="btn btn-success" >Update</button></br>                            
                     </form:form>
+                        <c:choose>
+                            <c:when test="${not empty wrongPwd}">
+                                    <form id="login" method="POST" action="editPassword.htm">                      
+                        
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">Current Password:</P>
+                                        <input type="password" name="currentPwd"/>
+                                        <p class="text-warning" style="font-size:20px">Wrong Password!</P>
+                                    </div>     
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">New Password:</P>
+                                        <input type="password" name="newPwd"/>
+                                    </div>  
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">Confirm the New Password:</P>
+                                        <input type="password" name="confirmPwd"/>
+                                    </div>  
+                                    
+                                    <br><button type="submit" class="btn btn-success" >Update Password</button></br>                            
+                                </form>
+                            </c:when>
+                            <c:when test="${not empty pwdConflict}">
+                                    <form id="login" method="POST" action="editPassword.htm">                      
+                        
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">Current Password:</P>
+                                        <input type="password" name="currentPwd"/>                                        
+                                    </div>     
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">New Password:</P>
+                                        <input type="password" name="newPwd"/>
+                                        <p class="text-warning" style="font-size:20px">Passwords do not match!</P>
+                                    </div>  
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">Confirm the New Password:</P>
+                                        <input type="password" name="confirmPwd"/>
+                                    </div>  
+                                    
+                                    <br><button type="submit" class="btn btn-success" >Update Password</button></br>                            
+                                </form>
+                            </c:when>
+                            <c:otherwise>
+                                <form id="login" method="POST" action="editPassword.htm">                      
+                        
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">Current Password:</P>
+                                        <input type="password" name="currentPwd"/>                                        
+                                    </div>     
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">New Password:</P>
+                                        <input type="password" name="newPwd"/>                                        
+                                    </div>  
+                                    <div class="form-group">
+                                        <p class="text-warning" style="font-size:20px">Confirm the New Password:</P>
+                                        <input type="password" name="confirmPwd"/>
+                                    </div>  
+                                    
+                                    <br><button type="submit" class="btn btn-success" >Update Password</button></br>                            
+                                </form>
+                            </c:otherwise>
+                            
+                    </c:choose>    
                 </div>
                 <div class="tab-pane fade" id="payment">
                     <h1>Payment Methods</h1>
@@ -92,8 +155,6 @@
                                     <h2>Add Payment Method</h2>
 
                                     <form:form action="userPage.htm" method="post" modelAttribute="paymentMethod">
-
-
                                         <div class="form-group">
                                             <p class="text-warning" style="font-size:20px">First Name:</P>
                                             <form:input path="firstName" placeholder="First Name"/>

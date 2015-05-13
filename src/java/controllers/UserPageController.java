@@ -37,15 +37,13 @@ public class UserPageController {
     @RequestMapping(value="/userpage", method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
-        mv.addObject("paymentMethod", new PaymentMethod());
-                
+        mv.addObject("paymentMethod", new PaymentMethod());                
         mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
     
     @RequestMapping(value="/editUser" ,method=RequestMethod.POST)
-    public ModelAndView editUser(HttpSession session, @ModelAttribute("user") User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{
-               System.out.println("success UserPageController line 39");
+    public ModelAndView editUser(HttpSession session, @ModelAttribute("user") User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{               
         User user = (User)session.getAttribute("currentPerson");
  
         user.setFirstName(modifiedUser.getFirstName());
@@ -56,8 +54,32 @@ public class UserPageController {
         ModelAndView mv = new ModelAndView("userPage");
         userManager.editUser(user);
         mv.addObject("user", session.getAttribute("currentPerson"));
+        mv.addObject("paymentMethod", new PaymentMethod());  
         return mv;
     }
+    
+    @RequestMapping(value="/editPassword" ,method=RequestMethod.POST)
+    public ModelAndView editPassword(HttpSession session, @RequestParam(value = "currentPwd") String currentPwd, @RequestParam(value = "newPwd") String newPwd, @RequestParam(value = "confirmPwd") String confirmPwd) throws UnsupportedEncodingException, NoSuchAlgorithmException{               
+        User user = (User)session.getAttribute("currentPerson"); 
+        //Authenticate the user with the current password.        
+        user=userManager.authenticate(user.getEmail(), currentPwd);
+        ModelAndView mv = new ModelAndView("userPage");
+        if(user==null){
+            mv.addObject("wrongPwd","WrongPwd");
+        }
+        else{
+            if(newPwd.equals(confirmPwd)){
+                userManager.editPassword(user,newPwd);                
+            }
+            else{                
+                mv.addObject("pwdConflict","pwdConflict");
+            }
+        }
+        mv.addObject("paymentMethod", new PaymentMethod());  
+        mv.addObject("user", session.getAttribute("currentPerson"));
+        return mv;
+    }
+    
     
     @RequestMapping(value="/edit={creditCardId}", method = RequestMethod.GET)
     public ModelAndView editPayment(HttpSession session, 

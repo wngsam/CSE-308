@@ -74,6 +74,14 @@ public class UserManager {
         return confirmation;
     }
     
+    public boolean editPassword(User user, String newPwd) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        boolean confirmation = false;
+        user.setPassword(hash(newPwd));
+        userDAO.editPassword(user, hash(newPwd));
+        confirmation = true;        
+        return confirmation;
+    }
+    
     public String hash(String password) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         String hashed = new String(Hex.encodeHexString(md.digest(password.getBytes("UTF-8"))));
