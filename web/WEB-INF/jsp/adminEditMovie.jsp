@@ -92,6 +92,41 @@
                                 <form:input path="rating" placeholder="${foundMovie.rating}"/>
                             </div>
                             
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Synopsis:</P>
+                                <form:input path="synopsis" placeholder="${foundMovie.synopsis}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Poster:</P>
+                                <form:input path="poster" placeholder="${foundMovie.poster}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Weekend Gross:</P>
+                                <form:input path="weekendGross" placeholder="${foundMovie.weekendGross}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Number of Theaters:</P>
+                                <form:input path="numOfTheaters" placeholder="${foundMovie.numOfTheaters}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Theater Average:</P>
+                                <form:input path="theaterAverage" placeholder="${foundMovie.theaterAverage}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Trailer:</P>
+                                <form:input path="trailer" placeholder="${foundMovie.trailer}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Stars:</P>
+                                <form:input path="stars" placeholder="${foundMovie.stars}"/>
+                            </div>
+                            
                             <br><button type="submit" class="btn btn-success" >Edit Movie</button></br>
                         </form:form>
                             <a href="delmovie.htm" class="btn btn-warning btn-sm">DELETE</a>

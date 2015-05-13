@@ -24,9 +24,39 @@ import org.springframework.jdbc.core.RowMapper;
 public class MovieDAO {
     
     private JdbcTemplate jdbcTemplate;
+    static int count = 0;
     
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+    
+    public boolean adminEditMovie(Movie movie){
+        boolean confirmation = false;
+        String releasedate = "20121212";
+        String trailer = "abc";
+        this.jdbcTemplate.update(
+        "UPDATE movies \n" +
+        "SET MovieId = ?, Title = ?, ReleaseDate = ?, Rating = ?, Synopsis = ?, Poster = ?, WeekendGross = ?, NumOfTheaters = ?, TheaterAverage = ?, Trailer = ?, Stars = ? \n" +
+        "WHERE MovieId = ?;",
+        movie.getId(),movie.getTitle(),releasedate,movie.getRating(),movie.getSynopsis(),
+        movie.getPoster(),movie.getWeekendGross(),movie.getNumOfTheaters(),movie.getTheaterAverage(),
+        trailer,movie.getStars(),movie.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
+    public boolean adminAddMovie(Movie movie){
+        boolean confirmation = false;
+        movie.setId(++count);
+        movie.setStars(0);
+        String releaseDate = "20201212";
+        
+        this.jdbcTemplate.update(
+        "INSERT INTO movies values (?,?,?,?,?,?,?,?,?,?,?)",
+        movie.getId(),movie.getTitle(),releaseDate,movie.getRating(),movie.getSynopsis(),movie.getPoster(),movie.getWeekendGross(),
+        movie.getNumOfTheaters(),movie.getTheaterAverage(),movie.getTrailer(),0);
+        confirmation = true;
+        return confirmation;
     }
     
     public boolean adminDelMovie(int id){
@@ -53,6 +83,14 @@ public class MovieDAO {
         return confirmation;
     }
     
+    //can be used by user or admin
+    public boolean deleteComment(Review comment){
+        boolean confirmation = false;
+        this.jdbcTemplate.update("DELETE from comments where UserId = "+comment.getUserId()+" and title = "+comment.getTitle()+";");
+        confirmation = true;
+        return confirmation;
+    }
+    
     public List<Movie> update(){
         List<Movie> movies = this.jdbcTemplate.query(
                 "SELECT * FROM movies;",
@@ -61,6 +99,7 @@ public class MovieDAO {
                     public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Movie movie = new Movie();
                         int movieId = rs.getInt("MovieId");
+                        if(movieId>count){count=movieId;}
                         movie.setId(movieId);
                         movie.setTitle(rs.getString("Title"));
                         GregorianCalendar cal = new GregorianCalendar();

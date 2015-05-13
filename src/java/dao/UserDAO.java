@@ -69,6 +69,7 @@ public class UserDAO {
     
     public boolean addUser(User user){
         boolean confirmation = false;
+        user.setId(++count);
         
         String birthdate = "19000101";
         int zipcode = 00000;
@@ -82,7 +83,7 @@ public class UserDAO {
         
         this.jdbcTemplate.update(
         "INSERT INTO users values (?,?,?,?,?,?,?,?)",
-        ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),zipcode);
+        user.getId(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),zipcode);
         confirmation = true;
         return confirmation;
     }  

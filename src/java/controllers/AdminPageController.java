@@ -53,9 +53,12 @@ public class AdminPageController {
     }
     
     @RequestMapping(value="/editmovie", method=RequestMethod.POST)
-    public ModelAndView editMovie(@ModelAttribute("foundMovie") Movie movie){
+    public ModelAndView editMovie(@ModelAttribute("foundMovie") Movie movie, HttpSession session){
         ModelAndView mv = new ModelAndView("adminEditMovie");
-        //edit movie info
+        String title = (String) session.getAttribute("foundMovieName");
+        boolean emconfirmation = movieManager.adminEditMovie(movie, title);
+        mv.addObject("emconfirmation", emconfirmation);
+        if(emconfirmation==true){session.setAttribute("foundMovieName" , movie.getTitle());}
         mv.addObject("foundMovie", movie);
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
@@ -77,7 +80,7 @@ public class AdminPageController {
     
     @RequestMapping(value="/delmovie", method=RequestMethod.GET)
     public ModelAndView delMovie(HttpSession session){
-        ModelAndView mv = new ModelAndView("adminEditMovie");
+        ModelAndView mv = new ModelAndView("adminPage");
         String name = (String) session.getAttribute("foundMovieName");
         if(!movieManager.adminDelMovie(name)){
             mv.addObject("delmconfirm", false);
@@ -121,7 +124,7 @@ public class AdminPageController {
     
     @RequestMapping(value="/deluser", method=RequestMethod.GET)
     public ModelAndView delUser(HttpSession session){
-        ModelAndView mv = new ModelAndView("adminEditUser");
+        ModelAndView mv = new ModelAndView("adminPage");
         String email = (String) session.getAttribute("foundUserEmail");
         if(!userManager.adminDelUser(email)){
             mv.addObject("delconfirm", false);
