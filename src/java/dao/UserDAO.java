@@ -36,10 +36,20 @@ public class UserDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
-    public boolean adminDelUser(String email){
+    public boolean adminDelUser(int id){
         boolean confirmation = false;
         
-        //delete user dependencies & users
+        this.jdbcTemplate.update("DELETE from favoritemovies where UserId = "+id+";");
+        this.jdbcTemplate.update("DELETE from favoritetheaters where UserId = "+id+";");
+        this.jdbcTemplate.update(
+        "UPDATE comments \n" +
+        "SET UserId = 0 \n" +
+        "WHERE UserId = "+id+";");
+        this.jdbcTemplate.update(
+        "UPDATE paymentmethods \n" +
+        "SET UserId = 0 \n" +
+        "WHERE UserId = "+id+";");
+        this.jdbcTemplate.update("DELETE from users where UserId = "+id+";");
         
         confirmation = true;
         return confirmation;
@@ -102,14 +112,15 @@ public class UserDAO {
     
    
     public List<User> update(){
+        //count = 0; //DONT RESTART COUNT
         List<User> users = this.jdbcTemplate.query(
                 "SELECT * FROM users;",
                 new RowMapper<User>(){
                     @Override
                     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                         User user = new User();
-                        count++;
                         int userId = rs.getInt("UserId");
+                        if(userId>count){count=userId;}
                         user.setId(userId);
                         user.setFirstName(rs.getString("FirstName"));
                         user.setLastName(rs.getString("LastName"));
