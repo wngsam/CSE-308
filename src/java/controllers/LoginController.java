@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package controllers;
+import domains.Movie;
+import domains.PaymentMethod;
 import managers.UserManager;
 import domains.User;
 import java.io.UnsupportedEncodingException;
@@ -35,12 +37,18 @@ public class LoginController {
                     HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{        
         User user = userManager.authenticate(email, password); 
         ModelAndView mv = new ModelAndView("userPage");
-        
+        mv.addObject("paymentMethod", new PaymentMethod());
         if(user!=null){
             session.setAttribute("currentPerson", user);
             if(user.getRole().equals("Admin")){
                 mv = new ModelAndView("adminPage");
                 mv.addObject("user", new User());
+                mv.addObject("movie", new Movie());
+            }
+            else
+            {
+                mv.addObject("modifiedUser", new User());
+                mv.addObject("user", user);
             }
         }else{
             mv = new ModelAndView("index");

@@ -14,10 +14,10 @@
                     <c:when test="${ not empty currentPerson}">
                         <c:choose>
                             <c:when test="${currentPerson.role == 'Admin'}">
-                                <li><a href="adminpage.htm">Hi ${currentPerson.firstName}</a></li>
+                                <li><a href="adminPage.htm">Hi ${currentPerson.firstName}</a></li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="userpage.htm">Hi ${currentPerson.firstName}</a></li>
+                                <li><a href="userPage.htm">Hi ${currentPerson.firstName}</a></li>
                             </c:otherwise>
                         </c:choose>
                         <li><a href="logout.htm">Logout</a></li>
@@ -71,9 +71,16 @@
 	<div class="container-fluid">
             <ul class="nav navbar-nav">
                 
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MOVIE NEWS<span class="caret"></span></a>
+                <li><a href="movieNewsPage.htm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MOVIE NEWS<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu"><div class="container-fluid">
-                        
+                            <table width="1000px" height="40px" class="table-nonfluid">
+                                <tr>
+                                    <td width="250px"><a href="movieNews1.htm">WEEKEND TICKET</a></td>
+                                    <td width="250px"><a href="movieNews2.htm">MOM'S MOVIE MINUTE</a></td>
+                                    <td width="250px"><a href="movieNews3.htm">REEL KIDS</a></td>
+                                    <td width="250px"><a href="movieNews4.htm">FRONTRUNNERS</a></td>
+                                </tr>
+                            </table>
                     </div></ul>
                 </li>
         
@@ -133,7 +140,8 @@
                 </li>        
         
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MOVIE TIMES + TICKETS<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu"><div class="container-fluid">
+                    <ul class="dropdown-menu" role="menu">
+                        <div class="container-fluid">
                         <li><table width="1000px" class="table-nonfluid">
                             <thead>
                                 <tr>

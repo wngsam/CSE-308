@@ -11,10 +11,12 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Schedule {
+    //SCHEDULE ARE NOW SINGLE SHOWTIMES!
+    
     private int id;
     private int movieId;
     private int theaterId;
-    private List<GregorianCalendar> showTime;
+    private GregorianCalendar showTime;
     private int capacity;
 
     public int getId() {
@@ -41,11 +43,11 @@ public class Schedule {
         this.theaterId = theaterId;
     }
 
-    public List<GregorianCalendar> getShowTime() {
+    public GregorianCalendar getShowTime() {
         return showTime;
     }
 
-    public void setShowTime(List<GregorianCalendar> showTime) {
+    public void setShowTime(GregorianCalendar showTime) {
         this.showTime = showTime;
     }
 

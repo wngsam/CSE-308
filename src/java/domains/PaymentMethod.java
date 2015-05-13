@@ -15,11 +15,14 @@ public class PaymentMethod {
     private String firstName;
     private String lastName;
     private int creditCardNum;
-    private int cvv;
+    private int ccv;
     private String address;
     private int zipCode;
     private boolean isPreferred;
 
+    public PaymentMethod() {
+        
+    }
     public int getPaymentMethodId() {
         return id;
     }
@@ -60,14 +63,22 @@ public class PaymentMethod {
         this.creditCardNum = creditCardNum;
     }
 
-    public int getCvv() {
-        return cvv;
+    public int getCcv() {
+        return ccv;
     }
 
-    public void setCvv(int cvv) {
-        this.cvv = cvv;
+    public void setCcv(int cvv) {
+        this.ccv = cvv;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getAddress() {
         return address;
     }
@@ -84,7 +95,7 @@ public class PaymentMethod {
         this.zipCode = zipCode;
     }
 
-    public boolean isIsPreferred() {
+    public boolean getIsPreferred() {
         return isPreferred;
     }
 

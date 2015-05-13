@@ -23,13 +23,12 @@ public class Movie {
     private double weekendGross;
     private int numOfTheaters;
     private double theaterAverage;
-    //private String studio;
     private String trailer;
     private List<String> genres;
     private List<Actor> cast;
     private List<String> images;
     private List<Review> reviews;
-            
+    private double stars;
     private boolean fresh=false;
             
     public Movie(){
@@ -50,6 +49,7 @@ public class Movie {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+        //System.out.println("~~~!!!!! "+reviews.get(0).getTitle());
     }
     
     public void checkFresh(){
@@ -121,13 +121,21 @@ public class Movie {
         this.theaterAverage = theaterAverage;
     }
 
-//    public String getStudio() {
-//        return studio;
-//    }
-//
-//    public void setStudio(String studio) {
-//        this.studio = studio;
-//    }
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public double getStars() {
+        return stars;
+    }
+
+    public void setStars(double stars) {
+        this.stars = stars;
+    }
 
     public String getTrailer() {
         return trailer;

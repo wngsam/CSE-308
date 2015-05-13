@@ -10,13 +10,13 @@ import java.util.*;
  * @author DreamRealizer
  */
 public class Review {
-    
+    //ALL REVIEWS ARE KNOWN AS COMMENTS
     private String title;
     private int userId;
     private String content;
     private int movieId;
     private GregorianCalendar date;
-    private int upvotes;
+    private int stars;
 
     public String getTitle() {
         return title;
@@ -58,12 +58,12 @@ public class Review {
         this.date = date;
     }
 
-    public int getUpvotes() {
-        return upvotes;
+    public int getStars() {
+        return stars;
     }
 
-    public void setUpvotes(int upvotes) {
-        this.upvotes = upvotes;
+    public void setStars(int stars) {
+        this.stars = stars;
     }
     
 }
