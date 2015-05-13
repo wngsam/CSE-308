@@ -97,15 +97,8 @@ public class UserManager {
     
     public boolean editUser(User user, User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         boolean confirmation = false;
-        if(users.get(user.getEmail())==null){            
-            user.setPassword(hash(user.getPassword()));
-            //System.out.println(user.getPassword());
-            if(userDAO.addUser(user)==true){
-                users.put(user.getEmail(),user);
-                confirmation = true;
-            }
-        }
-        
+        userDAO.editUser(user);
+        confirmation = true;        
         return confirmation;
     }
     

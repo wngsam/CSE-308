@@ -28,6 +28,7 @@ public class User implements Serializable{
     private List<Transaction> transactions;
     private List<PaymentMethod> paymentMethods;
     private PaymentMethod preferredPaymentMethod;
+    private String bd;   
     
     public User(){
         
@@ -119,8 +120,15 @@ public class User implements Serializable{
 
     public void setBirthDate(GregorianCalendar birthDate) {
         this.birthDate = birthDate;
+        
+        int day=birthDate.get(GregorianCalendar.DAY_OF_MONTH);
+        int month=birthDate.get(GregorianCalendar.MONTH);
+        int year=birthDate.get(GregorianCalendar.YEAR);
+        bd = new String();
+        this.bd=day+"/"+month+"/"+year;
+                
     }
-
+        
     public String getRole() {
         return role;
     }
@@ -143,6 +151,16 @@ public class User implements Serializable{
 
     public void setPreferredPaymentMethod(PaymentMethod preferredPaymentMethod) {
         this.preferredPaymentMethod = preferredPaymentMethod;
+    }
+    
+    public String getBd() {
+        return bd;
+    }
+
+    public void setBd(String bd) {    
+        this.bd = bd; 
+        String[] st = bd.split("/");
+        this.birthDate = new GregorianCalendar(Integer.parseInt(st[2]),Integer.parseInt(st[1]),Integer.parseInt(st[0]));        
     }
     
 }

@@ -68,6 +68,21 @@ public class UserDAO {
         return confirmation;
     }
     
+    public Boolean editUser(User user){
+        Boolean confirmation = false;    
+        String birthDate = "19000101";
+        this.jdbcTemplate.update(
+        "UPDATE users SET FirstName=?,"
+                + " LastName=?,"
+                + " BirthDate=?,"
+                + " Zipcode=?"
+                + " WHERE UserId=?",
+        user.getFirstName(),user.getLastName(),user.getBirthDate(),user.getZipCode(),user.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
+   
     public List<User> update(){
         List<User> users = this.jdbcTemplate.query(
                 "SELECT * FROM users;",
