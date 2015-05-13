@@ -36,6 +36,15 @@ public class UserDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
+    public boolean adminDelUser(String email){
+        boolean confirmation = false;
+        
+        //delete user dependencies & users
+        
+        confirmation = true;
+        return confirmation;
+    }
+    
     public boolean adminEditUser(User user){
         boolean confirmation = false;
         String birthdate = "19990101"; //gotta get string form...

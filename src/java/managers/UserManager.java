@@ -91,7 +91,12 @@ public class UserManager {
     
     public boolean adminDelUser(String email){
         boolean confirmation = false;
-        
+        if(users.get(email)!=null){
+            if(userDAO.adminDelUser(email)){
+                users.remove(email);
+                confirmation = true;
+            }
+        }
         return confirmation;
     }
     
