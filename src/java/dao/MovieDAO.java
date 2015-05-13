@@ -91,6 +91,17 @@ public class MovieDAO {
         return confirmation;
     }
     
+    //writing comments, need fix date
+    public boolean writeComment(Review comment){
+        boolean confirmation = false;
+        String date = "14920101";
+        this.jdbcTemplate.update(
+        "INSERT INTO comments values (?,?,?,?,?,?)",
+        comment.getTitle(),comment.getUserId(),comment.getContent(),comment.getMovieId(),date,comment.getStars());
+        confirmation = true;
+        return confirmation;
+    }
+    
     public List<Movie> update(){
         List<Movie> movies = this.jdbcTemplate.query(
                 "SELECT * FROM movies;",
