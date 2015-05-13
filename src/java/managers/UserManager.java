@@ -95,7 +95,7 @@ public class UserManager {
         return confirmation;
     }
     
-    public boolean editUser(User user, User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+    public boolean editUser(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         boolean confirmation = false;
         userDAO.editUser(user);
         confirmation = true;        
