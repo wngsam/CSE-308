@@ -54,7 +54,7 @@ public class MovieDAO {
     }
     
     public List<Movie> update(){
-        List<Movie> offers = this.jdbcTemplate.query(
+        List<Movie> movies = this.jdbcTemplate.query(
                 "SELECT * FROM movies;",
                 new RowMapper<Movie>(){
                     @Override
@@ -82,7 +82,7 @@ public class MovieDAO {
                     }
                 }
         );
-        return offers;
+        return movies;
     }
     
     public List<String> getGenres(int movieId){

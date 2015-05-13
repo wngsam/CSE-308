@@ -27,12 +27,20 @@ public class MovieManager {
     private ArrayList<Movie> playingNow;
     private ArrayList<Movie> openingThisWeek;
     
-    public MovieManager() throws MalformedURLException {
+    public MovieManager() {
         movies = new HashMap();
         topBoxOffice = new ArrayList();
         comingSoon = new ArrayList();
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
+    }
+    
+    public MovieDAO getMovieDAO() {
+        return movieDAO;
+    }
+
+    public void setMovieDAO(MovieDAO movieDAO) {
+        this.movieDAO = movieDAO;
     }
     
     public Movie findMovie(String name){
@@ -72,14 +80,6 @@ public class MovieManager {
         }
         
         return confirmation;
-    }
-    
-    public MovieDAO getMovieDAO() {
-        return movieDAO;
-    }
-
-    public void setMovieDAO(MovieDAO movieDAO) {
-        this.movieDAO = movieDAO;
     }
     
     public Movie getCurrentMovie(String movieTitle){
@@ -133,7 +133,5 @@ public class MovieManager {
     public void setPlayingNow(ArrayList<Movie> playingNow) {
         this.playingNow = playingNow;
     }
-    
-    
 
 }
