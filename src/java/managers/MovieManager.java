@@ -33,12 +33,21 @@ public class MovieManager {
         comingSoon = new ArrayList();
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
-        //createTestcomingSoon();
-        //createFakeBoxOffice();
     }
     
     public Movie findMovie(String name){
         return movies.get(name);
+    }
+    
+    public boolean adminDelMovie(String name){
+        boolean confirmation = false;
+        if(movies.get(name)!=null){
+            if(movieDAO.adminDelMovie(movies.get(name).getId())){
+                movies.remove(name);
+                confirmation = true;
+            }
+        }
+        return confirmation;
     }
     
     public void updateMovies(){

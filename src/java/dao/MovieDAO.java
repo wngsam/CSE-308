@@ -29,6 +29,30 @@ public class MovieDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
+    public boolean adminDelMovie(int id){
+        boolean confirmation = false;
+        
+        this.jdbcTemplate.update(
+        "UPDATE comments \n" +
+        "SET MovieId = 0 \n" +
+        "WHERE MovieId = "+id+";");
+        this.jdbcTemplate.update(
+        "UPDATE favoritemovies \n" +
+        "SET MovieId = 0 \n" +
+        "WHERE MovieId = "+id+";");
+        this.jdbcTemplate.update("DELETE from moviecasts where MovieId = "+id+";");
+        this.jdbcTemplate.update("DELETE from moviegenres where MovieId = "+id+";");
+        this.jdbcTemplate.update("DELETE from movieimages where MovieId = "+id+";");
+        this.jdbcTemplate.update(
+        "UPDATE showtimes \n" +
+        "SET MovieId = 0 \n" +
+        "WHERE MovieId = "+id+";");
+        this.jdbcTemplate.update("DELETE from movies where MovieId = "+id+";");
+        
+        confirmation = true;
+        return confirmation;
+    }
+    
     public List<Movie> update(){
         List<Movie> offers = this.jdbcTemplate.query(
                 "SELECT * FROM movies;",
