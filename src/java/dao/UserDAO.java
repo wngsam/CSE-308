@@ -144,7 +144,7 @@ public class UserDAO {
                     public Review mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Review review = new Review();
                         review.setTitle(rs.getString("Title"));
-                        review.setUserId(userId);
+                        review.setUserId(rs.getInt("UserId"));
                         review.setContent(rs.getString("Content"));
                         review.setMovieId(rs.getInt("MovieId"));
                         GregorianCalendar cal = new GregorianCalendar();
@@ -181,7 +181,7 @@ public class UserDAO {
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getDate("Date"));
                         transaction.setDate(cal);
-                        transaction.setPaymentMethod(pm);
+                        
                         //int showTimeId = rs.getInt("ShowTimeId");
                         //transaction.setTheater(getTheaterName(showTimeId));
                         //transaction.setMovie(getMovieTitle(showTimeId));
@@ -190,6 +190,7 @@ public class UserDAO {
                     }
                 }
         );
+        transaction.setPaymentMethod(pm);
         return transaction;
     }
     
@@ -207,7 +208,7 @@ public class UserDAO {
                         paymentMethod.setFirstName(rs.getString("FirstName"));
                         paymentMethod.setLastName(rs.getString("LastName"));
                         paymentMethod.setCreditCardNum(rs.getInt("CreditCardNum"));
-                        paymentMethod.setCvv(rs.getInt("Ccv"));
+                        paymentMethod.setCcv(rs.getInt("Ccv"));
                         paymentMethod.setAddress(rs.getString("Address"));
                         paymentMethod.setZipCode(rs.getInt("Zipcode"));
                         if(rs.getByte("IsPreferred") == 1){
