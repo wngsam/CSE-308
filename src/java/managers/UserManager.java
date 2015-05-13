@@ -67,6 +67,34 @@ public class UserManager {
         return confirmation;
     }
     
+    public boolean adminEditUser(User modifiedUser, String email) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        boolean confirmation = false;
+        User user = users.get(email);
+        if(user!=null){
+           user.setFirstName(modifiedUser.getFirstName());
+           user.setLastName(modifiedUser.getLastName());
+           user.setEmail(modifiedUser.getEmail());
+           //birthdate
+           if(!modifiedUser.getPassword().equals("")){
+               user.setPassword(hash(modifiedUser.getPassword()));
+           }
+           user.setRole(modifiedUser.getRole());
+           user.setZipCode(modifiedUser.getZipCode());
+           confirmation = userDAO.adminEditUser(user);
+           if(confirmation==true){
+               users.remove(email);
+               users.put(user.getEmail(),user);
+           }
+        }
+        return confirmation;
+    }
+    
+    public boolean adminDelUser(String email){
+        boolean confirmation = false;
+        
+        return confirmation;
+    }
+    
     public boolean editUser(User user, User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         boolean confirmation = false;
         if(users.get(user.getEmail())==null){            

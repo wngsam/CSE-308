@@ -70,21 +70,46 @@ public class AdminPageController {
     }
     
     @RequestMapping(value="/finduser", method=RequestMethod.POST)
-    public ModelAndView findUser(@RequestParam(value = "email") String email){
+    public ModelAndView findUser(@RequestParam(value = "email") String email, HttpSession session){
         ModelAndView mv = new ModelAndView("adminEditUser");
-        mv.addObject("foundUser", userManager.findUser(email));
+        User user = userManager.findUser(email);
+        if(user!=null){
+            session.setAttribute("foundUserEmail", email);
+            mv.addObject("foundUser", user);
+        }else{
+            mv.addObject("nouser", "User Not Found!");
+        }
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
         return mv;
     }
     
-    @RequestMapping(value="/edituser", method=RequestMethod.POST)
-    public ModelAndView editUser(@ModelAttribute("foundUser") User user){
+    @RequestMapping(value="/adminedituser", method=RequestMethod.POST)
+    public ModelAndView editUser(@ModelAttribute("foundUser") User user, HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         ModelAndView mv = new ModelAndView("adminEditUser");
-        //edit user info
+        String email = (String) session.getAttribute("foundUserEmail");
+        boolean euconfirmation = userManager.adminEditUser(user, email);
+        mv.addObject("euconfirmation", euconfirmation);
+        if(euconfirmation==true){session.setAttribute("foundUserEmail" , user.getEmail());}
         mv.addObject("foundUser", user);
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
+        return mv;
+    }
+    
+    @RequestMapping(value="/deluser", method=RequestMethod.GET)
+    public ModelAndView delUser(HttpSession session){
+        ModelAndView mv = new ModelAndView("adminEditUser");
+        String email = (String) session.getAttribute("foundUserEmail");
+        if(!userManager.adminDelUser(email)){
+            mv.addObject("delconfirm", false);
+            mv.addObject("foundUser", userManager.findUser(email));
+        }else{
+            mv.addObject("delconfirm", true);
+        }
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
+        
         return mv;
     }
     
@@ -93,9 +118,9 @@ public class AdminPageController {
         ModelAndView mv = new ModelAndView("adminPage");
         user.setRole("User");
         if(!userManager.registerUser(user)){
-            mv.addObject("confirmation", false);
+            mv.addObject("uconfirmation", false);
         }else{
-            mv.addObject("confirmation", true);
+            mv.addObject("uconfirmation", true);
         }
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
