@@ -1,6 +1,6 @@
 <%-- 
-    Document   : personalizingGiftcardPage
-    Created on : May 12, 2015, 12:09:34 AM
+    Document   : giftcardPruchasePage
+    Created on : May 13, 2015, 2:09:27 AM
     Author     : JaeWoong
 --%>
 
@@ -32,29 +32,9 @@
 <body role="document" >
 <jsp:include page="header.jsp" />
     <div  style="margin-left:70px;" >
-    <h1 style="font-size:40px; font-weight: bold;">PERSONALIZE YOUR Gift CARD</h1>
+        <h1 style="font-size:40px; font-weight: bold;">GIFT CARDS Purchase Completed<br><br>
+        <a href="index.htm">Go back to Homepage</a></h1>
     <br>
-    <table align="center"><form id="continue" method="GET" action="giftcardPurchasePage${purchaseAmount}.htm">
-        <tr>
-            <td><p style="font-size:20px; font-weight: bold;">&nbsp;&nbsp;2. PERSONALIZE YOUR GIFT</p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Want to mail a card instead? See our physical cards.</td>       
-        <tr>
-            <td><p style="font-size:20px; font-weight: bold;"><br><br>GIFT RECIPIENT</p><br>Email Address<br>
-                <input type="email" class="form-control input-sm" name="email" placeholder="E-mail">
-            </td>
-        </tr>
-        <tr>
-            <td><p style="font-size:20px; font-weight: bold;"><br><br>ADD A PERSONAL MESSAGE</p><br>Title:<br>
-                <input type="title" class="form-control input-sm" name="title" placeholder="Title"><br>Message:<br><br>Your Amount: ${purchaseAmount}$<br><br>
-                <textarea name="message" cols="45" rows="6" id="message" maxlength="500" class="digital-message"></textarea>   
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <button type="submit" class="btn btn-success btn-sm">Continue</button>
-            </td>
-        </tr></form>
-    </table>
   <!--  </form>-->
 
     <br><br><br>

@@ -26,51 +26,54 @@
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
+    <style>
+    .specialColor { 
+    padding: 5px;
+    color: #000;
+    font-size: 12px;
+    background: transparent;
+    -webkit-appearance: none;
+    }</style>
   </head>
 <!-- /HEADER <!-- background-size: 1200px,800px;-->
 
-<body role="document" class="movieinfo_bg">
+<body role="document">
     <jsp:include page="header.jsp" />
     <div  style="margin-left:70px;" >
     <h1 style="font-size:40px; font-weight: bold;">GIFT CARDS</h1>
     <br>
-    <table>
+    <table align ="center"><form id="continue" method="POST" action="personalizingGiftcardPage.htm">
         <tr>
-            <td>&nbsp;&nbsp;1. SELECT YOUR CARD + AMOUNT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td>1. SELECT YOUR CARD + AMOUNT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Want to mail a card instead? See our physical cards.</td>
         <tr>
             <td align="center">
-                <p style="font-size:20px; font-weight: bold;">PREVIEW</p><br><br>To:<br><br>From:<br>
+                <p style="font-size:20px; font-weight: bold;"><br>PREVIEW</p><br><br>To:<br><br>From:<br><br>
                 <img src="assets\img\giftcard.png" style="width:500px;height:380px"><br><br>
                 VALUE $50<br><br>Message:<br><br><br>Here is the preview of your gift card. 
-                Please confirm that the image above is the gift card you selected before continuing to the checkout page.
+                Please confirm that the image above is the gift card you selected before continuing to the checkout page.<br><br>
             </td>
         </tr>
         <tr>
             <td><p style="font-size:40px; font-weight: bold;">CHOOSE A CARD AMOUNT</p><br>
                 Card Amount:
-                <div class="btn-group">
-                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                      Amount
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">$100.00</a></li>
-                      <li><a href="#">$75.00</a></li>
-                      <li><a href="#">$50.00</a></li>
-                      <li><a href="#">$35.00</a></li>
-                      <li><a href="#">$25.00</a></li>
-                      <li><a href="#">$15.00</a></li>
-                    </ul>
-                  </div>
+                <select id="amount" name="amount">
+                  
+                    <option class="specialColor" value="100">$100.00</option>
+                    <option class="specialColor" value="75">$75.00</option>
+                    <option class="specialColor" value="50">$50.00</option>
+                    <option class="specialColor" value="25">$25.00</option>
+                    <option class="specialColor" value="15">$15.00</option>
+                </select>
+                
                 &nbsp;&nbsp; *Tip: The average price of a movie ticket is $11
             </td>
         </tr>
         <tr>
             <td align="right">
-                <button type="submit" class="btn btn-success btn-sm">Login</button>
+                <button type="submit" class="btn btn-success btn-sm"  >Continue</button>
             </td>
-        </tr>
+        </tr></form>
     </table>
     <br><br><br>
     
