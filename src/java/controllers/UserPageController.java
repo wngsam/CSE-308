@@ -6,6 +6,8 @@
 package controllers;
 
 import domains.User;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
 import managers.UserManager;
 import org.springframework.stereotype.Controller;
@@ -26,13 +28,22 @@ public class UserPageController {
     @RequestMapping(value="/userpage", method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
-        mv.addObject("user", session.getAttribute("currentPerson"));
+        mv.addObject("user", session.getAttribute("currentPerson"));        
         return mv;
     }
     
     @RequestMapping(value="/editUser" ,method=RequestMethod.POST)
-    public ModelAndView editUser(HttpSession session, @ModelAttribute("modifiedUser") User modifiedUser){
+    public ModelAndView editUser(HttpSession session, @ModelAttribute("user") User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+               System.out.println("success UserPageController line 39");
+        User user = (User)session.getAttribute("currentPerson");
+ 
+        user.setFirstName(modifiedUser.getFirstName());
+        user.setLastName(modifiedUser.getLastName());
+        user.setZipCode(modifiedUser.getZipCode());
+        user.setBirthDate(modifiedUser.getBirthDate());      
+        
         ModelAndView mv = new ModelAndView("userPage");
+        userManager.editUser(user);
         mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }

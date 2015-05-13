@@ -59,20 +59,23 @@
                     <form:form action="editUser.htm" modelAttribute="user" method="post">                        
                         <div class="form-group">
                             <p class="text-warning" style="font-size:20px">First Name:</P>
-                            <form:input path="firstName" placeholder="First Name"/>
+                            <form:input path="firstName"/>
                         </div>
                             
                         <div class="form-group">
                             <p class="text-warning" style="font-size:20px">Last Name:</P>
-                            <form:input path="lastName" placeholder="Last Name"/>
+                            <form:input path="lastName"/>
                         </div>
                         
                         <div class="form-group">
-                            <p class="text-warning" style="font-size:20px">Birth Date:</P>
-                            <fmt:formatDate type="Date" dateStyle="Long" var="birthDateString" value="${currentPerson.birthDate.time}" pattern="dd/MM/yyyy"></fmt:formatDate>
-                            <form:input path="birthDate" value="${birthDateString}"/>
+                            <p class="text-warning" style="font-size:20px">Birth Date(dd/mm/yyyy):</P>                            
+                            <form:input path="bd"/>
                         </div>
-                            
+                        
+                        <div class="form-group">
+                            <p class="text-warning" style="font-size:20px">Zip Code:</P>
+                            <form:input path="zipCode"/>
+                        </div>                            
                             
                         <br><button type="submit" class="btn btn-success" >Update</button></br>                            
                     </form:form>
