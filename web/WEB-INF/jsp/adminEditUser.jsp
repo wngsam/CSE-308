@@ -4,6 +4,7 @@
     Author     : Sam W.
 --%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
@@ -58,8 +59,16 @@
                             <input type="email" class="form-control input-sm" name="email" placeholder="E-mail">
                             <button type="submit" class="btn btn-success btn-sm">Search</button>
                         </form>
-                     
-                        <form:form action="edituser.htm" modelAttribute="foundUser" method="post">
+                        <br>
+                        <c:if test="${euconfirmation eq true}">
+                                User successfully edited!
+                        </c:if>
+                        <c:if test="${delconfirm eq false}">Could not delete!</c:if>
+                        <c:if test="${delconfirm eq true}">Successfully Deleted!</c:if>
+                        <br>
+                        <c:if test="${not empty nouser}">${nouser}</c:if>
+                        <c:if test="${empty nouser}">
+                        <form:form action="adminedituser.htm" modelAttribute="foundUser" method="post">
         
                             <div class="form-group">
                                 <p class="text-warning" style="font-size:20px">First Name:</P>
@@ -86,9 +95,15 @@
                                 <form:input path="zipCode" placeholder="${foundUser.zipCode}"/>
                             </div>
                             
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Role:</P>
+                                <form:input path="role" placeholder="${foundUser.role}"/>
+                            </div>
+                            
                             <br><button type="submit" class="btn btn-success" >Edit User</button></br>
                         </form:form>
-                     
+                        <a href="deluser.htm" class="btn btn-warning btn-sm">DELETE</a>
+                        </c:if>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="addmovie">

@@ -36,8 +36,20 @@ public class UserDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
-    public Boolean addUser(User user){
-        Boolean confirmation = false;
+    public boolean adminEditUser(User user){
+        boolean confirmation = false;
+        String birthdate = "19990101"; //gotta get string form...
+        this.jdbcTemplate.update(
+        "UPDATE users \n" +
+        "SET FirstName = ?, LastName = ?, Email = ?, Password = ?, BirthDate = ?, Role = ?, Zipcode = ? \n" +
+        "WHERE UserId = ?;",
+        user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),user.getZipCode(),user.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
+    public boolean addUser(User user){
+        boolean confirmation = false;
         
         String birthdate = "19000101";
         int zipcode = 00000;
@@ -46,7 +58,7 @@ public class UserDAO {
             zipcode = user.getZipCode();
         }
         if(user.getBirthDate()!=null){
-            
+            //BIRTHDAY!
         }
         
         this.jdbcTemplate.update(

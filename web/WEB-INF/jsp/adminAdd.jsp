@@ -1,5 +1,13 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
-<p class="text-danger">ADD USER</p>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<p class="text-danger" style="font-size:55px">ADD USER</p>
+                        
+                        <c:if test="${uconfirmation eq true}">
+                            User successfully added.
+                        </c:if>
+                        <c:if test="${uconfirmation eq false}">
+                            User could not be added, Duplicate Email.
+                        </c:if>
                         <form:form action="adduser.htm" modelAttribute="user" method="post">
         
                             <div class="form-group">
@@ -32,7 +40,7 @@
                             <br><button type="submit" class="btn btn-success" >Add User</button></br>
                         </form:form>
                         
-                        <hr><p class="text-danger">ADD MOVIE</p>
+                        <hr><p class="text-danger" style="font-size:55px">ADD MOVIE</p>
                         
                         <form:form action="addmovie.htm" modelAttribute="movie" method="post">
                             

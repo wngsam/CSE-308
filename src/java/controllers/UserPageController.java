@@ -132,7 +132,7 @@ public class UserPageController {
             HttpSession session)
             throws UnsupportedEncodingException, NoSuchAlgorithmException {
         
-        ModelAndView mv = new ModelAndView("/userPage");
+        ModelAndView mv = new ModelAndView("userPage");
         mv.addObject("user", session.getAttribute("currentPerson"));
         
         List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
