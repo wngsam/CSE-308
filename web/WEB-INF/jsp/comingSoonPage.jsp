@@ -32,8 +32,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="container">
-			<hr>
-		
+	    <hr>
 		<center><h1><p class="text-info" style="font-size:55px">MOVIES COMING SOON</p></h1></center><hr>
                 FILTER MOVIE BY:&nbsp;&nbsp;
                   <div class="btn-group">

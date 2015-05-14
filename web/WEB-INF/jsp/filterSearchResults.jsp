@@ -31,6 +31,8 @@
 <body role="document">
 <jsp:include page="header.jsp" />
 
+            
+            
 <div class="container">
     <div  style="margin-left:70px;" >
      <h1 style="font-size:40px; font-weight: bold;">SEARCH RESULTS</h1>
@@ -78,28 +80,7 @@
                 <br><p class="text-warning" style="font-size:20px; font-weight: bold;">Theater List</p><br>
             </td>
         </tr>
-        <tr>
-            <c:choose>
-                
-                <c:when test="${ not empty resultTheaterList}">
-                <c:forEach items="${resultTheaterList}" varStatus="status" var="listVar" >     
-                    <td>
-                        <div class="col-xs-6 col-lg-3">
-                            <center><p>${listVar.name}</p>
-                                <p>${listVar.address}"</p> <br>
-                            </center>
-                        </div>
-                    </td>          
-                </c:forEach>
-                </c:when>
-                <c:otherwise>
-                   <td> 
-                    No Theater Info
-                   </td>
-                </c:otherwise>
-                   
-            </c:choose>
-        </tr>
+       
  
       
     </table>

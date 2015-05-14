@@ -36,8 +36,8 @@ public class EmailController {
         Email newEmail = new Email();
         System.out.print("37" + email);
         String reciver = email; //받을사람의 이메일입니다.
-        String subject = "Subscribe Title";
-        String content = "Subscribe Content";
+        String subject = "Samdango News";
+        String content = "Welcome to Samdango!\n" + "We will send a recent news about new movies every day!";
          
         newEmail.setReciver(reciver);
         newEmail.setSubject(subject);
