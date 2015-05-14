@@ -36,7 +36,7 @@ public class MovieInfoController {
     @RequestMapping(value="{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle) {
             
-        System.out.println("123456");
+        //System.out.println("123456");
         ModelAndView mv = new ModelAndView("movieInfoPage");
         Movie currentMovie = movieManager.getCurrentMovie(movieTitle);
         

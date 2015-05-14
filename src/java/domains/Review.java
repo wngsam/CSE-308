@@ -17,6 +17,15 @@ public class Review {
     private int movieId;
     private GregorianCalendar date;
     private int stars;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getTitle() {
         return title;

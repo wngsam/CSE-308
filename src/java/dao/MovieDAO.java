@@ -217,6 +217,9 @@ public class MovieDAO {
                         Review review = new Review();
                         review.setTitle(rs.getString("Title"));
                         review.setUserId(rs.getInt("UserId"));
+                        
+                        review.setName(findUsernameFromId(review.getUserId()));
+                        
                         review.setContent(rs.getString("Content"));
                         review.setMovieId(rs.getInt("MovieId"));
                         GregorianCalendar cal = new GregorianCalendar();
@@ -228,6 +231,18 @@ public class MovieDAO {
                 }
         );
         return reviews;
+    }
+    
+    public String findUsernameFromId(int userId){
+        return this.jdbcTemplate.queryForObject(
+                        "SELECT FirstName, LastName FROM users" +
+                        " WHERE UserId= "+userId+";", new RowMapper<String>(){
+                        @Override
+                        public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return rs.getString("FirstName")+" "+rs.getString("LastName");
+                        }
+                        }
+                        );
     }
     
 }

@@ -75,39 +75,40 @@
                         <td><embed width="800" height="590"src="${currentMovie.trailer}"></td>
                     </tr>
                     <tr>
-                        <td><font size="5"><br><br>RUN ALL NIGHT<br>
-                            Liam Neeson, Joel Kinnaman, Vincent D'Onofrio, Bruce McGill, Genesis Rodriguez, Boyd Holbrook in Run All Night</font></td>
+                        <td><font size="5">
+                            CAST:
+                            <br>
+                            <c:if test ="${not empty currentMovie.cast}">
+                            <c:forEach var="actor" items="${currentMovie.cast}" varStatus="count">
+                                <img height="150" width="85" src="${actor.picture}"><br>
+                                <a href="http://www.imdb.com/name/${actor.imdb}"> ${actor.firstName} ${actor.lastName} </a>
+                            </c:forEach>
+                            </c:if>
                     </tr>
-                    <!--Picture slides -->
                 </table>
             </td>
         </tr>
     </table>
-    <br><br><br>
+                    
+    <hr>
     <div align="center">
         <font size="6" familey="Times New Roman" >
-        ${currentMovie.title} Synopsis<br>
-         ${currentMovie.synopsis}</font>
+        Synopsis
+        <br>
+        ${currentMovie.synopsis}
+        </font>
     </div>
     <hr>
     <c:if test ="${not empty currentMovie.reviews}">
         <c:forEach var="comment" items="${currentMovie.reviews}" varStatus="count">
-            ${comment.title}
-                    <br>
+            ${comment.title} By ${comment.name}
+            <br>
             ${comment.content}
-                    <br>
+            <br>
         </c:forEach>
-                
-                    
-        
-    
     </c:if>
-    
-    <br><br><br>
+    <br>
     </div>       
-
-<!-- /MAIN MOVIE BODY -->
-<br><hr>
 		
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
