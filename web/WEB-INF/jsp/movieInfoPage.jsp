@@ -34,7 +34,8 @@
     <div  style="margin-left:70px;" >
         
     <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
-    <div class="fb-share-button" data-layout="button"></div><br>
+    <div class="fb-share-button" data-layout="button"></div>
+    <br>
     <g:plus action="share"></g:plus>
     
     <br>
@@ -43,14 +44,11 @@
             <td valign="top">
                 <table valign="top" align="left" width="380px">
                     <tr width="380px" bgcolor="#5d6078" >
-                       <td valign="middle" align="center" colspan=1 height="260px">
-                           <img src="${currentMovie.poster}" width="180" height="250"></td>
-                       
-                       <td valign="top" align="center" colspan=1 height="260px">
-                           <font size="4">
+                       <td valign="middle" align="center" colspan=1 height="260px"><img src="${currentMovie.poster}" width="180" height="250"></td>
+                       <td valign="top" align="center" colspan=1 height="260px"><font size="4">
                            
-                           <c:if test="${didnotLogin eq true}">You need to login first!</c:if>
-                           <c:if test="${starSuccess eq true}">Thank you for your rating!</c:if>
+                            <c:if test="${didnotLogin eq true}">You need to login first!</c:if>
+                            <c:if test="${starSuccess eq true}">Thank you for your rating!</c:if>
                             
                             <c:forEach begin="1" end="5" var="val">
                                 <c:if test="${val <= currentMovie.starRating}">
@@ -61,15 +59,19 @@
                                 </c:if>
                             </c:forEach>
                                     
-                                <br>Opens<br>
+                            <br><br>
                                 <fmt:formatDate type="Date" dateStyle="Long" value="${currentMovie.releaseDate.time}"></fmt:formatDate>
-                                <br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
-                                85 Fan Ratings<br>See it in<br>IMAX 3D<br>Digital 3D
-                           </font>
-                       </td>
-                   </tr>
+                                <br>
+                                <c:forEach var="genre" items="${currentMovie.genres}">
+                                    <br>${genre}
+                                </c:forEach>
+                                
+                                <br><br>Rated ${currentMovie.rating}<br>
+                                
+                        </font></td>
+                    </tr>
                    
-                   <tr width="380px">
+                    <tr width="380px">
                        <td align="left" colspan=2> 
                            <hr>
                            <font size="5">Tell us where you are</font><br>
@@ -80,9 +82,9 @@
                                 </div></form>
                             <hr>
 			</td>                
-                   </tr>
+                    </tr>
                    
-                   <tr>
+                    <tr>
                        <td colspan=2>
                            <a href="#" class="btn btn-primary">10:30am</a>&nbsp;&nbsp;
                            <a href="#" class="btn btn-primary">1:00pmy</a>&nbsp;&nbsp;
@@ -92,12 +94,7 @@
                            <a href="#" class="btn btn-primary">9:00pm</a>&nbsp;&nbsp;
                            <a href="#" class="btn btn-primary">11:00pm</a>
                        </td>                          
-                   </tr>
-                   
-                   <tr width="370px">
-                       <td align="center" valign="middle"><hr><a href="registrationpage.htm" class="btn btn-warning">Favorite this Movie!</a></td> 
-                       <td align="center" valign="middle"><hr><a href="checkoutpage.htm" class="btn btn-success">Purchase Tickets!</a></td>                
-                   </tr>
+                    </tr>
                    
                     <tr><td><br></td></tr>                   
                </table>
