@@ -8,6 +8,7 @@ package controllers;
 
 import domains.Email;
 import managers.EmailManager;
+import managers.GiftCardManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class giftcardController {
     @Autowired
     private EmailManager emailManager;
+    private GiftCardManager giftCardManager;
      
     @RequestMapping(value="/giftcardPage", method=RequestMethod.GET)
     public ModelAndView displayGiftcardPage(){
@@ -32,6 +34,22 @@ public class giftcardController {
         return mv;
     }
 
+    public EmailManager getEmailManager() {
+        return emailManager;
+    }
+
+    public void setEmailManager(EmailManager emailManager) {
+        this.emailManager = emailManager;
+    }
+
+    public GiftCardManager getGiftCardManager() {
+        return giftCardManager;
+    }
+
+    public void setGiftCardManager(GiftCardManager giftCardManager) {
+        this.giftCardManager = giftCardManager;
+    }
+    
     @RequestMapping(value="/personalizingGiftcardPage", method=RequestMethod.POST)
     public ModelAndView displayPersonalizingGiftcardPage(@RequestParam(value = "amount") String amount){
         ModelAndView mv = new ModelAndView("personalizingGiftcardPage");
