@@ -17,7 +17,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets\img\favicon.ico">
 
-    <title>Yggdrasil</title>
+    <title>Samdango</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -26,12 +26,15 @@
     <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
   </head>
-<!-- /HEADER <!-- background-size: 1200px,800px;-->
+<!-- /HEADER -->
 
 <body role="document" class="movieinfo_bg">
     <jsp:include page="header.jsp" />
+    
     <div  style="margin-left:70px;" >
     <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
+    <div class="fb-share-button" data-layout="button"></div><br>
+    <g:plus action="share"></g:plus>
     <br>
     <table>
         <tr>
@@ -75,34 +78,52 @@
                         <td><embed width="800" height="590"src="${currentMovie.trailer}"></td>
                     </tr>
                     <tr>
-                        <td><font size="5"><br><br>RUN ALL NIGHT<br>
-                            Liam Neeson, Joel Kinnaman, Vincent D'Onofrio, Bruce McGill, Genesis Rodriguez, Boyd Holbrook in Run All Night</font></td>
+                        <td>
+                        <font size="5">
+                        <b>CAST:</b></font>
+                        <br><br>
+                        <c:if test ="${not empty currentMovie.cast}">
+                        <c:forEach var="actor" items="${currentMovie.cast}" varStatus="count">
+                            
+                            <img height="150" width="85" src="${actor.picture}">&nbsp;
+                            <font size="4"><a href="http://www.imdb.com/name/${actor.imdb}"> ${actor.firstName} ${actor.lastName} </a></font>&nbsp;
+                        
+                        </c:forEach>
+                        </c:if>
+                        </td>
                     </tr>
-                    <!--Picture slides -->
                 </table>
             </td>
         </tr>
     </table>
-    <br><br><br>
-    <div align="center">
-        <font size="6" familey="Times New Roman" >
-        ${currentMovie.title} Synopsis<br>
-         ${currentMovie.synopsis}</font>
-    </div>
+                    
     <hr>
-    <c:if test ="${not empty currentMovie.reviews}">
     <div align="center">
+        <font size="8" familey="Times New Roman" >
+        <b>Synopsis</b>
+        </font>
+        <br>
         <font size="5" familey="Times New Roman" >
-        ${currentMovie.reviews.get(0).title}<br>
-         ${currentMovie.reviews.get(0).content}</font>
+        ${currentMovie.synopsis}
+        </font>
+    
+    <hr>
+    <font size="8" familey="Times New Roman" >
+        Comments
+    </font><br><br>
+    <c:if test ="${not empty currentMovie.reviews}">
+        <div class="container-fluid">
+        <c:forEach var="comment" items="${currentMovie.reviews}" varStatus="count">
+            <font size="5" familey="Times New Roman" >
+            <b>${comment.title}</b> <br>
+            <i>By ${comment.name}</i> <br>
+            ${comment.content} <br><br>
+            </font>
+        </c:forEach>
     </div>
     </c:if>
-    
-    <br><br><br>
-    </div>       
-
-<!-- /MAIN MOVIE BODY -->
-<br><hr>
+    <br>
+    </div></div>       
 		
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
@@ -110,6 +131,15 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </body>
 
 </html>

@@ -99,7 +99,7 @@ public class UserDAO {
         user.getFirstName(),user.getLastName(),user.getBirthDate(),user.getZipCode(),user.getId());
         confirmation = true;
         return confirmation;
-    }  
+    }      
     
     public Boolean editPassword(User user, String newPwd){
         Boolean confirmation = false;            

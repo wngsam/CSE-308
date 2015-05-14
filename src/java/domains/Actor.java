@@ -19,7 +19,7 @@ public class Actor {
     private GregorianCalendar birthDate;
     private String imdb;
     private String picture;
-
+    
     public int getActorId() {
         return id;
     }
@@ -58,6 +58,22 @@ public class Actor {
 
     public void setImdb(String imdb) {
         this.imdb = imdb;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
     
 }
