@@ -4,6 +4,7 @@
     Author     : Sam W.
 --%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
@@ -68,15 +69,69 @@
                             <input type="input" class="form-control input-sm" name="name" placeholder="Movie Name">
                             <button type="submit" class="btn btn-success btn-sm">Search</button>
                         </form>
+                     <br>
                      
+                        <c:if test="${emconfirmation eq true}">
+                                Movie successfully edited!
+                        </c:if>
+                        <c:if test="${delmconfirm eq false}">Could not delete!</c:if>
+                        <c:if test="${delmconfirm eq true}">Successfully Deleted!</c:if>
                      
+                     <br>
+                        <c:if test="${not empty nomovie}">${nomovie}</c:if>
+                        <c:if test="${empty nomovie}">
                         <form:form action="editmovie.htm" modelAttribute="foundMovie" method="post">
         
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Movie Title:</P>
+                                <form:input path="title" placeholder="${foundMovie.title}"/>
+                            </div>
                             
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">MPAA Rating:</P>
+                                <form:input path="rating" placeholder="${foundMovie.rating}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Synopsis:</P>
+                                <form:input path="synopsis" placeholder="${foundMovie.synopsis}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Poster:</P>
+                                <form:input path="poster" placeholder="${foundMovie.poster}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Weekend Gross:</P>
+                                <form:input path="weekendGross" placeholder="${foundMovie.weekendGross}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Number of Theaters:</P>
+                                <form:input path="numOfTheaters" placeholder="${foundMovie.numOfTheaters}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Theater Average:</P>
+                                <form:input path="theaterAverage" placeholder="${foundMovie.theaterAverage}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Trailer:</P>
+                                <form:input path="trailer" placeholder="${foundMovie.trailer}"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Stars:</P>
+                                <form:input path="stars" placeholder="${foundMovie.stars}"/>
+                            </div>
                             
                             <br><button type="submit" class="btn btn-success" >Edit Movie</button></br>
                         </form:form>
-                     
+                            <a href="delmovie.htm" class="btn btn-warning btn-sm">DELETE</a>
+                        </c:if>
+                        
                     </div>
                 </div>
             </div>

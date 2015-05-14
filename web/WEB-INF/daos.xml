@@ -31,4 +31,8 @@
         <property name="dataSource" ref="springDataSource"/>
     </bean>
     
+    <bean id="giftcardDAO" class="dao.GiftcardDAO">
+        <property name="dataSource" ref="springDataSource"/>
+    </bean>
+    
 </beans>

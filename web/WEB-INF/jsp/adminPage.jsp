@@ -4,6 +4,7 @@
     Author     : Sam W.
 --%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
@@ -36,6 +37,10 @@
         <div class="col-lg-12">
              <div class="page-header">
                  <h1>${currentPerson.firstName}'s Account</h1>
+                        <c:if test="${delconfirm eq false}">Could not delete user!</c:if>
+                        <c:if test="${delconfirm eq true}">User Successfully Deleted!</c:if>
+                        <c:if test="${delmconfirm eq false}">Could not delete movie!</c:if>
+                        <c:if test="${delmconfirm eq true}">Movie Successfully Deleted!</c:if>
              </div>
              <ul class="nav nav-tabs">
                  <li class="active"><a href="#overview" data-toggle="tab" aria-expanded="true">ADD</a></li>

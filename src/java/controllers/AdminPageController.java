@@ -38,18 +38,27 @@ public class AdminPageController {
     }
     
     @RequestMapping(value="/findmovie", method=RequestMethod.POST)
-    public ModelAndView findMovie(@RequestParam(value = "name") String name){
+    public ModelAndView findMovie(@RequestParam(value = "name") String name, HttpSession session){
         ModelAndView mv = new ModelAndView("adminEditMovie");
-        mv.addObject("foundMovie", movieManager.findMovie(name));
+        Movie movie = movieManager.findMovie(name);
+        if(movie!=null){
+            session.setAttribute("foundMovieName", name);
+            mv.addObject("foundMovie", movie);
+        }else{
+            mv.addObject("nomovie", "Movie Not Found!");
+        }
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
         return mv;
     }
     
     @RequestMapping(value="/editmovie", method=RequestMethod.POST)
-    public ModelAndView editMovie(@ModelAttribute("foundMovie") Movie movie){
+    public ModelAndView editMovie(@ModelAttribute("foundMovie") Movie movie, HttpSession session){
         ModelAndView mv = new ModelAndView("adminEditMovie");
-        //edit movie info
+        String title = (String) session.getAttribute("foundMovieName");
+        boolean emconfirmation = movieManager.adminEditMovie(movie, title);
+        mv.addObject("emconfirmation", emconfirmation);
+        if(emconfirmation==true){session.setAttribute("foundMovieName" , movie.getTitle());}
         mv.addObject("foundMovie", movie);
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
@@ -66,6 +75,22 @@ public class AdminPageController {
         }
         mv.addObject("user", new User());
         mv.addObject("movie", new Movie());
+        return mv;
+    }
+    
+    @RequestMapping(value="/delmovie", method=RequestMethod.GET)
+    public ModelAndView delMovie(HttpSession session){
+        ModelAndView mv = new ModelAndView("adminPage");
+        String name = (String) session.getAttribute("foundMovieName");
+        if(!movieManager.adminDelMovie(name)){
+            mv.addObject("delmconfirm", false);
+            mv.addObject("foundMovie", movieManager.findMovie(name));
+        }else{
+            mv.addObject("delmconfirm", true);
+        }
+        mv.addObject("user", new User());
+        mv.addObject("movie", new Movie());
+        
         return mv;
     }
     
@@ -99,7 +124,7 @@ public class AdminPageController {
     
     @RequestMapping(value="/deluser", method=RequestMethod.GET)
     public ModelAndView delUser(HttpSession session){
-        ModelAndView mv = new ModelAndView("adminEditUser");
+        ModelAndView mv = new ModelAndView("adminPage");
         String email = (String) session.getAttribute("foundUserEmail");
         if(!userManager.adminDelUser(email)){
             mv.addObject("delconfirm", false);
