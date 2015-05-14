@@ -17,7 +17,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets\img\favicon.ico">
 
-    <title>Yggdrasil</title>
+    <title>Samdango</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -91,11 +91,16 @@
     </div>
     <hr>
     <c:if test ="${not empty currentMovie.reviews}">
-    <div align="center">
-        <font size="5" familey="Times New Roman" >
-        ${currentMovie.reviews.get(0).title}<br>
-         ${currentMovie.reviews.get(0).content}</font>
-    </div>
+        <c:forEach var="comment" items="${currentMovie.reviews}" varStatus="count">
+            ${comment.title}
+                    <br>
+            ${comment.content}
+                    <br>
+        </c:forEach>
+                
+                    
+        
+    
     </c:if>
     
     <br><br><br>
