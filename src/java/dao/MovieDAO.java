@@ -30,6 +30,16 @@ public class MovieDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
+    public boolean star(Movie movie){
+        boolean confirmation = false;
+        this.jdbcTemplate.update(
+        "UPDATE movies \n" +
+        "SET Stars = ?, Rates = ? \n" +
+        "WHERE MovieId = ?;",movie.getStars(),movie.getRates(),movie.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
     public boolean adminEditMovie(Movie movie){
         boolean confirmation = false;
         String releasedate = "20121212";
@@ -52,9 +62,9 @@ public class MovieDAO {
         String releaseDate = "20201212";
         
         this.jdbcTemplate.update(
-        "INSERT INTO movies values (?,?,?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO movies values (?,?,?,?,?,?,?,?,?,?,?,?)",
         movie.getId(),movie.getTitle(),releaseDate,movie.getRating(),movie.getSynopsis(),movie.getPoster(),movie.getWeekendGross(),
-        movie.getNumOfTheaters(),movie.getTheaterAverage(),movie.getTrailer(),0);
+        movie.getNumOfTheaters(),movie.getTheaterAverage(),movie.getTrailer(),0,0);
         confirmation = true;
         return confirmation;
     }
@@ -86,7 +96,7 @@ public class MovieDAO {
     //can be used by user or admin
     public boolean deleteComment(Review comment){
         boolean confirmation = false;
-        this.jdbcTemplate.update("DELETE from comments where UserId = "+comment.getUserId()+" and title = "+comment.getTitle()+";");
+        this.jdbcTemplate.update("DELETE from comments where UserId = "+comment.getUserId()+" and title = '"+comment.getTitle()+"';");
         confirmation = true;
         return confirmation;
     }
@@ -128,6 +138,9 @@ public class MovieDAO {
                         movie.setCast(getCasts(movieId));
                         movie.setImages(getImages(movieId));
                         movie.setReviews(getReviews(movieId));
+                        movie.setStars(rs.getBigDecimal("Stars").doubleValue());
+                        movie.setRates(rs.getInt("Rates"));
+                        movie.calculateStarRating();
                         return movie;
                     }
                 }
@@ -217,6 +230,9 @@ public class MovieDAO {
                         Review review = new Review();
                         review.setTitle(rs.getString("Title"));
                         review.setUserId(rs.getInt("UserId"));
+                        
+                        review.setName(findUsernameFromId(review.getUserId()));
+                        
                         review.setContent(rs.getString("Content"));
                         review.setMovieId(rs.getInt("MovieId"));
                         GregorianCalendar cal = new GregorianCalendar();
@@ -228,6 +244,19 @@ public class MovieDAO {
                 }
         );
         return reviews;
+    }
+    
+    public String findUsernameFromId(int userId){
+        return this.jdbcTemplate.queryForObject(
+                        "SELECT FirstName, LastName FROM users" +
+                        " WHERE UserId= "+userId+";", new RowMapper<String>(){
+                        @Override
+                        public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return rs.getString("FirstName");
+                                //+" "+rs.getString("LastName");
+                        }
+                        }
+                        );
     }
     
 }

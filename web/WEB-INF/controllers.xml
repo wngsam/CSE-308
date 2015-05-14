@@ -46,14 +46,14 @@
         </property>
     </bean>
     
-<!--    <bean id="searchController" class="controllers.SearchController">
+    <bean id="searchController" class="controllers.SearchController">
         <property name="movieManager">
             <ref bean ="movieManager"></ref>
         </property>
         <property name="theaterManager">
             <ref bean ="theaterManager"></ref>
         </property>
-    </bean>-->
+    </bean>
     
     <bean id="signUpPageController" class="controllers.SignUpPageController">
         <property name="userManager">
@@ -84,7 +84,7 @@
     
     <bean id="movieNewsController" class="controllers.MovieNewsController"></bean>
     
-    <bean id="giftcardController" class="controllers.GiftcardController">
+    <bean id="giftcardController" class="controllers.giftcardController">
          <property name="giftCardManager">
             <ref bean ="giftCardManager"></ref>
         </property>

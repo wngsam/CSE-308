@@ -5,6 +5,12 @@
  */
 package controllers;
 
+
+import domains.Movie;
+import domains.Theater;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import managers.MovieManager;
 import managers.TheaterManager;
 import org.springframework.stereotype.Controller;
@@ -19,15 +25,45 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-@RequestMapping("/search")
 public class SearchController {
     
     private MovieManager movieManager;
     private TheaterManager theaterManager;
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/searchResults", method = RequestMethod.POST)
     public ModelAndView search(@RequestParam(value = "searchParameter") String searchParameter){
-        ModelAndView mv = new ModelAndView("index");               
+        ModelAndView mv = new ModelAndView("searchResults");
+        HashMap<String, Movie> movies = movieManager.getMovies();
+        HashMap<String, Theater> theaters = theaterManager.getTheaters();
+        
+        List<Movie> movieList = new ArrayList<Movie>(movies.values());
+        List<Theater> theaterList = new ArrayList<Theater>(theaters.values());
+        
+        searchParameter = searchParameter.toLowerCase();
+        
+        //System.out.println("48line size:" + movies.size());
+        for(int i=0; i<movieList.size(); i++){
+            String temp = movieList.get(i).getTitle().toLowerCase();
+            if(temp.contains(searchParameter))
+                continue;
+            else
+                movieList.remove(i);
+        }
+        
+        for(int i=0; i<theaterList.size(); i++){
+            String temp = theaterList.get(i).getName().toLowerCase();
+            if(temp.contains(searchParameter))
+                continue;
+            else
+                theaterList.remove(i);
+        }
+        
+        for(Movie m: movieList)
+            System.out.println("66: " + m.getTitle());
+        
+        mv.addObject("resultMovieList", movieList);
+        mv.addObject("resultTheaterList", theaterList);
+        
         return mv;        
     }
 

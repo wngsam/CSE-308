@@ -7,6 +7,7 @@ package managers;
 
 import dao.MovieDAO;
 import domains.Movie;
+import domains.Review;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,6 +42,19 @@ public class MovieManager {
 
     public void setMovieDAO(MovieDAO movieDAO) {
         this.movieDAO = movieDAO;
+    }
+    
+    public boolean star(Movie movie){
+        return movieDAO.star(movie);
+    }
+    
+    public boolean comment(Review comment){
+        
+        return movieDAO.writeComment(comment);
+    }
+    
+    public boolean remComment(Review comment){
+        return movieDAO.deleteComment(comment);
     }
     
     public Movie findMovie(String name){

@@ -8,6 +8,7 @@ package controllers;
 
 import domains.Email;
 import managers.EmailManager;
+import managers.GiftCardManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class giftcardController {
     @Autowired
     private EmailManager emailManager;
+    private GiftCardManager giftCardManager;
      
     @RequestMapping(value="/giftcardPage", method=RequestMethod.GET)
     public ModelAndView displayGiftcardPage(){
@@ -32,6 +34,22 @@ public class giftcardController {
         return mv;
     }
 
+    public EmailManager getEmailManager() {
+        return emailManager;
+    }
+
+    public void setEmailManager(EmailManager emailManager) {
+        this.emailManager = emailManager;
+    }
+
+    public GiftCardManager getGiftCardManager() {
+        return giftCardManager;
+    }
+
+    public void setGiftCardManager(GiftCardManager giftCardManager) {
+        this.giftCardManager = giftCardManager;
+    }
+    
     @RequestMapping(value="/personalizingGiftcardPage", method=RequestMethod.POST)
     public ModelAndView displayPersonalizingGiftcardPage(@RequestParam(value = "amount") String amount){
         ModelAndView mv = new ModelAndView("personalizingGiftcardPage");
@@ -57,7 +75,7 @@ public class giftcardController {
         return mv;
     } 
     
-    @RequestMapping(value="/giftcardSuccess", method=RequestMethod.POST)
+     @RequestMapping(value="/giftcardSuccess", method=RequestMethod.POST)
     public ModelAndView displayGiftcardSuccess( @RequestParam(value = "email") String email, @RequestParam(value = "message") String message, 
             @RequestParam(value = "title") String title, @RequestParam("amount") String amount, @RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName, @RequestParam("creditCardNumber1") String creditCardNumber1, @RequestParam("creditCardNumber2") String creditCardNumber2,
@@ -67,15 +85,15 @@ public class giftcardController {
         ModelAndView mv = new ModelAndView("giftcardSuccess");
         System.out.println("68line "+title);
         
-        String emailMessage = message;
-        String emailTitle = title;
         int buyingAmount = Integer.parseInt(amount);
+        int gcId = giftCardManager.generateGiftCardId();
+        giftCardManager.registerGiffCardId(gcId, buyingAmount);
         
         Email newEmail = new Email();
         System.out.print("37" + email);
         String reciver = email; 
         String subject = title;
-        String content = message;
+        String content = "Giftcard Code: "+ gcId + "\n"+ "Amount: " + buyingAmount+ "$\n\n" +message;
          
         newEmail.setReciver(reciver);
         newEmail.setSubject(subject);
