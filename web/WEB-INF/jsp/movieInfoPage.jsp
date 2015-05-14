@@ -48,6 +48,19 @@
                        
                        <td valign="top" align="center" colspan=1 height="260px">
                            <font size="4">
+                           
+                           <c:if test="${didnotLogin eq true}">You need to login first!</c:if>
+                           <c:if test="${starSuccess eq true}">Thank you for your rating!</c:if>
+                            
+                            <c:forEach begin="1" end="5" var="val">
+                                <c:if test="${val <= currentMovie.starRating}">
+                                    <a href="star=${val}.htm"><img src="assets\img\STARS.png" width="25" height="25"></a>
+                                </c:if>
+                                <c:if test="${val > currentMovie.starRating}">
+                                    <a href="star=${val}.htm"><img src="assets\img\USTARS.png" width="25" height="25"></a>
+                                </c:if>
+                            </c:forEach>
+                                    
                                 <br>Opens<br>
                                 <fmt:formatDate type="Date" dateStyle="Long" value="${currentMovie.releaseDate.time}"></fmt:formatDate>
                                 <br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
