@@ -24,7 +24,43 @@
 <jsp:include page="header.jsp" />
 
 <div class="container">
-    
+<center><p class="text-danger" style="font-size:55px">SPOTLIGHT</p></center><hr>
+
+      <div class="row row-offcanvas">
+        
+            <div class="col-xs-6 col-lg-4">
+			  <a href="movieinfopage.htm" class ="highlight_footerIcon"><img src="assets\img\featured.jpg" width="350" height="622"></a>
+			  
+            </div><!--/.col-xs-6.col-lg-3-->
+            <div class="col-lg-4">
+              <iframe width="350" height="300" src="http://www.youtube.com/embed/7uDuFh-nC-c?&rel=0&loop=1&showinfo=0&controls=0&hd=1&color=white&playlist=7uDuFh-nC-c" frameborder="0" allowfullscreen></iframe>
+			  <a href="http://www.imdb.com/title/tt2199571/?ref_=nv_sr_1" class ="highlight_footerIcon"><img src="assets\img\subf1.jpg" width="350" height="300"><br></br></a>
+              
+            </div><!--/.col-xs-6.col-lg-3-->
+            <div class="col-xs-6 col-lg-4">
+              
+			  <a href="http://www.imdb.com/title/tt2679042/?ref_=fn_al_tt_2" class ="highlight_footerIcon"><img src="assets\img\subf2.jpg" width="350" height="300"><br></br></a>
+              <iframe width="350" height="300" src="http://www.youtube.com/embed/7qhIkoUynPA?&rel=0&loop=1&showinfo=0&controls=0&hd=1&color=white&playlist=7qhIkoUynPA" frameborder="0" allowfullscreen></iframe>
+            </div><!--/.col-xs-6.col-lg-3-->
+			<div class="col-xs-6 col-lg-4">
+              
+			  <a href="http://www.imdb.com/title/tt2293640/?ref_=nv_sr_1" class ="highlight_footerIcon"><img src="assets\img\subf3.jpg" width="350" height="300"><br></br></a>
+              
+            </div><!--/.col-xs-6.col-lg-3-->
+			<div class="col-xs-6 col-lg-4">
+				<iframe width="350" height="300" src="http://www.youtube.com/embed/o8hxFE7RpSg?&rel=0&loop=1&showinfo=0&controls=0&hd=1&color=white&playlist=o8hxFE7RpSg" frameborder="0" allowfullscreen></iframe>
+			</div><!--/.col-xs-6.col-lg-3-->
+			<div class="col-xs-6 col-lg-4">
+              
+			  <a href="http://www.imdb.com/title/tt2637276/?ref_=fn_al_tt_4" class ="highlight_footerIcon"><img src="assets\img\subf4.jpg" width="350" height="300"><br></br></a>
+              
+            </div><!--/.col-xs-6.col-lg-3-->
+			</div>
+			<hr>
+		
+		
+			
+</div>    
 </div>
 
 <hr><jsp:include page="footer.jsp" />
