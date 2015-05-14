@@ -1,4 +1,11 @@
-
+<%-- 
+    Document   : comingSoonPage
+    Created on : May 14, 2015, 3:29:53 AM
+    Author     : JaeWoong
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!-- HEADER -->
 <html lang="en">
@@ -26,19 +33,41 @@
 
 <div class="container">
     <div  style="margin-left:70px;" >
+     <h1 style="font-size:40px; font-weight: bold;">SEARCH RESULTS</h1>
      <table>
         <tr>
-            <c:forEach items="${comingSoonMovies}" varStatus="status" var="listVar" >     
+            <td>
+                <br><p class="text-warning" style="font-size:20px; font-weight: bold;">Movie List</p><br>
+            </td>
+        </tr>
+        <tr>
+            <c:forEach items="${resultMovieList}" varStatus="status" var="listVar">     
                 <td>    
                     <div class="col-xs-6 col-lg-3">
-                            <center><p><a href="${listVar.title}.htm">
+                        <center><p><a href="${listVar.title}.htm"></p>
                                     <img src="${listVar.poster}" width="145" height="220"></a><br>
                             <fmt:formatDate type="Date" dateStyle="Long" value="${listVar.releaseDate.time}"></fmt:formatDate></center>
                     </div>
                 </td>    
-                </c:forEach>
-        
-    </tr>			
+            </c:forEach>        
+        </tr>
+        <tr>
+            <td>
+                <br><p class="text-warning" style="font-size:20px; font-weight: bold;">Theater List</p><br>
+            </td>
+        </tr>
+        <tr>
+            <c:forEach items="${resultTheaterList}" varStatus="status" var="listVar" >     
+                <td>    
+                    <div class="col-xs-6 col-lg-3">
+                        <center><p>${listVar.name}</p>
+                                <p>${listVar.address}"</p> <br>
+                        </center>
+                    </div>
+                </td>    
+            </c:forEach>        
+        </tr>
+ 
       
     </table>
     </div>
