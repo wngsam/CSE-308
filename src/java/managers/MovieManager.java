@@ -44,6 +44,10 @@ public class MovieManager {
         this.movieDAO = movieDAO;
     }
     
+    public boolean star(Movie movie){
+        return movieDAO.star(movie);
+    }
+    
     public boolean comment(Review comment){
         
         return movieDAO.writeComment(comment);

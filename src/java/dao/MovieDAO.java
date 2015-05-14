@@ -30,6 +30,16 @@ public class MovieDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
+    public boolean star(Movie movie){
+        boolean confirmation = false;
+        this.jdbcTemplate.update(
+        "UPDATE movies \n" +
+        "SET Stars = ?, Rates = ? \n" +
+        "WHERE MovieId = ?;",movie.getStars(),movie.getRates(),movie.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
     public boolean adminEditMovie(Movie movie){
         boolean confirmation = false;
         String releasedate = "20121212";
@@ -52,9 +62,9 @@ public class MovieDAO {
         String releaseDate = "20201212";
         
         this.jdbcTemplate.update(
-        "INSERT INTO movies values (?,?,?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO movies values (?,?,?,?,?,?,?,?,?,?,?,?)",
         movie.getId(),movie.getTitle(),releaseDate,movie.getRating(),movie.getSynopsis(),movie.getPoster(),movie.getWeekendGross(),
-        movie.getNumOfTheaters(),movie.getTheaterAverage(),movie.getTrailer(),0);
+        movie.getNumOfTheaters(),movie.getTheaterAverage(),movie.getTrailer(),0,0);
         confirmation = true;
         return confirmation;
     }
@@ -104,7 +114,7 @@ public class MovieDAO {
     
     public List<Movie> update(){
         List<Movie> movies = this.jdbcTemplate.query(
-                "SELECT * FROM movies;",
+                "SELECT * FROM movies WHERE MovieId != 0;",
                 new RowMapper<Movie>(){
                     @Override
                     public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -128,6 +138,9 @@ public class MovieDAO {
                         movie.setCast(getCasts(movieId));
                         movie.setImages(getImages(movieId));
                         movie.setReviews(getReviews(movieId));
+                        movie.setStars(rs.getBigDecimal("Stars").doubleValue());
+                        movie.setRates(rs.getInt("Rates"));
+                        movie.calculateStarRating();
                         return movie;
                     }
                 }

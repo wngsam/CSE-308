@@ -80,7 +80,11 @@
     
     <bean id="fandQPageController" class="controllers.FandQPageController"></bean>
     
-    <bean id="emailController" class="controllers.EmailController"></bean>
+    <bean id="emailController" class="controllers.EmailController">
+        <property name="userManager">
+            <ref bean ="userManager"></ref>
+        </property>
+    </bean>
     
     <bean id="movieNewsController" class="controllers.MovieNewsController"></bean>
     

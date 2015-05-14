@@ -130,4 +130,12 @@ public class UserManager {
         this.users = users;
     }
     
+     public int generateRandomPassword()  throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        Random r = new Random();
+        int randomID = r.nextInt(999999999-100000000) + 100000000;
+        
+       // if(randomID==)
+        return randomID;
+    }
+    
 }

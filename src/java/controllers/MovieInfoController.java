@@ -46,6 +46,27 @@ public class MovieInfoController {
         return mv;
     }
     
+    @RequestMapping(value="/star={num}", method = RequestMethod.GET)
+    public ModelAndView star(@PathVariable("num") int num, HttpSession session){
+        ModelAndView mv = new ModelAndView("movieInfoPage");
+        String movieTitle = (String)session.getAttribute("movieTitle");
+        Movie currentMovie = movieManager.getCurrentMovie(movieTitle);
+        if(session.getAttribute("currentPerson")!=null){    
+            currentMovie.setStars((currentMovie.getStars()+num));
+            currentMovie.setRates((currentMovie.getRates()+1));
+            currentMovie.calculateStarRating();
+            //System.out.println(currentMovie.getStars()+" "+currentMovie.getRates()+" "+currentMovie.getStarRating());
+            if(movieManager.star(currentMovie)){
+                mv.addObject("starSuccess",true);
+            }
+        }else{
+            mv.addObject("didnotLogin",true);
+        }
+        
+        mv.addObject("currentMovie", currentMovie);
+        return mv;
+    }
+    
     @RequestMapping(value="/delcomment={title}", method = RequestMethod.GET)
     public ModelAndView removeComment(@PathVariable("title") String titleid, HttpSession session){
         ModelAndView mv = new ModelAndView("movieInfoPage");
@@ -54,7 +75,7 @@ public class MovieInfoController {
         Review comment = new Review();
         String[] s = titleid.split(",");
         int userId = Integer.parseInt(s[1]);
-        System.out.println(titleid);
+        //System.out.println(titleid);
         for(int i=0;i<currentMovie.getReviews().size();i++){
             Review r = currentMovie.getReviews().get(i);
             if(r.getTitle().equals(s[0]) && r.getUserId()==userId){

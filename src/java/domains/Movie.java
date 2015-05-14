@@ -29,12 +29,41 @@ public class Movie {
     private List<String> images;
     private List<Review> reviews;
     private double stars;
+    private int rates;
+    private int starRating;
     private boolean fresh=false;
             
     public Movie(){
         
     }
 
+    public void calculateStarRating(){
+        if(rates!=0){
+            starRating = (int)(stars/rates);
+            if(starRating>5){
+                starRating=5;
+            }
+        }else{
+            starRating = 0;
+        }
+    }
+    
+    public int getRates() {
+        return rates;
+    }
+
+    public void setRates(int rates) {
+        this.rates = rates;
+    }
+
+    public int getStarRating() {
+        return starRating;
+    }
+
+    public void setStarRating(int starRating) {
+        this.starRating = starRating;
+    }
+    
     public int getId() {
         return id;
     }
