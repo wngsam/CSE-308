@@ -101,19 +101,6 @@ public class UserDAO {
         return confirmation;
     }  
     
-    public Boolean editUser(User user){
-        Boolean confirmation = false;            
-        this.jdbcTemplate.update(
-        "UPDATE users SET FirstName=?,"
-                + " LastName=?,"
-                + " BirthDate=?,"
-                + " Zipcode=?"
-                + " WHERE UserId=?",
-        user.getFirstName(),user.getLastName(),user.getBirthDate(),user.getZipCode(),user.getId());
-        confirmation = true;
-        return confirmation;
-    }
-    
     public Boolean editPassword(User user, String newPwd){
         Boolean confirmation = false;            
         this.jdbcTemplate.update(
