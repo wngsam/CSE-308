@@ -86,7 +86,7 @@ public class MovieDAO {
     //can be used by user or admin
     public boolean deleteComment(Review comment){
         boolean confirmation = false;
-        this.jdbcTemplate.update("DELETE from comments where UserId = "+comment.getUserId()+" and title = "+comment.getTitle()+";");
+        this.jdbcTemplate.update("DELETE from comments where UserId = "+comment.getUserId()+" and title = '"+comment.getTitle()+"';");
         confirmation = true;
         return confirmation;
     }
@@ -239,7 +239,8 @@ public class MovieDAO {
                         " WHERE UserId= "+userId+";", new RowMapper<String>(){
                         @Override
                         public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        return rs.getString("FirstName")+" "+rs.getString("LastName");
+                        return rs.getString("FirstName");
+                                //+" "+rs.getString("LastName");
                         }
                         }
                         );

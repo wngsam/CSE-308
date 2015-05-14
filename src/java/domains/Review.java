@@ -19,6 +19,19 @@ public class Review {
     private int stars;
     private String name;
 
+    public Review(){
+        
+    }
+    
+    public Review(String title, String content, int userId, int movieId, String name){
+        this.title=title;
+        this.content=content;
+        this.userId=userId;
+        this.movieId=movieId;
+        stars=0;
+        this.name=name;
+    }
+    
     public String getName() {
         return name;
     }
