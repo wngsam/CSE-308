@@ -5,6 +5,10 @@
  */
 package controllers;
 
+import domains.Movie;
+import domains.Theater;
+import java.util.HashMap;
+import java.util.List;
 import managers.MovieManager;
 import managers.TheaterManager;
 import org.springframework.stereotype.Controller;
@@ -19,15 +23,18 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 @Controller
-@RequestMapping("/search")
 public class SearchController {
     
     private MovieManager movieManager;
     private TheaterManager theaterManager;
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/searchResults", method = RequestMethod.POST)
     public ModelAndView search(@RequestParam(value = "searchParameter") String searchParameter){
-        ModelAndView mv = new ModelAndView("index");               
+        ModelAndView mv = new ModelAndView("searchResults");
+        HashMap<String, Movie> searchedMovies = movieManager.getMovies();
+        HashMap<String, Theater> searchedTheaters = theaterManager.getTheaters();
+        
+        
         return mv;        
     }
 

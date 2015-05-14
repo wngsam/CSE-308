@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
+    
 <!-- LOGIN NAVBAR -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -182,7 +183,7 @@
             </ul>
             
             
-            <form class="navbar-form navbar-left" id="search" method="POST" action="zipcode.htm">
+            <form class="navbar-form navbar-left" id="search" method="POST" action="searchResults.htm">
                 <input type="text" class="form-control" name="searchParameter" placeholder="Enter City + State, ZIP Code, or Movie">
                 <button type="submit" class="btn btn-success">Go</button></li>
             </form>
