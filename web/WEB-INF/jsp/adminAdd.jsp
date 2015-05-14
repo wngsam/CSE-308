@@ -42,6 +42,12 @@
                         
                         <hr><p class="text-danger" style="font-size:55px">ADD MOVIE</p>
                         
+                        <c:if test="${mconfirmation eq true}">
+                            Movie successfully added.
+                        </c:if>
+                        <c:if test="${mconfirmation eq false}">
+                            Movie could not be added, Duplicate Title!
+                        </c:if>
                         <form:form action="addmovie.htm" modelAttribute="movie" method="post">
                             
                             <div class="form-group">
@@ -71,7 +77,12 @@
                             
                             <div class="form-group">
                                 <p class="text-warning" style="font-size:20px">Num of Theaters:</P>
-                                <form:input path="numOfTheaters" placeholder="11"/>
+                                <form:input path="numOfTheaters" placeholder="1"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="text-warning" style="font-size:20px">Theater Average:</P>
+                                <form:input path="theaterAverage" placeholder="10000"/>
                             </div>
                             
                             <div class="form-group">

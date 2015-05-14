@@ -27,18 +27,58 @@ public class MovieManager {
     private ArrayList<Movie> playingNow;
     private ArrayList<Movie> openingThisWeek;
     
-    public MovieManager() throws MalformedURLException {
+    public MovieManager() {
         movies = new HashMap();
         topBoxOffice = new ArrayList();
         comingSoon = new ArrayList();
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
-        //createTestcomingSoon();
-        //createFakeBoxOffice();
+    }
+    
+    public MovieDAO getMovieDAO() {
+        return movieDAO;
+    }
+
+    public void setMovieDAO(MovieDAO movieDAO) {
+        this.movieDAO = movieDAO;
     }
     
     public Movie findMovie(String name){
         return movies.get(name);
+    }
+    
+    public boolean adminEditMovie(Movie modifiedMovie, String title){
+        boolean confirmation = false;
+        Movie movie = movies.get(title);
+        if(movie!=null){
+            movie.setTitle(modifiedMovie.getTitle());
+            //release date
+            movie.setRating(modifiedMovie.getRating());
+            movie.setSynopsis(modifiedMovie.getSynopsis());
+            movie.setPoster(modifiedMovie.getPoster());
+            movie.setWeekendGross(modifiedMovie.getWeekendGross());
+            movie.setNumOfTheaters(modifiedMovie.getNumOfTheaters());
+            movie.setTheaterAverage(modifiedMovie.getTheaterAverage());
+            movie.setTrailer(modifiedMovie.getTrailer());
+            movie.setStars(modifiedMovie.getStars());
+            confirmation = movieDAO.adminEditMovie(movie);
+            if(confirmation==true){
+                movies.remove(title);
+                movies.put(movie.getTitle(),movie);
+            }
+        }
+        return confirmation;
+    }
+    
+    public boolean adminDelMovie(String name){
+        boolean confirmation = false;
+        if(movies.get(name)!=null){
+            if(movieDAO.adminDelMovie(movies.get(name).getId())){
+                movies.remove(name);
+                confirmation = true;
+            }
+        }
+        return confirmation;
     }
     
     public void updateMovies(){
@@ -56,21 +96,13 @@ public class MovieManager {
     public boolean addMovie(Movie movie){
         boolean confirmation = false;
         if(movies.get(movie.getTitle())==null){
-//            if(movieDAO.addMovie(movie)==true){
-//                movies.put(movie.getTitle(),movie);
-//                confirmation = true;
-//            }
+            if(movieDAO.adminAddMovie(movie)==true){
+                movies.put(movie.getTitle(),movie);
+                confirmation = true;
+            }
         }
         
         return confirmation;
-    }
-    
-    public MovieDAO getMovieDAO() {
-        return movieDAO;
-    }
-
-    public void setMovieDAO(MovieDAO movieDAO) {
-        this.movieDAO = movieDAO;
     }
     
     public Movie getCurrentMovie(String movieTitle){
@@ -124,7 +156,5 @@ public class MovieManager {
     public void setPlayingNow(ArrayList<Movie> playingNow) {
         this.playingNow = playingNow;
     }
-    
-    
 
 }

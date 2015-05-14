@@ -28,6 +28,12 @@
         </property>
     </bean>
     
+    <bean id="movieInfoController" class="controllers.MovieInfoController">
+        <property name="movieManager">
+            <ref bean ="movieManager"></ref>
+        </property>
+    </bean>
+    
     <bean id="movieListController" class="controllers.MovieListController">
         <property name="movieManager">
             <ref bean ="movieManager"></ref>
@@ -70,20 +76,13 @@
         </property>
     </bean>
     
-    <bean id="movieInfoController" class="controllers.MovieInfoController">
-        <property name="movieManager">
-            <ref bean ="movieManager"></ref>
-        </property>
-    </bean>
+    <bean id="helpPageController" class="controllers.HelpPageController"></bean>
     
-     <bean id="helpPageController" class="controllers.HelpPageController">
-    </bean>
+    <bean id="fandQPageController" class="controllers.FandQPageController"></bean>
     
-     <bean id="fandQPageController" class="controllers.FandQPageController">
-    </bean>
+    <bean id="emailController" class="controllers.EmailController"></bean>
     
-    <bean id="emailController" class="controllers.EmailController">
-    </bean>
+    <bean id="movieNewsController" class="controllers.MovieNewsController"></bean>
     
      <bean id="movieNewsController" class="controllers.MovieNewsController">
     </bean>

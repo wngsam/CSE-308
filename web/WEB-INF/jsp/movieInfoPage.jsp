@@ -89,12 +89,14 @@
         ${currentMovie.title} Synopsis<br>
          ${currentMovie.synopsis}</font>
     </div>
-    
+    <hr>
+    <c:if test ="${not empty currentMovie.reviews}">
     <div align="center">
         <font size="5" familey="Times New Roman" >
         ${currentMovie.reviews.get(0).title}<br>
          ${currentMovie.reviews.get(0).content}</font>
     </div>
+    </c:if>
     
     <br><br><br>
     </div>       
