@@ -84,7 +84,7 @@
     
     <bean id="movieNewsController" class="controllers.MovieNewsController"></bean>
     
-    <bean id="giftcardController" class="controllers.GiftcardController">
+    <bean id="giftcardController" class="controllers.giftcardController">
          <property name="giftCardManager">
             <ref bean ="giftCardManager"></ref>
         </property>

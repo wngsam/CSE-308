@@ -32,9 +32,11 @@
     <jsp:include page="header.jsp" />
     
     <div  style="margin-left:70px;" >
+        
     <hr><h1 style="font-weight: bold">${currentMovie.title}</h1>
     <div class="fb-share-button" data-layout="button"></div><br>
     <g:plus action="share"></g:plus>
+    
     <br>
     <table>
         <tr>
@@ -43,9 +45,17 @@
                     <tr width="380px" bgcolor="#5d6078" >
                        <td valign="middle" align="center" colspan=1 height="260px">
                            <img src="${currentMovie.poster}" width="180" height="250"></td>
-                       <td valign="top" align="center" colspan=1 height="260px"><font size="4"><br>Opens<br> <fmt:formatDate type="Date" dateStyle="Long" value="${currentMovie.releaseDate.time}"></fmt:formatDate><br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
-                           85 Fan Ratings<br>See it in<br>IMAX 3D<br>Digital 3D</font></td>
+                       
+                       <td valign="top" align="center" colspan=1 height="260px">
+                           <font size="4">
+                                <br>Opens<br>
+                                <fmt:formatDate type="Date" dateStyle="Long" value="${currentMovie.releaseDate.time}"></fmt:formatDate>
+                                <br>Action/Adventure<br>Sci-Fi/Fantasy<br>${currentMovie.rating}<br>
+                                85 Fan Ratings<br>See it in<br>IMAX 3D<br>Digital 3D
+                           </font>
+                       </td>
                    </tr>
+                   
                    <tr width="380px">
                        <td align="left" colspan=2> 
                            <hr>
@@ -58,20 +68,30 @@
                             <hr>
 			</td>                
                    </tr>
+                   
                    <tr>
                        <td colspan=2>
-                           <a href="#" class="btn btn-primary">10:30am</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">1:00pmy</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">3:30pm</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">6:30pm</a>&nbsp;&nbsp;<br><br><a href="#" class="btn btn-primary">9:00pm</a>&nbsp;&nbsp;<a href="#" class="btn btn-primary">11:00pm</a>
+                           <a href="#" class="btn btn-primary">10:30am</a>&nbsp;&nbsp;
+                           <a href="#" class="btn btn-primary">1:00pmy</a>&nbsp;&nbsp;
+                           <a href="#" class="btn btn-primary">3:30pm</a>&nbsp;&nbsp;
+                           <a href="#" class="btn btn-primary">6:30pm</a>&nbsp;&nbsp;
+                           <br><br>
+                           <a href="#" class="btn btn-primary">9:00pm</a>&nbsp;&nbsp;
+                           <a href="#" class="btn btn-primary">11:00pm</a>
                        </td>                          
                    </tr>
+                   
                    <tr width="370px">
                        <td align="center" valign="middle"><hr><a href="registrationpage.htm" class="btn btn-warning">Favorite this Movie!</a></td> 
                        <td align="center" valign="middle"><hr><a href="checkoutpage.htm" class="btn btn-success">Purchase Tickets!</a></td>                
                    </tr>
+                   
                     <tr><td><br></td></tr>                   
                </table>
             </td>
+            
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            
             <td valign="top" align="left">
                 <table>
                     <tr>
@@ -106,9 +126,8 @@
         <font size="5" familey="Times New Roman" >
         ${currentMovie.synopsis}
         </font>
-    
     <hr>
-    <font size="8" familey="Times New Roman" >
+        <font size="8" familey="Times New Roman" >
         Comments
     </font><br><br>
     <c:if test ="${not empty currentMovie.reviews}">
@@ -120,10 +139,12 @@
             ${comment.content} <br><br>
             </font>
         </c:forEach>
-    </div>
+        </div>
     </c:if>
     <br>
-    </div></div>       
+    </div>
+        
+    </div>       
 		
 <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
