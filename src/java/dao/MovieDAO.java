@@ -114,7 +114,7 @@ public class MovieDAO {
     
     public List<Movie> update(){
         List<Movie> movies = this.jdbcTemplate.query(
-                "SELECT * FROM movies;",
+                "SELECT * FROM movies WHERE MovieId != 0;",
                 new RowMapper<Movie>(){
                     @Override
                     public Movie mapRow(ResultSet rs, int rowNum) throws SQLException {
