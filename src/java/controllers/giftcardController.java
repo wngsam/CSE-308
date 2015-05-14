@@ -75,7 +75,7 @@ public class giftcardController {
         return mv;
     } 
     
-    @RequestMapping(value="/giftcardSuccess", method=RequestMethod.POST)
+     @RequestMapping(value="/giftcardSuccess", method=RequestMethod.POST)
     public ModelAndView displayGiftcardSuccess( @RequestParam(value = "email") String email, @RequestParam(value = "message") String message, 
             @RequestParam(value = "title") String title, @RequestParam("amount") String amount, @RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName, @RequestParam("creditCardNumber1") String creditCardNumber1, @RequestParam("creditCardNumber2") String creditCardNumber2,
@@ -85,15 +85,15 @@ public class giftcardController {
         ModelAndView mv = new ModelAndView("giftcardSuccess");
         System.out.println("68line "+title);
         
-        String emailMessage = message;
-        String emailTitle = title;
         int buyingAmount = Integer.parseInt(amount);
+        int gcId = giftCardManager.generateGiftCardId();
+        giftCardManager.registerGiffCardId(gcId, buyingAmount);
         
         Email newEmail = new Email();
         System.out.print("37" + email);
         String reciver = email; 
         String subject = title;
-        String content = message;
+        String content = "Giftcard Code: "+ gcId + "\n"+ "Amount: " + buyingAmount+ "$\n\n" +message;
          
         newEmail.setReciver(reciver);
         newEmail.setSubject(subject);
