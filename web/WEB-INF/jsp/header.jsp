@@ -33,8 +33,10 @@
                             <button type="submit" class="btn btn-success btn-sm">Login</button>
                             <a href="registrationPage.htm" class="btn btn-warning btn-sm">Register</a>
                         </form></li>
+                        <li><a href="forgotPassword.htm">Forgot Passwrod?</a></li>
                     </c:otherwise>
                 </c:choose>
+                        
             </ul>
         </div>
     </nav>
