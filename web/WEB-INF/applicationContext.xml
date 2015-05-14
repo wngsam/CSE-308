@@ -21,7 +21,7 @@
     p:password="${jdbc.password}" /-->
 
     <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
-    
+    <!--
      <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
        <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
@@ -34,6 +34,6 @@
         </props>
         
         </property>
-    </bean>
+    </bean>-->
 
 </beans>

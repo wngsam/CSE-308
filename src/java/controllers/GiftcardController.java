@@ -8,6 +8,7 @@ package controllers;
 
 import domains.Email;
 import managers.EmailManager;
+import managers.GiftCardManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
  * @author JaeWoong
  */
 @Controller
-public class giftcardController {
+public class GiftcardController {
     @Autowired
     private EmailManager emailManager;
+    private GiftCardManager giftCardManager;
      
     @RequestMapping(value="/giftcardPage", method=RequestMethod.GET)
     public ModelAndView displayGiftcardPage(){
@@ -67,15 +69,15 @@ public class giftcardController {
         ModelAndView mv = new ModelAndView("giftcardSuccess");
         System.out.println("68line "+title);
         
-        String emailMessage = message;
-        String emailTitle = title;
         int buyingAmount = Integer.parseInt(amount);
+        int gcId = giftCardManager.generateGiftCardId();
+        giftCardManager.registerGiffCardId(gcId, buyingAmount);
         
         Email newEmail = new Email();
         System.out.print("37" + email);
         String reciver = email; 
         String subject = title;
-        String content = message;
+        String content = "Giftcard Code: "+ gcId + "\n"+ "Amount: " + buyingAmount+ "$\n\n" +message;
          
         newEmail.setReciver(reciver);
         newEmail.setSubject(subject);
@@ -84,4 +86,21 @@ public class giftcardController {
         
         return mv;
     } 
+
+    public EmailManager getEmailManager() {
+        return emailManager;
+    }
+
+    public GiftCardManager getGiftCardManager() {
+        return giftCardManager;
+    }
+
+    public void setEmailManager(EmailManager emailManager) {
+        this.emailManager = emailManager;
+    }
+
+    public void setGiftCardManager(GiftCardManager giftCardManager) {
+        this.giftCardManager = giftCardManager;
+    }
+    
 }
