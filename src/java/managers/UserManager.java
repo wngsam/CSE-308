@@ -67,17 +67,51 @@ public class UserManager {
         return confirmation;
     }
     
-    public boolean editUser(User user, User modifiedUser) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+    public boolean adminEditUser(User modifiedUser, String email) throws UnsupportedEncodingException, NoSuchAlgorithmException{
         boolean confirmation = false;
-        if(users.get(user.getEmail())==null){            
-            user.setPassword(hash(user.getPassword()));
-            //System.out.println(user.getPassword());
-            if(userDAO.addUser(user)==true){
-                users.put(user.getEmail(),user);
+        User user = users.get(email);
+        if(user!=null){
+           user.setFirstName(modifiedUser.getFirstName());
+           user.setLastName(modifiedUser.getLastName());
+           user.setEmail(modifiedUser.getEmail());
+           //birthdate
+           if(!modifiedUser.getPassword().equals("")){
+               user.setPassword(hash(modifiedUser.getPassword()));
+           }
+           user.setRole(modifiedUser.getRole());
+           user.setZipCode(modifiedUser.getZipCode());
+           confirmation = userDAO.adminEditUser(user);
+           if(confirmation==true){
+               users.remove(email);
+               users.put(user.getEmail(),user);
+           }
+        }
+        return confirmation;
+    }
+    
+    public boolean adminDelUser(String email){
+        boolean confirmation = false;
+        if(users.get(email)!=null){
+            if(userDAO.adminDelUser(users.get(email).getId())){
+                users.remove(email);
                 confirmation = true;
             }
         }
-        
+        return confirmation;
+    }
+    
+    public boolean editUser(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        boolean confirmation = false;
+        userDAO.editUser(user);
+        confirmation = true;        
+        return confirmation;
+    }
+    
+    public boolean editPassword(User user, String newPwd) throws UnsupportedEncodingException, NoSuchAlgorithmException{
+        boolean confirmation = false;
+        user.setPassword(hash(newPwd));
+        userDAO.editPassword(user, hash(newPwd));
+        confirmation = true;        
         return confirmation;
     }
     

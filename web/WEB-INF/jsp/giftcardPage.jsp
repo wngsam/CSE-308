@@ -56,7 +56,8 @@
         </tr>
         <tr>
             <td><p style="font-size:40px; font-weight: bold;">CHOOSE A CARD AMOUNT</p><br>
-                Card Amount:
+                <div class="specialColor" > <font color="White"> Amount:</font>
+               
                 <select id="amount" name="amount">
                   
                     <option class="specialColor" value="100">$100.00</option>
@@ -65,7 +66,7 @@
                     <option class="specialColor" value="25">$25.00</option>
                     <option class="specialColor" value="15">$15.00</option>
                 </select>
-                
+                </div>
                 &nbsp;&nbsp; *Tip: The average price of a movie ticket is $11
             </td>
         </tr>

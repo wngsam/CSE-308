@@ -38,5 +38,11 @@
     </bean>
     <bean id="locationManager" class="managers.LocationManager"></bean>
      <bean id="emailManager" class="managers.EmailManager"></bean>
+     <bean id="giftCardManager" class="managers.GiftCardManager">
+          <property name="giftcardDAO">
+            <ref bean ="giftcardDAO"></ref>
+        </property>
+     </bean>
+     
     
 </beans>

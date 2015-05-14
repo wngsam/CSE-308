@@ -36,8 +36,39 @@ public class UserDAO {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
     
-    public Boolean addUser(User user){
-        Boolean confirmation = false;
+    public boolean adminDelUser(int id){
+        boolean confirmation = false;
+        
+        this.jdbcTemplate.update("DELETE from favoritemovies where UserId = "+id+";");
+        this.jdbcTemplate.update("DELETE from favoritetheaters where UserId = "+id+";");
+        this.jdbcTemplate.update(
+        "UPDATE comments \n" +
+        "SET UserId = 0 \n" +
+        "WHERE UserId = "+id+";");
+        this.jdbcTemplate.update(
+        "UPDATE paymentmethods \n" +
+        "SET UserId = 0 \n" +
+        "WHERE UserId = "+id+";");
+        this.jdbcTemplate.update("DELETE from users where UserId = "+id+";");
+        
+        confirmation = true;
+        return confirmation;
+    }
+    
+    public boolean adminEditUser(User user){
+        boolean confirmation = false;
+        String birthdate = "19990101"; //gotta get string form...
+        this.jdbcTemplate.update(
+        "UPDATE users \n" +
+        "SET FirstName = ?, LastName = ?, Email = ?, Password = ?, BirthDate = ?, Role = ?, Zipcode = ? \n" +
+        "WHERE UserId = ?;",
+        user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),user.getZipCode(),user.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
+    public boolean addUser(User user){
+        boolean confirmation = false;
         
         String birthdate = "19000101";
         int zipcode = 00000;
@@ -46,7 +77,7 @@ public class UserDAO {
             zipcode = user.getZipCode();
         }
         if(user.getBirthDate()!=null){
-            
+            //BIRTHDAY!
         }
         
         this.jdbcTemplate.update(
@@ -54,17 +85,42 @@ public class UserDAO {
         ++count,user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),birthdate,user.getRole(),zipcode);
         confirmation = true;
         return confirmation;
+    }  
+    
+    public Boolean editUser(User user){
+        Boolean confirmation = false;            
+        this.jdbcTemplate.update(
+        "UPDATE users SET FirstName=?,"
+                + " LastName=?,"
+                + " BirthDate=?,"
+                + " Zipcode=?"
+                + " WHERE UserId=?",
+        user.getFirstName(),user.getLastName(),user.getBirthDate(),user.getZipCode(),user.getId());
+        confirmation = true;
+        return confirmation;
     }
     
+    public Boolean editPassword(User user, String newPwd){
+        Boolean confirmation = false;            
+        this.jdbcTemplate.update(
+        "UPDATE users SET Password=?"
+                + " WHERE UserId=?",
+        newPwd,user.getId());
+        confirmation = true;
+        return confirmation;
+    }
+    
+   
     public List<User> update(){
+        //count = 0; //DONT RESTART COUNT
         List<User> users = this.jdbcTemplate.query(
                 "SELECT * FROM users;",
                 new RowMapper<User>(){
                     @Override
                     public User mapRow(ResultSet rs, int rowNum) throws SQLException {
                         User user = new User();
-                        count++;
                         int userId = rs.getInt("UserId");
+                        if(userId>count){count=userId;}
                         user.setId(userId);
                         user.setFirstName(rs.getString("FirstName"));
                         user.setLastName(rs.getString("LastName"));
