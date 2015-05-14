@@ -101,7 +101,6 @@ public class UserDAO {
         return confirmation;
     }      
     
-    
     public Boolean editPassword(User user, String newPwd){
         Boolean confirmation = false;            
         this.jdbcTemplate.update(
