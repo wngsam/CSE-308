@@ -127,19 +127,36 @@
         ${currentMovie.synopsis}
         </font>
     <hr>
-        <font size="8" familey="Times New Roman" >
-        Comments
-    </font><br><br>
+    <font size="8" familey="Times New Roman" >
+        <p class="text-primary">Comments</p>
+    </font>
     <c:if test ="${not empty currentMovie.reviews}">
         <div class="container-fluid">
         <c:forEach var="comment" items="${currentMovie.reviews}" varStatus="count">
-            <font size="5" familey="Times New Roman" >
-            <b>${comment.title}</b> <br>
-            <i>By ${comment.name}</i> <br>
-            ${comment.content} <br><br>
+            <font size="4" familey="Times New Roman" >
+            <b>${comment.title}</b>
+            
+            <c:if test="${currentPerson.role == 'Admin'}">
+                &nbsp;&nbsp;<a href="delcomment=${comment.title},${comment.userId}.htm" class="btn btn-danger">X</a>
+            </c:if>
+            
+            <br>
+            <i>By ${comment.name}</i><br>
+            ${comment.content}<br><br>
             </font>
         </c:forEach>
         </div>
+        <hr>
+    </c:if>
+    <c:if test="${not empty currentPerson}">
+        <c:if test="${commentSuccess eq false}">Comment failed, try a different title perhaps!</c:if>
+        <font size="5" familey="Times New Roman" >Leave A Message!</font>
+        <br><br>
+    <form class="navbar-form navbar-center" method="POST" action="comment.htm">
+        <input type="text" name="title" placeholder="Title"><br><br>
+        <input class="form-control input-lg" name="msg" placeholder="Comment"><br><br>
+        <button type="submit" class="btn btn-success btn-sm">Submit</button>
+    </form>
     </c:if>
     <br>
     </div>

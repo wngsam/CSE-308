@@ -28,8 +28,8 @@
                             <li><a href="index.htm" style="color:#003366"><b>${cannotLogin}</b></a></li>
                         </c:if>
                         <li><form class="navbar-form navbar-right" id="login" method="POST" action="login.htm">
-                            <input type="email" class="form-control input-sm" name="email" placeform class="navbar-form navbar-right" id="login" method="POST" action="login.htm" holder="E-mail">
-                            <input type="password" class="form-control input-sm" name="password"placeholder="Password">
+                            <input type="email" class="form-control input-sm" name="email" placeholder="E-mail">
+                            <input type="password" class="form-control input-sm" name="password">
                             <button type="submit" class="btn btn-success btn-sm">Login</button>
                             <a href="registrationPage.htm" class="btn btn-warning btn-sm">Register</a>
                         </form></li>
