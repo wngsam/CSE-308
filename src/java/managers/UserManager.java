@@ -5,6 +5,7 @@
  */
 package managers;
 import dao.UserDAO;
+import domains.PaymentMethod;
 import domains.User;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -136,6 +137,13 @@ public class UserManager {
         
        // if(randomID==)
         return randomID;
+    }
+
+    public void addPaymentMethod(PaymentMethod paymentMethod, User user) {
+        paymentMethod.setId(123);
+        user.getPaymentMethods().add(paymentMethod);
+        
+    
     }
     
 }

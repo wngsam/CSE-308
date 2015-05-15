@@ -136,21 +136,50 @@ public class UserPageController {
         mv.addObject("user", session.getAttribute("currentPerson"));
         
         List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        boolean invalid = false;
+        
+        //Payment with same credit card num exists
         for (PaymentMethod method:payments) {
-            if (method.getCreditCardNum() == paymentMethod.getCreditCardNum()) {
-                mv.addObject("failure","dang");
-                
-                mv.addObject("payments", payments);
-                return mv;
+            if (method.getCreditCardNum().equals(paymentMethod.getCreditCardNum())) {
+                mv.addObject("failure","Payment method currently exists with the same credit card number.");
+                invalid = true;
             }
         }
-            
-            
-            paymentMethod.setId(123);
-            ((User)session.getAttribute("currentPerson")).getPaymentMethods().add(paymentMethod);
-       
-            mv.addObject("Success", "Success");
         
+        //Now we check for correct credentials
+        if (paymentMethod.getCreditCardNum().length() != 16 || 
+                !paymentMethod.getCreditCardNum().matches("[0-9]+")) {
+            mv.addObject("CCLengthFailure", "Invalid credit card.");
+            invalid = true;
+        }
+        if (paymentMethod.getCcv().length() != 3 || 
+                !paymentMethod.getCcv().matches("[0-9]+")) {
+            mv.addObject("InvalidCCV", "Invalid CCV.");
+            invalid = true;
+        }
+        if (paymentMethod.getZipCode().length() != 5 || 
+                !paymentMethod.getZipCode().matches("[0-9]+")) {
+            mv.addObject("InvalidZipcode", "Invalid Zipcode.");
+            invalid = true;
+        }
+       
+            
+        //There is something wrong with the payment method.    
+        if (invalid) {
+            mv.addObject("payments", payments);
+            return mv;
+        
+        }
+        
+        //Payment is valid!
+        
+            
+       
+            userManager.addPaymentMethod(paymentMethod,
+                    ((User)session.getAttribute("currentPerson"))
+                    );
+            
+            mv.addObject("Success", "Success");
             mv.addObject("payments", payments);
         return mv;
     }
@@ -158,7 +187,7 @@ public class UserPageController {
     
     public UserManager getUserManager() {
         return userManager;
-    }
+    } 
         
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;

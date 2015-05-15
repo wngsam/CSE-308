@@ -249,10 +249,10 @@ public class UserDAO {
                         paymentMethod.setUserId(rs.getInt("UserId"));
                         paymentMethod.setFirstName(rs.getString("FirstName"));
                         paymentMethod.setLastName(rs.getString("LastName"));
-                        paymentMethod.setCreditCardNum(rs.getInt("CreditCardNum"));
-                        paymentMethod.setCcv(rs.getInt("Ccv"));
+                        paymentMethod.setCreditCardNum(Integer.toString((rs.getInt("CreditCardNum"))));
+                        paymentMethod.setCcv(Integer.toString(rs.getInt("Ccv")));
                         paymentMethod.setAddress(rs.getString("Address"));
-                        paymentMethod.setZipCode(rs.getInt("Zipcode"));
+                        paymentMethod.setZipCode(Integer.toString(rs.getInt("Zipcode")));
                         if(rs.getByte("IsPreferred") == 1){
                             paymentMethod.setIsPreferred(true);
                         }else{
