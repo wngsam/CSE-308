@@ -123,7 +123,8 @@ public class Movie {
     }
 
     public void setPoster(String poster) {
-        this.poster = "assets\\img\\"+poster;
+        //this.poster = "assets\\img\\"+poster;
+        this.poster = poster;
     }
 
     public double getWeekendGross() {

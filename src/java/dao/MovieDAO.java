@@ -197,6 +197,7 @@ public class MovieDAO {
                         cal.setTime(rs.getDate("BirthDate"));
                         actor.setBirthDate(cal);
                         actor.setImdb(rs.getString("Imdb"));
+                        actor.setPicture(rs.getString("Picture"));
                         return actor;
                     }
                 }
