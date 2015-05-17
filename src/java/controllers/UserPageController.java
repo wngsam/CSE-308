@@ -37,7 +37,10 @@ public class UserPageController {
     @RequestMapping(value="/userpage", method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
-        mv.addObject("paymentMethod", new PaymentMethod());                
+        List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        
+        mv.addObject("paymentMethod", new PaymentMethod());             
+        mv.addObject("payments", payments);
         mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
@@ -108,17 +111,17 @@ public class UserPageController {
         List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
         for (PaymentMethod method:payments) {
             if (method.getId() == creditCardId) {
-                
+                userManager.deletePaymentMethod(creditCardId);
                 payments.remove(method);
                 mv.addObject("payments", payments);
                 
-                mv.addObject("delete", "dag");
+                mv.addObject("delete", "Deleted.");
         
                 return mv;
             }
         }
         
-        
+        //should never come here
         mv.addObject("payments", payments);
         
         
@@ -136,21 +139,47 @@ public class UserPageController {
         mv.addObject("user", session.getAttribute("currentPerson"));
         
         List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        boolean invalid = false;
+        
+        //Payment with same credit card num exists
         for (PaymentMethod method:payments) {
-            if (method.getCreditCardNum() == paymentMethod.getCreditCardNum()) {
-                mv.addObject("failure","dang");
-                
-                mv.addObject("payments", payments);
-                return mv;
+            if (method.getCreditCardNum().equals(paymentMethod.getCreditCardNum())) {
+                mv.addObject("failure","Payment method currently exists with the same credit card number.");
+                invalid = true;
             }
         }
-            
-            
-            paymentMethod.setId(123);
-            ((User)session.getAttribute("currentPerson")).getPaymentMethods().add(paymentMethod);
-       
-            mv.addObject("Success", "Success");
         
+        //Now we check for correct credentials
+        if (paymentMethod.getCreditCardNum().length() != 16 || 
+                !paymentMethod.getCreditCardNum().matches("[0-9]+")) {
+            mv.addObject("CCLengthFailure", "Invalid credit card.");
+            invalid = true;
+        }
+        if (paymentMethod.getCcv().length() != 3 || 
+                !paymentMethod.getCcv().matches("[0-9]+")) {
+            mv.addObject("InvalidCCV", "Invalid CCV.");
+            invalid = true;
+        }
+        if (paymentMethod.getZipCode().length() != 5 || 
+                !paymentMethod.getZipCode().matches("[0-9]+")) {
+            mv.addObject("InvalidZipcode", "Invalid Zipcode.");
+            invalid = true;
+        }
+       
+            
+        //There is something wrong with the payment method.    
+        if (invalid) {
+            mv.addObject("payments", payments);
+            return mv;
+        
+        }
+        
+        //Payment is valid!
+            User user = ((User)session.getAttribute("currentPerson"));
+            paymentMethod.setUserId(user.getId());
+            userManager.addPaymentMethod(paymentMethod, user);
+            user.getPaymentMethods().add(paymentMethod);
+            mv.addObject("Success", "Success");
             mv.addObject("payments", payments);
         return mv;
     }
@@ -158,7 +187,7 @@ public class UserPageController {
     
     public UserManager getUserManager() {
         return userManager;
-    }
+    } 
         
     public void setUserManager(UserManager userManager) {
         this.userManager = userManager;

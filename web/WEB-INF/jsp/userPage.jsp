@@ -205,17 +205,36 @@
                                         <br>
                                     </c:forEach>
                                     <c:if test="${empty payments}">
-                                        <h3>No payments saved.</h3>
+                                        <h3>No payment methods saved.</h3>
                                             <br>
                                     
                                     </c:if>
                                     <c:if test="${not empty Success}">
-                                            <h3>Successfully Saved.</h3>
+                                            <h3>Successfully saved payment method.</h3>
                                             <br>
                                     
                                     </c:if>
                                     <c:if test="${not empty failure}">
-                                            <h3>Failed to save payment method.</h3>
+                                            
+                                            <h3>${failure}</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty InvalidZipcode}">
+                                            
+                                            <h3>${InvalidZipcode}</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty CCLengthFailure}">
+                                            
+                                            <h3>${CCLengthFailure}</h3>
+                                            <br>
+                                    
+                                    </c:if>
+                                    <c:if test="${not empty InvalidCCV}">
+                                            
+                                            <h3>${InvalidCCV}</h3>
                                             <br>
                                     
                                     </c:if>
