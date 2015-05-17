@@ -37,7 +37,10 @@ public class UserPageController {
     @RequestMapping(value="/userpage", method=RequestMethod.GET)
     public ModelAndView viewUserPage(HttpSession session){
         ModelAndView mv = new ModelAndView("userPage");
-        mv.addObject("paymentMethod", new PaymentMethod());                
+        List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        
+        mv.addObject("paymentMethod", new PaymentMethod());             
+        mv.addObject("payments", payments);
         mv.addObject("user", session.getAttribute("currentPerson"));
         return mv;
     }
@@ -108,17 +111,17 @@ public class UserPageController {
         List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
         for (PaymentMethod method:payments) {
             if (method.getId() == creditCardId) {
-                
+                userManager.deletePaymentMethod(creditCardId);
                 payments.remove(method);
                 mv.addObject("payments", payments);
                 
-                mv.addObject("delete", "dag");
+                mv.addObject("delete", "Deleted.");
         
                 return mv;
             }
         }
         
-        
+        //should never come here
         mv.addObject("payments", payments);
         
         
@@ -172,13 +175,10 @@ public class UserPageController {
         }
         
         //Payment is valid!
-        
-            
-       
-            userManager.addPaymentMethod(paymentMethod,
-                    ((User)session.getAttribute("currentPerson"))
-                    );
-            
+            User user = ((User)session.getAttribute("currentPerson"));
+            paymentMethod.setUserId(user.getId());
+            userManager.addPaymentMethod(paymentMethod, user);
+            user.getPaymentMethods().add(paymentMethod);
             mv.addObject("Success", "Success");
             mv.addObject("payments", payments);
         return mv;

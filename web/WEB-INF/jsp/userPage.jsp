@@ -205,12 +205,12 @@
                                         <br>
                                     </c:forEach>
                                     <c:if test="${empty payments}">
-                                        <h3>No payments saved.</h3>
+                                        <h3>No payment methods saved.</h3>
                                             <br>
                                     
                                     </c:if>
                                     <c:if test="${not empty Success}">
-                                            <h3>Successfully Saved.</h3>
+                                            <h3>Successfully saved payment method.</h3>
                                             <br>
                                     
                                     </c:if>

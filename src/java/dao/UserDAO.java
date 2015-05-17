@@ -137,7 +137,7 @@ public class UserDAO {
                         user.setReviews(getUserReviews(userId));
                         List<PaymentMethod> paymentMethods = getPaymentMethodsByUserId(userId);
                         user.setPaymentMethods(paymentMethods);
-                        user.setTransactions(getUserTransactions(paymentMethods));
+                       // user.setTransactions(getUserTransactions(paymentMethods));
                         return user;
                     }
                 }
@@ -237,7 +237,7 @@ public class UserDAO {
     }
     
     public List<PaymentMethod> getPaymentMethodsByUserId(int userId){
-        String query = "SELECT * FROM paymentmethods"
+        String query = "SELECT * FROM yggdrasil.paymentmethods"
               + " WHERE UserId="+userId+";";
         List<PaymentMethod> paymentMethods = this.jdbcTemplate.query(
                 query,
@@ -249,11 +249,11 @@ public class UserDAO {
                         paymentMethod.setUserId(rs.getInt("UserId"));
                         paymentMethod.setFirstName(rs.getString("FirstName"));
                         paymentMethod.setLastName(rs.getString("LastName"));
-                        paymentMethod.setCreditCardNum(Integer.toString((rs.getInt("CreditCardNum"))));
-                        paymentMethod.setCcv(Integer.toString(rs.getInt("Ccv")));
+                        paymentMethod.setCreditCardNum((rs.getString("CreditCardNum")));
+                        paymentMethod.setCcv(rs.getString("Ccv"));
                         paymentMethod.setAddress(rs.getString("Address"));
-                        paymentMethod.setZipCode(Integer.toString(rs.getInt("Zipcode")));
-                        if(rs.getByte("IsPreferred") == 1){
+                        paymentMethod.setZipCode(rs.getString("Zipcode"));
+                        if(rs.getInt("IsPreferred") == 1){
                             paymentMethod.setIsPreferred(true);
                         }else{
                             paymentMethod.setIsPreferred(false);
@@ -326,5 +326,49 @@ public class UserDAO {
         );
         return title;
     }
+
+    public void addPaymentMethod(PaymentMethod paymentMethod, User user) {
+        
+        byte preferred = 0;
+        if (paymentMethod.getIsPreferred() == true) {
+            preferred = 1;
+            this.jdbcTemplate.update("update paymentmethods set IsPreferred = 0 where IsPreferred = 1 AND UserId = " + user.getId());
+        }
+        paymentMethod.setId(getMaxPaymentId());
+      
+        this.jdbcTemplate.update(
+        "INSERT INTO paymentmethods values (?,?,?,?,?,?,?,?,?)", 
+                paymentMethod.getId(),
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                paymentMethod.getCreditCardNum(),
+                paymentMethod.getCcv(),
+                paymentMethod.getAddress(),
+                paymentMethod.getZipCode(),
+                preferred);
+    }
+    public int getMaxPaymentId() {
+        String query = "SELECT MAX(PaymentMethodId) FROM yggdrasil.paymentmethods";
+            int idNum = this.jdbcTemplate.queryForObject(
+                query, new RowMapper<Integer>(){
+                    @Override
+                    public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                  
+                        return rs.getInt("MAX(PaymentMethodId)");
+                    }
+                }
+        );
+        if (idNum < 0)
+            return 0;
+        else {
+            return idNum+1;
+        }
+        
+    }
+
+    public void deletePaymentMethod(int creditCardId) {
+        this.jdbcTemplate.update("delete from paymentmethods where PaymentMethodId = " + creditCardId);
     
+    }
 }

@@ -140,10 +140,13 @@ public class UserManager {
     }
 
     public void addPaymentMethod(PaymentMethod paymentMethod, User user) {
-        paymentMethod.setId(123);
-        user.getPaymentMethods().add(paymentMethod);
         
+        userDAO.addPaymentMethod(paymentMethod, user);
     
+    }
+
+    public void deletePaymentMethod(int creditCardId) {
+        userDAO.deletePaymentMethod(creditCardId);
     }
     
 }

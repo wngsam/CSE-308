@@ -10,6 +10,7 @@ import managers.UserManager;
 import domains.User;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import managers.LocationManager;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,8 @@ public class LoginController {
                     HttpSession session) throws UnsupportedEncodingException, NoSuchAlgorithmException{        
         User user = userManager.authenticate(email, password); 
         ModelAndView mv = new ModelAndView("userPage");
-        mv.addObject("paymentMethod", new PaymentMethod());
+        
+        
         if(user!=null){
             session.setAttribute("currentPerson", user);
             if(user.getRole().equals("Admin")){
@@ -48,11 +50,16 @@ public class LoginController {
             else
             {
                 mv.addObject("user", user);   
+                List<PaymentMethod> payments = user.getPaymentMethods();
+                mv.addObject("paymentMethod", new PaymentMethod());
+                mv.addObject("payments", payments);
             }
         }else{
             mv = new ModelAndView("index");
             mv.addObject("cannotLogin", "Wrong Password or Email!");
         } 
+        
+        
         
         return mv;
     }
