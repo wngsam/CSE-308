@@ -135,9 +135,9 @@ public class UserDAO {
                         user.setFavoriteMovies(getFavMovies(userId));
                         user.setFavoriteTheaters(getFavTheaters(userId));
                         user.setReviews(getUserReviews(userId));
-                        List<PaymentMethod> paymentMethods = getPaymentMethodsByUserId(userId);
-                        user.setPaymentMethods(paymentMethods);
-                        user.setTransactions(getUserTransactions(paymentMethods));
+                        //List<PaymentMethod> paymentMethods = getPaymentMethodsByUserId(userId);
+                        //user.setPaymentMethods(paymentMethods);
+                        //user.setTransactions(getUserTransactions(paymentMethods));
                         return user;
                     }
                 }
