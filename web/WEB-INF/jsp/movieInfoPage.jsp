@@ -115,7 +115,7 @@
                         <c:if test ="${not empty currentMovie.cast}">
                         <c:forEach var="actor" items="${currentMovie.cast}" varStatus="count">
                             
-                            <img height="150" width="85" src="${actor.picture}">&nbsp;
+                            <img src="${actor.picture}" height="150" width="85">&nbsp;
                             <font size="4"><a href="http://www.imdb.com/name/${actor.imdb}"> ${actor.firstName} ${actor.lastName} </a></font>&nbsp;
                         
                         </c:forEach>
