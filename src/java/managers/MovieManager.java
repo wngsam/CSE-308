@@ -51,7 +51,7 @@ public class MovieManager {
         
         for(Schedule sch : scheduleList){
             moviesById.get(sch.getMovieId()).addSchedule(sch);
-            
+            sch.setMovieName(moviesById.get(sch.getMovieId()).getTitle());
             schedules.put(sch.getId(),sch);
             
         }

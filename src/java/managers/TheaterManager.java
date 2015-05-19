@@ -18,11 +18,17 @@ public class TheaterManager {
     
     private HashMap<String,Theater> theaters;
     private TheaterDAO theaterDAO;
+    private HashMap<Integer,Theater> theatersById;
     
     public TheaterManager(){
         theaters = new HashMap();
+        theatersById = new HashMap();
     }
 
+    public String getTheaterNameById(int id){
+        return theatersById.get(id).getName();
+    }
+    
     public TheaterDAO getTheaterDAO() {
         return theaterDAO;
     }
@@ -43,6 +49,7 @@ public class TheaterManager {
         List<Theater> theaterList = theaterDAO.update();
         for(Theater t : theaterList){
             theaters.put(t.getName(),t);
+            theatersById.put(t.getId(),t);
         }
         
     }

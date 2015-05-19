@@ -32,8 +32,33 @@
 <body role="document" >
     <jsp:include page="header.jsp" />
     
-    ${buysch}
-	
+    <c:if test="${not empty pstep}">
+        
+        <c:if test="${pstep eq 1}">
+            You are purchasing tickets for ${buysch.movieName} at ${buysch.theaterName} on ${buysch.getTime()} <br><br>
+            <form class="navbar-form navbar-center" method="POST" action="pay=${buysch.id}.htm"><div class="form-group">
+                Adults:&nbsp;&nbsp;
+                <input type="text" class="form-control input-sm" name="adult" placeholder="0"> &nbsp;&nbsp;x $12 Each<br><br>
+                Children:&nbsp;&nbsp;
+                <input type="text" class="form-control input-sm" name="child" placeholder="0"> &nbsp;&nbsp;x $9 Each<br><br>
+                Seniors:&nbsp;&nbsp;
+                <input type="text" class="form-control input-sm" name="senior" placeholder="0"> &nbsp;&nbsp;x $7 Each<br><br>
+                <button type="submit" class="btn btn-success">GO</button>
+            </div></form>
+        </c:if>
+    
+        <c:if test="${pstep eq 2}">
+            You are purchasing tickets for ${buysch.movieName} at ${buysch.theaterName} on ${buysch.getTime()} <br>
+            You have selected ${adult} adult tickets, ${child} children tickets, ${senior} senior tickets. <br><br>
+            Choose a Payment Method:
+        </c:if>
+    
+        <c:if test="${pstep eq 3}">
+            Thank you for purchasing! A confirmation will be sent to you with your unique code. Please redeem your tickets at the theater
+            with this code!
+        </c:if>
+        
+    </c:if>
     <jsp:include page="footer.jsp" />
 <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -7,6 +7,7 @@ package controllers;
 
 import domains.Movie;
 import domains.Review;
+import domains.Schedule;
 import domains.User;
 import java.util.List;
 import managers.MovieManager;
@@ -39,7 +40,22 @@ public class MovieInfoController {
     @RequestMapping(value="/buy={id}", method = RequestMethod.GET)
     public ModelAndView buy(@PathVariable("id") int id){
         ModelAndView mv = new ModelAndView("checkout");
+        Schedule sch = movieManager.getScheduleById(id);
+        //System.out.println(sch.getAMPM());
+        sch.setTheaterName(theaterManager.getTheaterNameById(sch.getTheaterId()));
+        mv.addObject("buysch", sch);
+        mv.addObject("pstep", 1); //1 = ticket page, 2 = payment page 3 = finished pg
+        return mv;
+    }
+    
+    @RequestMapping(value="/pay={id}", method = RequestMethod.POST)
+    public ModelAndView pay(@PathVariable("id") int id, @RequestParam(value = "adult") int adult, @RequestParam(value = "child") int ch, @RequestParam(value = "senior") int sr){
+        ModelAndView mv = new ModelAndView("checkout");
         mv.addObject("buysch", movieManager.getScheduleById(id));
+        mv.addObject("adult", adult); //need better way EDIT!
+        mv.addObject("child", ch);
+        mv.addObject("senior", sr);
+        mv.addObject("pstep", 2); //1 = ticket page, 2 = payment page 3 = finished pg
         return mv;
     }
      
