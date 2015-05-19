@@ -36,6 +36,12 @@ public class MovieInfoController {
      //  @RequestMapping(value="/movieInfoPage", method=RequestMethod.GET)
        // public ModelAndView viewMovieInfo(){
        
+    @RequestMapping(value="/buy={id}", method = RequestMethod.GET)
+    public ModelAndView buy(@PathVariable("id") int id){
+        ModelAndView mv = new ModelAndView("checkout");
+        mv.addObject("buysch", movieManager.getScheduleById(id));
+        return mv;
+    }
      
     @RequestMapping(value="{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle, HttpSession session) {
@@ -45,6 +51,14 @@ public class MovieInfoController {
         session.setAttribute("movieTitle", movieTitle);
         mv.addObject("currentMovie", currentMovie);
        
+        return mv;
+    }
+    
+    @RequestMapping(value="/location", method = RequestMethod.POST)
+    public ModelAndView zipcode(@RequestParam(value = "zipcode") int zip, HttpSession session){
+        ModelAndView mv = new ModelAndView("movieInfoPage");
+        mv.addObject("currentMovie", movieManager.getCurrentMovie((String)session.getAttribute("movieTitle")));
+        mv.addObject("ZIPC", zip);
         return mv;
     }
     

@@ -31,7 +31,7 @@ public class MovieManager {
     private ArrayList<Movie> comingSoon;
     private ArrayList<Movie> playingNow;
     private ArrayList<Movie> openingThisWeek;
-    private HashMap<Integer,List<Schedule>> schedules; //Map movie id to list of schedules //uselesss
+    private HashMap<Integer,Schedule> schedules; 
     
     public MovieManager() {
         movies = new HashMap();
@@ -40,28 +40,37 @@ public class MovieManager {
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
     }
-
+    
+    public Schedule getScheduleById(int id){
+        return schedules.get(id);
+    }
+    
     public void updateSchedule(){
-        //schedules = new HashMap();
+        schedules = new HashMap();
         List<Schedule> scheduleList = scheduleDAO.update();
         
         for(Schedule sch : scheduleList){
             moviesById.get(sch.getMovieId()).addSchedule(sch);
-            //if(!schedules.containsKey(sch.getId())){
-            //    schedules.put(sch.getId(), new ArrayList<Schedule>());
-            //}
             
-            //schedules.get(sch.getId()).add(sch);
+            schedules.put(sch.getId(),sch);
             
         }
         
     }
-    
-    public HashMap<Integer, List<Schedule>> getSchedules() {
+
+    public HashMap<Integer, Movie> getMoviesById() {
+        return moviesById;
+    }
+
+    public void setMoviesById(HashMap<Integer, Movie> moviesById) {
+        this.moviesById = moviesById;
+    }
+
+    public HashMap<Integer, Schedule> getSchedules() {
         return schedules;
     }
 
-    public void setSchedules(HashMap<Integer, List<Schedule>> schedules) {
+    public void setSchedules(HashMap<Integer, Schedule> schedules) {
         this.schedules = schedules;
     }
     

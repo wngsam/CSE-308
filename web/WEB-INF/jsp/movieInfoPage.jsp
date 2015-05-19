@@ -75,10 +75,15 @@
                        <td align="left" colspan=2> 
                            <hr>
                            <font size="5">Tell us where you are</font><br>
-                            Looking for movie tickets? Enter your location to see which movie theaters are playing Chappie near you.<br><br>
-			    ENTER ZIP OR CITY, STATE
-                            <form class="navbar-form navbar-center"><div class="form-group">
-				<input type="ENTER ZIP OR CITY, STATE" placeholder="City, State or Zip Code" class="form-control"><button type="GO" class="btn btn-success">GO</button>
+                            Looking for movie tickets? Enter your location to see which movie theaters are playing ${currentMovie.title} near you.<br><br>
+                            ENTER YOUR ZIPCODE<br>
+                            <c:if test="${not empty ZIPC}">
+                                Your zipcode currently is: ${ZIPC}
+                            </c:if>
+                            <form class="navbar-form navbar-center" method="POST" action="location.htm">
+                                <div class="form-group">
+				<input type="text" class="form-control input-sm" name="zipcode" placeholder="Zipcode">
+                                <button type="submit" class="btn btn-success">GO</button>
                                 </div></form>
                             <hr>
 			</td>                
@@ -89,7 +94,7 @@
                            
                            <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
                                <c:if test="${sch.theaterId eq 1}">
-                               <a href="#" class="btn btn-primary">${sch.getTime()}
+                               <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}
                                    <c:if test="${sch.AMPM == 0}"> AM</c:if>
                                    <c:if test="${sch.AMPM == 1}"> PM</c:if>
                                </a>
