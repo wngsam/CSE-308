@@ -197,11 +197,21 @@
                                     
                                     <c:forEach var="listVar" items="${payments}">     
                                         <h3>    
-                                        <center><p>${listVar.creditCardNum}</p></center>
+                                        
+                                        <center><p>Card Holder Name: ${listVar.firstName} ${listVar.lastName}</p></center>
+                                        <center><p>Credit Card #: ${listVar.creditCardNum}</p></center>
+                                        <center><p>CCV: ${listVar.ccv}</p></center>
+                                        <center><p>Address: ${listVar.address}</p></center>
+                                        <center><p>Zipcode: ${listVar.zipCode}</p></center>
+                                        <center><p>Preferred?: ${listVar.isPreferred}</p></center>
+                                        </h3>
+                                        <h4>
                                         <center><a href="edit=${listVar.id}.htm"><p>Edit Payment Method</p></a></center>
                                         <center><a href="delete=${listVar.id}.htm"><p>Delete Payment Method</p></a></center>
+                                        <c:if test="${listVar.isPreferred eq false}">
                                         <center><a href="preferred=${listVar.id}.htm"><p>Set As Preferred</p></a></center>
-                                        </h3>
+                                        </c:if>
+                                        </h4>
                                         <br>
                                     </c:forEach>
                                     <c:if test="${empty payments}">

@@ -137,6 +137,12 @@ public class UserDAO {
                         user.setReviews(getUserReviews(userId));
                         List<PaymentMethod> paymentMethods = getPaymentMethodsByUserId(userId);
                         user.setPaymentMethods(paymentMethods);
+                        for (PaymentMethod md: paymentMethods) {
+                            if (md.getIsPreferred()) {
+                                user.setPreferredPaymentMethod(md);
+                             
+                            }
+                        }
                        // user.setTransactions(getUserTransactions(paymentMethods));
                         return user;
                     }
@@ -369,6 +375,14 @@ public class UserDAO {
 
     public void deletePaymentMethod(int creditCardId) {
         this.jdbcTemplate.update("delete from paymentmethods where PaymentMethodId = " + creditCardId);
+    
+    }
+
+    public void setPreferredPaymentMethod(int creditCardId) {
+        this.jdbcTemplate.update("update paymentmethods set IsPreferred = 0 "
+                + "where IsPreferred = 1 AND UserId = " + creditCardId);
+        this.jdbcTemplate.update("update paymentmethods set IsPreferred = 1 "
+                + "where PaymentMethodId = " + creditCardId);
     
     }
 }
