@@ -121,6 +121,7 @@ public class MovieInfoController {
     public void setMovieManager(MovieManager movieManager) {
         this.movieManager = movieManager;
         movieManager.updateMovies();
+        movieManager.updateSchedule();
     }
 
     public TheaterManager getTheaterManager() {

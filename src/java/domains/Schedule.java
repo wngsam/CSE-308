@@ -17,8 +17,21 @@ public class Schedule {
     private int movieId;
     private int theaterId;
     private GregorianCalendar showTime;
+    private int AMPM;
     private int capacity;
 
+    public String getTime(){
+        return showTime.get(Calendar.HOUR)+":00";
+    }
+
+    public int getAMPM() {
+        return AMPM;
+    }
+
+    public void setAMPM(int AMPM) {
+        this.AMPM = AMPM;
+    }
+    
     public int getId() {
         return id;
     }
@@ -49,6 +62,7 @@ public class Schedule {
 
     public void setShowTime(GregorianCalendar showTime) {
         this.showTime = showTime;
+        AMPM = showTime.get(Calendar.AM_PM); //0 = am, 1 = pm
     }
 
     public int getCapacity() {

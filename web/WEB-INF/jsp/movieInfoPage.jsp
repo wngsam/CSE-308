@@ -86,13 +86,15 @@
                    
                     <tr>
                        <td colspan=2>
-                           <a href="#" class="btn btn-primary">10:30am</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">1:00pmy</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">3:30pm</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">6:30pm</a>&nbsp;&nbsp;
-                           <br><br>
-                           <a href="#" class="btn btn-primary">9:00pm</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">11:00pm</a>
+                           
+                           
+                           <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
+                               <a href="#" class="btn btn-primary">${sch.getTime()}
+                                   <c:if test="${sch.AMPM == 0}"> AM</c:if>
+                                   <c:if test="${sch.AMPM == 1}"> PM</c:if>
+                               </a>&nbsp;&nbsp;
+                           </c:forEach>
+                           
                        </td>                          
                     </tr>
                    

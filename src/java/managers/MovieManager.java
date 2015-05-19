@@ -26,11 +26,12 @@ public class MovieManager {
     private MovieDAO movieDAO;
     private ScheduleDAO scheduleDAO;
     private HashMap<String,Movie> movies;
+    private HashMap<Integer,Movie> moviesById;
     private ArrayList<Movie> topBoxOffice;
     private ArrayList<Movie> comingSoon;
     private ArrayList<Movie> playingNow;
     private ArrayList<Movie> openingThisWeek;
-    private HashMap<Integer,List<Schedule>> schedules; //Map movie id to list of schedules
+    private HashMap<Integer,List<Schedule>> schedules; //Map movie id to list of schedules //uselesss
     
     public MovieManager() {
         movies = new HashMap();
@@ -41,9 +42,18 @@ public class MovieManager {
     }
 
     public void updateSchedule(){
+        //schedules = new HashMap();
         List<Schedule> scheduleList = scheduleDAO.update();
         
-        
+        for(Schedule sch : scheduleList){
+            moviesById.get(sch.getMovieId()).addSchedule(sch);
+            //if(!schedules.containsKey(sch.getId())){
+            //    schedules.put(sch.getId(), new ArrayList<Schedule>());
+            //}
+            
+            //schedules.get(sch.getId()).add(sch);
+            
+        }
         
     }
     
@@ -124,10 +134,12 @@ public class MovieManager {
     
     public void updateMovies(){
         movies = new HashMap();
+        moviesById = new HashMap();
         List<Movie> moviesList = movieDAO.update();
         
         for(Movie m : moviesList){
             movies.put(m.getTitle(),m);
+            moviesById.put(m.getId(),m);
             topBoxOffice.add(m);
             comingSoon.add(m);
         }

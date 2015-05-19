@@ -8,6 +8,7 @@ package dao;
 import domains.Schedule;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.sql.DataSource;
@@ -37,7 +38,8 @@ public class ScheduleDAO {
                         sch.setMovieId(rs.getInt("MovieId"));
                         sch.setTheaterId(rs.getInt("TheaterId"));
                         GregorianCalendar cal = new GregorianCalendar();
-                        //PUT TIME IN
+                        cal.setTime(rs.getTimestamp("ShowTime"));
+                        //System.out.println(cal.get(Calendar.HOUR)+" "+cal.get(Calendar.AM_PM));
                         sch.setShowTime(cal);
                         sch.setCapacity(rs.getInt("Capacity"));
                         return sch;
