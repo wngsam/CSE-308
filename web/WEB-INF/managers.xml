@@ -25,6 +25,9 @@
         <property name="movieDAO">
             <ref bean ="movieDAO"></ref>
         </property>
+        <property name="scheduleDAO">
+            <ref bean ="scheduleDAO"></ref>
+        </property>
     </bean>
     
     <bean id="offerManager" class="managers.OfferManager">
@@ -33,7 +36,11 @@
         </property>
     </bean>
     
-    <bean id="theaterManager" class="managers.TheaterManager"></bean>
+    <bean id="theaterManager" class="managers.TheaterManager">
+        <property name="theaterDAO">
+            <ref bean ="theaterDAO"></ref>
+        </property>
+    </bean>
     
     <bean id="userManager" class="managers.UserManager">
         <property name="userDAO">

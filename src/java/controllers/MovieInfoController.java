@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
+import managers.TheaterManager;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MovieInfoController {
     
      private MovieManager movieManager;
+     private TheaterManager theaterManager;
 
   
      //  @RequestMapping(value="/movieInfoPage", method=RequestMethod.GET)
@@ -120,6 +122,16 @@ public class MovieInfoController {
         this.movieManager = movieManager;
         movieManager.updateMovies();
     }
+
+    public TheaterManager getTheaterManager() {
+        return theaterManager;
+    }
+
+    public void setTheaterManager(TheaterManager theaterManager) {
+        this.theaterManager = theaterManager;
+        theaterManager.updateTheaters();
+    }
+    
     
     
 }

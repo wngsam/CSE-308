@@ -32,6 +32,9 @@
         <property name="movieManager">
             <ref bean ="movieManager"></ref>
         </property>
+        <property name="theaterManager">
+            <ref bean ="theaterManager"></ref>
+        </property>
     </bean>
     
     <bean id="movieListController" class="controllers.MovieListController">

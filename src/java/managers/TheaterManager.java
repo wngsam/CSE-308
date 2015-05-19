@@ -5,8 +5,10 @@
  */
 package managers;
 
+import dao.TheaterDAO;
 import domains.Theater;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -15,18 +17,18 @@ import java.util.HashMap;
 public class TheaterManager {
     
     private HashMap<String,Theater> theaters;
+    private TheaterDAO theaterDAO;
     
     public TheaterManager(){
         theaters = new HashMap();
     }
-    
-    public void createTestTheaters(){
-        Theater theaterOne = new Theater();
-        Theater theaterTwo = new Theater();
-        Theater theaterThree = new Theater();
-        theaters.put(theaterOne.getName(), theaterOne);
-        theaters.put(theaterTwo.getName(), theaterTwo);
-        theaters.put(theaterThree.getName(), theaterThree);
+
+    public TheaterDAO getTheaterDAO() {
+        return theaterDAO;
+    }
+
+    public void setTheaterDAO(TheaterDAO theaterDAO) {
+        this.theaterDAO = theaterDAO;
     }
 
     public HashMap<String, Theater> getTheaters() {
@@ -37,6 +39,12 @@ public class TheaterManager {
         this.theaters = theaters;
     }
     
-    
+    public void updateTheaters(){
+        List<Theater> theaterList = theaterDAO.update();
+        for(Theater t : theaterList){
+            theaters.put(t.getName(),t);
+        }
+        
+    }
     
 }

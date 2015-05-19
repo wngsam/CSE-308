@@ -6,8 +6,10 @@
 package managers;
 
 import dao.MovieDAO;
+import dao.ScheduleDAO;
 import domains.Movie;
 import domains.Review;
+import domains.Schedule;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,11 +24,13 @@ import java.util.List;
 public class MovieManager {
     
     private MovieDAO movieDAO;
+    private ScheduleDAO scheduleDAO;
     private HashMap<String,Movie> movies;
     private ArrayList<Movie> topBoxOffice;
     private ArrayList<Movie> comingSoon;
     private ArrayList<Movie> playingNow;
     private ArrayList<Movie> openingThisWeek;
+    private HashMap<Integer,List<Schedule>> schedules; //Map movie id to list of schedules
     
     public MovieManager() {
         movies = new HashMap();
@@ -34,6 +38,29 @@ public class MovieManager {
         comingSoon = new ArrayList();
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
+    }
+
+    public void updateSchedule(){
+        List<Schedule> scheduleList = scheduleDAO.update();
+        
+        
+        
+    }
+    
+    public HashMap<Integer, List<Schedule>> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(HashMap<Integer, List<Schedule>> schedules) {
+        this.schedules = schedules;
+    }
+    
+    public ScheduleDAO getScheduleDAO() {
+        return scheduleDAO;
+    }
+
+    public void setScheduleDAO(ScheduleDAO scheduleDAO) {
+        this.scheduleDAO = scheduleDAO;
     }
     
     public MovieDAO getMovieDAO() {

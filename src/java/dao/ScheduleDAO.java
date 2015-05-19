@@ -5,10 +5,46 @@
  */
 package dao;
 
+import domains.Schedule;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.GregorianCalendar;
+import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
 /**
  *
  * @author Desktop
  */
 public class ScheduleDAO {
+    
+    private JdbcTemplate jdbcTemplate;
+
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+    
+    public List<Schedule> update(){
+        List<Schedule> schedules = this.jdbcTemplate.query(
+                "SELECT * FROM showtimes;",
+                new RowMapper<Schedule>(){
+                    @Override
+                    public Schedule mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Schedule sch = new Schedule();
+                        sch.setId(rs.getInt("ShowTimeId"));
+                        sch.setMovieId(rs.getInt("MovieId"));
+                        sch.setTheaterId(rs.getInt("TheaterId"));
+                        GregorianCalendar cal = new GregorianCalendar();
+                        //PUT TIME IN
+                        sch.setShowTime(cal);
+                        sch.setCapacity(rs.getInt("Capacity"));
+                        return sch;
+                    }
+                }
+        );
+        return schedules;
+    }
     
 }
