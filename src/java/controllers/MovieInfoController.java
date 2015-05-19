@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.servlet.http.HttpSession;
+import managers.TheaterManager;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class MovieInfoController {
     
      private MovieManager movieManager;
+     private TheaterManager theaterManager;
 
   
      //  @RequestMapping(value="/movieInfoPage", method=RequestMethod.GET)
        // public ModelAndView viewMovieInfo(){
        
+    @RequestMapping(value="/buy={id}", method = RequestMethod.GET)
+    public ModelAndView buy(@PathVariable("id") int id){
+        ModelAndView mv = new ModelAndView("checkout");
+        mv.addObject("buysch", movieManager.getScheduleById(id));
+        return mv;
+    }
      
     @RequestMapping(value="{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle, HttpSession session) {
@@ -43,6 +51,14 @@ public class MovieInfoController {
         session.setAttribute("movieTitle", movieTitle);
         mv.addObject("currentMovie", currentMovie);
        
+        return mv;
+    }
+    
+    @RequestMapping(value="/location", method = RequestMethod.POST)
+    public ModelAndView zipcode(@RequestParam(value = "zipcode") int zip, HttpSession session){
+        ModelAndView mv = new ModelAndView("movieInfoPage");
+        mv.addObject("currentMovie", movieManager.getCurrentMovie((String)session.getAttribute("movieTitle")));
+        mv.addObject("ZIPC", zip);
         return mv;
     }
     
@@ -119,7 +135,18 @@ public class MovieInfoController {
     public void setMovieManager(MovieManager movieManager) {
         this.movieManager = movieManager;
         movieManager.updateMovies();
+        movieManager.updateSchedule();
     }
+
+    public TheaterManager getTheaterManager() {
+        return theaterManager;
+    }
+
+    public void setTheaterManager(TheaterManager theaterManager) {
+        this.theaterManager = theaterManager;
+        theaterManager.updateTheaters();
+    }
+    
     
     
 }

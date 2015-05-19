@@ -35,4 +35,12 @@
         <property name="dataSource" ref="springDataSource"/>
     </bean>
     
+    <bean id="theaterDAO" class="dao.TheaterDAO">
+        <property name="dataSource" ref="springDataSource"/>
+    </bean>
+    
+    <bean id="scheduleDAO" class="dao.ScheduleDAO">
+        <property name="dataSource" ref="springDataSource"/>
+    </bean>
+    
 </beans>

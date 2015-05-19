@@ -6,8 +6,10 @@
 package managers;
 
 import dao.MovieDAO;
+import dao.ScheduleDAO;
 import domains.Movie;
 import domains.Review;
+import domains.Schedule;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,11 +24,14 @@ import java.util.List;
 public class MovieManager {
     
     private MovieDAO movieDAO;
+    private ScheduleDAO scheduleDAO;
     private HashMap<String,Movie> movies;
+    private HashMap<Integer,Movie> moviesById;
     private ArrayList<Movie> topBoxOffice;
     private ArrayList<Movie> comingSoon;
     private ArrayList<Movie> playingNow;
     private ArrayList<Movie> openingThisWeek;
+    private HashMap<Integer,Schedule> schedules; 
     
     public MovieManager() {
         movies = new HashMap();
@@ -34,6 +39,47 @@ public class MovieManager {
         comingSoon = new ArrayList();
         playingNow = new ArrayList();
         openingThisWeek = new ArrayList();
+    }
+    
+    public Schedule getScheduleById(int id){
+        return schedules.get(id);
+    }
+    
+    public void updateSchedule(){
+        schedules = new HashMap();
+        List<Schedule> scheduleList = scheduleDAO.update();
+        
+        for(Schedule sch : scheduleList){
+            moviesById.get(sch.getMovieId()).addSchedule(sch);
+            
+            schedules.put(sch.getId(),sch);
+            
+        }
+        
+    }
+
+    public HashMap<Integer, Movie> getMoviesById() {
+        return moviesById;
+    }
+
+    public void setMoviesById(HashMap<Integer, Movie> moviesById) {
+        this.moviesById = moviesById;
+    }
+
+    public HashMap<Integer, Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(HashMap<Integer, Schedule> schedules) {
+        this.schedules = schedules;
+    }
+    
+    public ScheduleDAO getScheduleDAO() {
+        return scheduleDAO;
+    }
+
+    public void setScheduleDAO(ScheduleDAO scheduleDAO) {
+        this.scheduleDAO = scheduleDAO;
     }
     
     public MovieDAO getMovieDAO() {
@@ -97,10 +143,12 @@ public class MovieManager {
     
     public void updateMovies(){
         movies = new HashMap();
+        moviesById = new HashMap();
         List<Movie> moviesList = movieDAO.update();
         
         for(Movie m : moviesList){
             movies.put(m.getTitle(),m);
+            moviesById.put(m.getId(),m);
             topBoxOffice.add(m);
             comingSoon.add(m);
         }
