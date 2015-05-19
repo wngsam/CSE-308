@@ -21,7 +21,13 @@ public class Schedule {
     private int capacity;
 
     public String getTime(){
-        return showTime.get(Calendar.HOUR)+":00";
+        String s = "";
+        if(showTime.get(Calendar.HOUR)==0){
+            s+="12";
+        }else{
+            s+="0"+showTime.get(Calendar.HOUR);
+        }
+        return s+":00";
     }
 
     public int getAMPM() {
