@@ -80,6 +80,7 @@
                             <c:if test="${not empty ZIPC}">
                                 Your zipcode currently is: ${ZIPC}
                             </c:if>
+                            
                             <form class="navbar-form navbar-center" method="POST" action="location.htm">
                                 <div class="form-group">
 				<input type="text" class="form-control input-sm" name="zipcode" placeholder="Zipcode">
@@ -88,20 +89,33 @@
                             <hr>
 			</td>                
                     </tr>
-                   
+                    
+                    <c:if test="${empty nearbytheaters}">
+                        <tr><td colspan=2>No theater is playing ${currentMovie.title} near you!
+                        ${currentMovie.schedules.get(0).theaterName}<br><br>
+                        <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
+                               <c:if test="${sch.theaterId eq currentMovie.schedules.get(0).theaterId}">
+                               <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}
+                               </a>
+                               </c:if>
+                        </c:forEach>
+                        </td></tr>
+                    </c:if>
+                        
+                    <c:if test="${not empty nearbytheaters}">
                     <tr>
                        <td colspan=2>
                            
                            <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
                                <c:if test="${sch.theaterId eq 1}">
-                               <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}
-                               </a>
+                               <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}</a>
                                </c:if>
                            </c:forEach>
                            
                        </td>                          
                     </tr>
-                   
+                    </c:if>
+                    
                     <tr><td><br></td></tr>                   
                </table>
             </td>

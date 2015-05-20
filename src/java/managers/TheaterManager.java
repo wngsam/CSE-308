@@ -72,7 +72,7 @@ public class TheaterManager {
                 distance = distance(base[0], base[1], t.getLatitude(), t.getLongitude(), 'm');
 
                 System.out.println("Distance from " + zipcode + " to " + t.getName() + " is " + distance + " miles.");
-                if (distance <= 5) {
+                if (distance <= 30) {
                     theatersInRange.add(t);
                 }
             } catch (Exception ex) {

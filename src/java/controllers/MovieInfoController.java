@@ -9,6 +9,7 @@ import domains.Movie;
 import domains.PaymentMethod;
 import domains.Review;
 import domains.Schedule;
+import domains.Theater;
 import domains.Transaction;
 import domains.User;
 import java.util.List;
@@ -140,7 +141,9 @@ public class MovieInfoController {
         Movie currentMovie = movieManager.getCurrentMovie(movieTitle);
         session.setAttribute("movieTitle", movieTitle);
         mv.addObject("currentMovie", currentMovie);
-       
+//        if(session.getAttribute("ZIPC")!=null){
+//            session.setAttribute("nearbytheaters",theaterManager.findNearbyTheaters((int)session.getAttribute("ZIPC")));
+//        }
         return mv;
     }
     
@@ -148,7 +151,11 @@ public class MovieInfoController {
     public ModelAndView zipcode(@RequestParam(value = "zipcode") int zip, HttpSession session){
         ModelAndView mv = new ModelAndView("movieInfoPage");
         mv.addObject("currentMovie", movieManager.getCurrentMovie((String)session.getAttribute("movieTitle")));
-        mv.addObject("ZIPC", zip);
+        session.setAttribute("ZIPC", zip);
+//        List<Theater> theaters = theaterManager.findNearbyTheaters((int)session.getAttribute("ZIPC"));
+//        if(theaters!=null && !theaters.isEmpty()){
+//            session.setAttribute("nearbytheaters",theaters);
+//        }
         return mv;
     }
     
@@ -170,6 +177,7 @@ public class MovieInfoController {
         }
         
         mv.addObject("currentMovie", currentMovie);
+        
         return mv;
     }
     
