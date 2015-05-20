@@ -33,6 +33,7 @@
     <jsp:include page="header.jsp" />
     <c:if test="${not empty currentPerson}">
     <c:if test="${rstep == 1}">
+        ${wrongT}<br>
         Enter your transaction code to get a refund, this cannot be undone. <br><br>
         <form class="container-fluid" method="POST" action="refund.htm"><div class="form-group">
             <input type="text" class="form-control input-sm" name="code" placeholder="Transaction Code">

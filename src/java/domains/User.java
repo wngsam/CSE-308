@@ -35,10 +35,14 @@ public class User implements Serializable{
     }
     
     public Transaction findT(int id){
+        if(transactions!=null && !transactions.isEmpty()){
         for(Transaction t : transactions){
+            System.out.println("T SIZE: "+transactions.size());
+            //System.out.println("T ID: "+t.getId());
             if(t.getId()==id){
                 return t;
             }
+        }
         }
         return null;
     }

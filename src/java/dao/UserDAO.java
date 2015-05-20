@@ -222,6 +222,7 @@ public class UserDAO {
                     public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
                         Transaction transaction = new Transaction();
                         transaction.setId(rs.getInt("TransactionId"));
+                        //System.out.println("TID: "+transaction.getId());
                         transaction.setQuantity(rs.getInt("Quantity"));
                         transaction.setCost(rs.getBigDecimal("Cost").doubleValue());
                         GregorianCalendar cal = new GregorianCalendar();
@@ -230,7 +231,7 @@ public class UserDAO {
                         //int showTimeId = rs.getInt("ShowTimeId");
                         //transaction.setTheater(getTheaterName(showTimeId));
                         //transaction.setMovie(getMovieTitle(showTimeId));
-                        transaction.setSchedule(getShowtime(rs.getInt("ShowTimeId")));
+                        /////transaction.setSchedule(getShowtime(rs.getInt("ShowTimeId")));
                         return transaction;
                     }
                 }

@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import domains.Transaction;
 import domains.User;
 import javax.servlet.http.HttpSession;
 import managers.MovieManager;
@@ -40,10 +41,16 @@ public class IndexController {
     @RequestMapping(value="/refund", method = RequestMethod.POST)
     public ModelAndView processRefund(@RequestParam("code") int code, HttpSession session){
         ModelAndView mv = new ModelAndView("refund");
-        //User user = (User) session.getAttribute("currentPerson");
-        //mv.addObject("t",user.findT(code));
-        //MARK TRANSACTION
-        mv.addObject("rstep",2);
+//        User user = (User) session.getAttribute("currentPerson");
+//        Transaction t = user.findT(code);
+//        if(t!=null){
+//            mv.addObject("t",t);
+//            //MARK TRANSACTION
+//            mv.addObject("rstep",2);
+//        }else{
+            mv.addObject("wrongT","INVALID CODE");
+            mv.addObject("rstep",1);
+        //}
         return mv;
     }
     
