@@ -25,6 +25,14 @@
     <link href="assets/css/nav_style.css" rel="stylesheet" media="screen">
     <link href="assets/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="assets/css/footer_style.css" rel="stylesheet" media="screen">
+    <style>
+    .specialColor { 
+    padding: 5px;
+    color: #000;
+    font-size: 12px;
+    background: transparent;
+    -webkit-appearance: none;
+    }</style>
   </head>
 <!-- /HEADER -->
   
@@ -40,7 +48,9 @@
             <input type="hidden" name="searchParameter" value="${searchParameter}">
          </div>
          <select name="genre" id="myselect" onchange="this.form.submit()">
-             <option class="specialColor" value="All">All</option>
+              <option class="specialColor" value="All">All</option>
+             <option class="specialColor" value="Drama">Drama</option>
+             <option class="specialColor" value="Adventure">Adventure</option>
              <option class="specialColor" value="Action">Action</option>
              <option class="specialColor" value="Comedy">Comedy</option>
              <option class="specialColor" value="Romance">Romance</option>
@@ -51,28 +61,29 @@
              <option class="specialColor" value="Western">Western</option>
              <option class="specialColor" value="Thriller">Thriller</option>
              <option class="specialColor" value="History">History</option>
-             <option class="specialColor" value="Science">Science</option>
-             <option class="specialColor" value="Adventure">Adventure</option>    
+             <option class="specialColor" value="Sci-Fi">Sci-Fi</option>
+             <option class="specialColor" value="Fantasy">Fantasy</option>
+             <option class="specialColor" value="War">War</option>    
          </select>
      </form>
 
-     <table>
+     <table width="1000px" >
         <tr>
             <td>
                 <br><p class="text-warning" style="font-size:20px; font-weight: bold;">Movie List</p><br>
             </td>
         </tr>
-        <tr>
-            <c:forEach items="${resultMovieList}" varStatus="status" var="listVar">     
+        <c:forEach items="${resultMovieList}" varStatus="status" var="listVar">
+            <c:if test="${status.index % 5 == 0 }"><tr></c:if>     
                 <td>    
                     <div class="col-xs-6 col-lg-3">
                         <center><p><a href="${listVar.title}.htm"></p>
-                                    <img src="${listVar.poster}" width="145" height="220"></a><br>
+                                    <img src="${listVar.poster}" width="145" height="220"></a>
                             <fmt:formatDate type="Date" dateStyle="Long" value="${listVar.releaseDate.time}"></fmt:formatDate></center>
                     </div>
-                </td>    
-            </c:forEach>        
-        </tr>
+                </td>                        
+            <c:if test="${status.count % 5 == 0}"></tr></c:if>
+        </c:forEach>
         <tr>
             <td>
                 <br><p class="text-warning" style="font-size:20px; font-weight: bold;">Theater List</p><br>
