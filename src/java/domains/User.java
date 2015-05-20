@@ -76,6 +76,9 @@ public class User implements Serializable{
     }
 
     public List<Transaction> getTransactions() {
+        if(transactions==null){
+            transactions= new ArrayList();
+        }
         return transactions;
     }
 
