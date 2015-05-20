@@ -173,6 +173,14 @@ public class MovieInfoController {
         return mv;
     }
     
+    @RequestMapping(value="/nearby", method = RequestMethod.GET)
+    public ModelAndView allNearbyTheaters(HttpSession session){
+        ModelAndView mv = new ModelAndView("nearbyTheaters");
+        String movieTitle = (String)session.getAttribute("movieTitle");
+        mv.addObject("currentMovie",movieManager.getCurrentMovie(movieTitle));
+        return mv;
+    }
+    
     @RequestMapping(value="/star={num}", method = RequestMethod.GET)
     public ModelAndView star(@PathVariable("num") int num, HttpSession session){
         ModelAndView mv = new ModelAndView("movieInfoPage");

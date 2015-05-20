@@ -106,13 +106,15 @@
                     <tr>
                        <td colspan=2>
                            ${nearbytheaters.get(0).name}<br><br>
+                           ${nearbytheaters.get(0).address}<br><br>
+                           ${nearbytheaters.get(0).phone}<br><br>
                            <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
                                <c:if test="${sch.theaterId eq nearbytheaters.get(0).id}">
                                    
                                <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}</a>
                                </c:if>
                            </c:forEach>
-                           
+                               <br><br><a href="nearby.htm">View all nearby theaters that play ${currentMovie.title}.</a>
                        </td>                          
                     </tr>
                     </c:if>
