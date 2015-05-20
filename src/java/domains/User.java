@@ -34,6 +34,15 @@ public class User implements Serializable{
         
     }
 
+    public PaymentMethod findPM(int id){
+        for(PaymentMethod pm : paymentMethods){
+            if(pm.getId()==id){
+                return pm;
+            }
+        }
+        return null;
+    }
+    
     public List<String> getFavoriteMovies() {
         return favoriteMovies;
     }

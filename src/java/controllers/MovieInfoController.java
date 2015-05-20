@@ -6,8 +6,10 @@
 package controllers;
 
 import domains.Movie;
+import domains.PaymentMethod;
 import domains.Review;
 import domains.Schedule;
+import domains.Transaction;
 import domains.User;
 import java.util.List;
 import managers.MovieManager;
@@ -55,10 +57,61 @@ public class MovieInfoController {
         mv.addObject("adult", adult); //need better way EDIT!
         mv.addObject("child", ch);
         mv.addObject("senior", sr);
+        int total = (adult*12+ch*9+sr*7);
+        mv.addObject("tickets", (adult+ch+sr));
+        mv.addObject("totalCost",total);
+        mv.addObject("paymentmethod", new PaymentMethod());
         mv.addObject("pstep", 2); //1 = ticket page, 2 = payment page 3 = finished pg
         return mv;
     }
-     
+    
+    @RequestMapping(value="/postcheckout={stuff}", method = RequestMethod.POST)
+    public ModelAndView checkout(@PathVariable("stuff") String stuff, @RequestParam(value = "email") String email, @RequestParam(value = "firstname") String firstname,
+    @RequestParam(value = "lastname") String lastname, @RequestParam(value = "ccn") String ccn, @RequestParam(value = "ccv") String ccv,
+            @RequestParam(value = "address") String address, HttpSession session){
+        
+        ModelAndView mv = new ModelAndView("checkout");
+        PaymentMethod guest = new PaymentMethod((int )(Math.random() * 100 + 100),0,firstname,lastname,ccn,ccv,address,"",false);
+        String[] s = stuff.split(",");
+        Transaction guestTransc = new Transaction((int )(Math.random() * 10000 + 1111989),
+        Integer.parseInt(s[1]), Integer.parseInt(s[2]),guest,movieManager.getScheduleById(Integer.parseInt(s[0])));
+        System.out.println(guestTransc.getId());
+        mv.addObject("bill",guestTransc);
+        
+        mv.addObject("pstep", 3); //1 = ticket page, 2 = payment page 3 = finished pg
+        return mv;
+    }
+    
+    @RequestMapping(value="/usercheckout={stuff}", method = RequestMethod.POST)
+    public ModelAndView usercheckout(@PathVariable("stuff") String stuff, HttpSession session, @ModelAttribute("paymentmethod") PaymentMethod pm){
+        
+        ModelAndView mv = new ModelAndView("checkout");
+        String[] s = stuff.split(",");
+        User user = (User) session.getAttribute("currentPerson");
+        pm.setId((int )(Math.random() * 100 + 100));
+        pm.setUserId(user.getId());
+        Transaction transc = new Transaction((int )(Math.random() * 10000 + 1111989),
+        Integer.parseInt(s[1]), Integer.parseInt(s[2]),pm,movieManager.getScheduleById(Integer.parseInt(s[0])));
+        mv.addObject("bill",transc);
+        
+        mv.addObject("pstep", 3); //1 = ticket page, 2 = payment page 3 = finished pg
+        return mv;
+    }
+    
+    @RequestMapping(value="/usercheckout2={stuff}", method = RequestMethod.GET)
+    public ModelAndView usercheckout2(@PathVariable("stuff") String stuff, HttpSession session){
+        
+        ModelAndView mv = new ModelAndView("checkout");
+        String[] s = stuff.split(",");
+        User user = (User) session.getAttribute("currentPerson");
+        Transaction transc = new Transaction((int )(Math.random() * 10000 + 1111989),
+        Integer.parseInt(s[1]), Integer.parseInt(s[2]),user.findPM(Integer.parseInt(s[3])),movieManager.getScheduleById(Integer.parseInt(s[0])));
+        mv.addObject("bill",transc);
+        
+        mv.addObject("pstep", 3); //1 = ticket page, 2 = payment page 3 = finished pg
+        return mv;
+    }
+    
     @RequestMapping(value="{title}", method = RequestMethod.GET)
     public ModelAndView viewMovieInfo(@PathVariable("title") String movieTitle, HttpSession session) {
         
