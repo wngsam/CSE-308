@@ -140,8 +140,9 @@ public class UserDAO {
                         for (PaymentMethod md: paymentMethods) {
                             if (md.getIsPreferred()) {
                                 user.setPreferredPaymentMethod(md);
-                             
+                                
                             }
+                          
                         }
                        // user.setTransactions(getUserTransactions(paymentMethods));
                         return user;
@@ -378,9 +379,9 @@ public class UserDAO {
     
     }
 
-    public void setPreferredPaymentMethod(int creditCardId) {
+    public void setPreferredPaymentMethod(int creditCardId, int userid) {
         this.jdbcTemplate.update("update paymentmethods set IsPreferred = 0 "
-                + "where IsPreferred = 1 AND UserId = " + creditCardId);
+                + "where IsPreferred = 1 AND UserId = " + userid);
         this.jdbcTemplate.update("update paymentmethods set IsPreferred = 1 "
                 + "where PaymentMethodId = " + creditCardId);
     

@@ -100,17 +100,10 @@ public class UserPageController {
                 user.getPreferredPaymentMethod().setIsPreferred(false);
                 user.setPreferredPaymentMethod(md);
                 md.setIsPreferred(true);
-                userManager.setPreferredPayment(creditCardId);
+                userManager.setPreferredPayment(creditCardId, user.getId());
                 return mv;
             }
         }
-        
-       
-        
-        
-        
-        
-        
         return mv;
     }
     @RequestMapping(value="/edit={creditCardId}", method = RequestMethod.GET)
@@ -209,7 +202,9 @@ public class UserPageController {
             userManager.addPaymentMethod(paymentMethod, user);
             user.getPaymentMethods().add(paymentMethod);
             if (paymentMethod.getIsPreferred()){
-                user.getPreferredPaymentMethod().setIsPreferred(false);
+                if (user.getPreferredPaymentMethod() != null) {
+                    user.getPreferredPaymentMethod().setIsPreferred(false);
+                }
                 user.setPreferredPaymentMethod(paymentMethod);
             }
             mv.addObject("Success", "Success");

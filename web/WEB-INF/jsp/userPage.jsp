@@ -206,11 +206,19 @@
                                         <center><p>Preferred?: ${listVar.isPreferred}</p></center>
                                         </h3>
                                         <h4>
-                                        <center><a href="edit=${listVar.id}.htm"><p>Edit Payment Method</p></a></center>
-                                        <center><a href="delete=${listVar.id}.htm"><p>Delete Payment Method</p></a></center>
+                                        
+                                        <center><p>
+                                                
+                                                
+                                        <a data-id="${listVar.id}" title="Add this item" class="open-editPayment btn btn-success" href="#editPayment">EDIT! &raquo;</a>
+
+                                        <a href="delete=${listVar.id}.htm"><button type="button" class="btn btn-danger">DELETE! &raquo;</button></a>
+
                                         <c:if test="${listVar.isPreferred eq false}">
-                                        <center><a href="preferred=${listVar.id}.htm"><p>Set As Preferred</p></a></center>
+                                        <a href="preferred=${listVar.id}.htm"><button type="button" class="btn btn-warning">SET AS PREFERRED! &raquo;</button></a>
+
                                         </c:if>
+                                        </p></center> 
                                         </h4>
                                         <br>
                                     </c:forEach>
@@ -261,21 +269,7 @@
                         </table>
                     
                     </div>
-                        <br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <br><br>
                 </div>
                 
                 
@@ -284,7 +278,25 @@
             </div>
         </div>
     </div>
- </div>
+
+<div class="modal fade" id="editPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit Payment</h4>
+      </div>
+      <div class="modal-body">
+         
+        <input type="text" name="bookId" id="bookId" value="" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a href="edit=${bookId}.val().htm"><button type="button" class="btn btn-primary">Submit Changes</button></a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!--/USER NAV BAR-->
 
 <jsp:include page="footer.jsp" />
@@ -293,5 +305,18 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    
+<script>
+    $(document).on("click", ".open-editPayment", function (e) {
+
+	e.preventDefault();
+
+	var _self = $(this);
+
+	var myBookId = _self.data('id');
+	$("#bookId").val(myBookId);
+	$(_self.attr('href')).modal('show');
+}); 
+</script>
   </body>
 </html>
