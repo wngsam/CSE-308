@@ -81,6 +81,9 @@ public class User implements Serializable{
     }
 
     public List<PaymentMethod> getPaymentMethods() {
+        if(paymentMethods==null){
+            paymentMethods = new ArrayList();
+        }
         return paymentMethods;
     }
 
