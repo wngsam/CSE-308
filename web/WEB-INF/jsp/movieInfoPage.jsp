@@ -91,7 +91,7 @@
                     </tr>
                     
                     <c:if test="${empty nearbytheaters}">
-                        <tr><td colspan=2>No theater is playing ${currentMovie.title} near you!
+                        <tr><td colspan=2>No theater is playing ${currentMovie.title} near you!<br><br>
                         ${currentMovie.schedules.get(0).theaterName}<br><br>
                         <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
                                <c:if test="${sch.theaterId eq currentMovie.schedules.get(0).theaterId}">
@@ -105,9 +105,10 @@
                     <c:if test="${not empty nearbytheaters}">
                     <tr>
                        <td colspan=2>
-                           
+                           ${nearbytheaters.get(0).name}<br><br>
                            <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
-                               <c:if test="${sch.theaterId eq 1}">
+                               <c:if test="${sch.theaterId eq nearbytheaters.get(0).id}">
+                                   
                                <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}</a>
                                </c:if>
                            </c:forEach>

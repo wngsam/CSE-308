@@ -37,6 +37,7 @@ public class ScheduleDAO {
                         sch.setId(rs.getInt("ShowTimeId"));
                         sch.setMovieId(rs.getInt("MovieId"));
                         sch.setTheaterId(rs.getInt("TheaterId"));
+                        sch.setTheaterName(getTheaterNameById(sch.getTheaterId()));
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getTimestamp("ShowTime"));
                         //System.out.println(cal.get(Calendar.HOUR)+" "+cal.get(Calendar.AM_PM));
@@ -47,6 +48,19 @@ public class ScheduleDAO {
                 }
         );
         return schedules;
+    }
+    
+    public String getTheaterNameById(int id){
+    return this.jdbcTemplate.queryForObject(
+                        "SELECT Name FROM theaters" +
+                        " WHERE TheaterId= "+id+";", new RowMapper<String>(){
+                        @Override
+                        public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return rs.getString("Name");
+                                
+                        }
+                        }
+                        );
     }
     
 }

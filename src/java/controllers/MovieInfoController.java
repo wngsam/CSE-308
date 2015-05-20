@@ -17,6 +17,7 @@ import managers.MovieManager;
 import org.springframework.stereotype.Controller;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 import managers.TheaterManager;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -150,12 +151,25 @@ public class MovieInfoController {
     @RequestMapping(value="/location", method = RequestMethod.POST)
     public ModelAndView zipcode(@RequestParam(value = "zipcode") int zip, HttpSession session){
         ModelAndView mv = new ModelAndView("movieInfoPage");
-        mv.addObject("currentMovie", movieManager.getCurrentMovie((String)session.getAttribute("movieTitle")));
+        Movie m = movieManager.getCurrentMovie((String)session.getAttribute("movieTitle"));
+        mv.addObject("currentMovie", m);
         session.setAttribute("ZIPC", zip);
-//        List<Theater> theaters = theaterManager.findNearbyTheaters((int)session.getAttribute("ZIPC"));
-//        if(theaters!=null && !theaters.isEmpty()){
-//            session.setAttribute("nearbytheaters",theaters);
-//        }
+        List<Theater> theaters = theaterManager.findNearbyTheaters((int)session.getAttribute("ZIPC"));
+        List<Integer> theaterIds = movieManager.getScheduleByMovieId(m.getId());
+        List<Theater> nearby = new ArrayList();
+        //THE NEARBY THEATER WOULD BE THE SAME FOR ALL MOVIE EVEN THO IT CATERS TO ONE
+        //IF ZIPC EXIST, CALCULATE NEARBY USING NEW METHOD
+        for(int i : theaterIds){
+            for(Theater t : theaters){
+                if(t.getId()==i){
+                    nearby.add(t);
+                }
+            }
+        }
+        
+        if(nearby!=null && !nearby.isEmpty()){
+            session.setAttribute("nearbytheaters",nearby);
+        }
         return mv;
     }
     

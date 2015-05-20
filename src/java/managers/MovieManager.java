@@ -42,6 +42,19 @@ public class MovieManager {
         openingThisWeek = new ArrayList();
     }
     
+    public List<Integer> getScheduleByMovieId(int id){
+        List<Integer> th = new ArrayList();
+        
+        for(Schedule s : schedules.values()){
+            if(s.getMovieId()==id){
+                th.add(s.getTheaterId());
+            }
+        }
+        
+        //GET SCHEDULES BY USING MOVIE TITLE TO GET ID THEN RETURN ID OF THEATERS THAT PLAY AND CROSSREFERENCE IT AND THEN GIVE IT
+        return th;
+    }
+    
     public Schedule getScheduleById(int id){
         return schedules.get(id);
     }
