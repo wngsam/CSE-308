@@ -7,7 +7,9 @@ package dao;
 
 import domains.Actor;
 import domains.Movie;
+import domains.PaymentMethod;
 import domains.Review;
+import domains.Transaction;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -258,6 +260,23 @@ public class MovieDAO {
                         }
                         }
                         );
+    }
+    //GUEST + NEW, b = 1 means using saved PM for user, 0 = guest or new PM
+    public boolean addTransc(Transaction t, int b){
+        if(b==0){
+            PaymentMethod pm = t.getPaymentMethod();
+            int pref = 0;
+            if(pm.getIsPreferred()){
+                pref=1;
+            }
+        
+            this.jdbcTemplate.update(
+            "INSERT INTO paymentmethods values (?,?,?,?,?,?,?,?,?)",pm.getId(),pm.getUserId(),pm.getFirstName(),pm.getLastName(),pm.getCreditCardNum(),pm.getCcv(),pm.getAddress(),pm.getZipCode(),pref);
+        }
+        this.jdbcTemplate.update(
+        "INSERT INTO transactions values (?,?,?,?,?,?)",t.getId(),t.getPaymentMethod().getId(),t.getShowtime().getId(),t.getQuantity(),t.getCost(),"20150520");
+        
+        return true;
     }
     
 }

@@ -33,6 +33,14 @@ public class Transaction {
         this.showtime=st;
         date = new GregorianCalendar();
     }
+
+    public Schedule getShowtime() {
+        return showtime;
+    }
+
+    public void setShowtime(Schedule showtime) {
+        this.showtime = showtime;
+    }
     
     public int getId() {
         return Id;

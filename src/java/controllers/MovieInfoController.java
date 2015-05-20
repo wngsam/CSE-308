@@ -72,11 +72,10 @@ public class MovieInfoController {
         
         ModelAndView mv = new ModelAndView("checkout");
         PaymentMethod guest = new PaymentMethod((int )(Math.random() * 100 + 100),0,firstname,lastname,ccn,ccv,address,"",false);
-        //ADD TO DB
         String[] s = stuff.split(",");
         Transaction guestTransc = new Transaction((int )(Math.random() * 10000 + 1111989),
         Integer.parseInt(s[1]), Integer.parseInt(s[2]),guest,movieManager.getScheduleById(Integer.parseInt(s[0])));
-        //ADD TO DB
+        movieManager.addTransc(guestTransc,0);
         mv.addObject("bill",guestTransc);
         
         mv.addObject("pstep", 3); //1 = ticket page, 2 = payment page 3 = finished pg
@@ -92,11 +91,10 @@ public class MovieInfoController {
         pm.setId((int )(Math.random() * 100 + 100));
         pm.setUserId(user.getId());
         user.getPaymentMethods().add(pm);
-        //ADD TO DB
         Transaction transc = new Transaction((int )(Math.random() * 10000 + 1111989),
         Integer.parseInt(s[1]), Integer.parseInt(s[2]),pm,movieManager.getScheduleById(Integer.parseInt(s[0])));
         user.getTransactions().add(transc);
-        //ADD TO DB
+        movieManager.addTransc(transc,0);
         mv.addObject("bill",transc);
         
         mv.addObject("pstep", 3); //1 = ticket page, 2 = payment page 3 = finished pg
@@ -112,7 +110,7 @@ public class MovieInfoController {
         Transaction transc = new Transaction((int )(Math.random() * 10000 + 1111989),
         Integer.parseInt(s[1]), Integer.parseInt(s[2]),user.findPM(Integer.parseInt(s[3])),movieManager.getScheduleById(Integer.parseInt(s[0])));
         user.getTransactions().add(transc);
-        //ADD TO DB
+        movieManager.addTransc(transc,1);
         mv.addObject("bill",transc);
         
         mv.addObject("pstep", 3); //1 = ticket page, 2 = payment page 3 = finished pg
