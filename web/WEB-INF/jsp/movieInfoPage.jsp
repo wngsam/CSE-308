@@ -95,8 +95,6 @@
                            <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
                                <c:if test="${sch.theaterId eq 1}">
                                <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}
-                                   <c:if test="${sch.AMPM == 0}"> AM</c:if>
-                                   <c:if test="${sch.AMPM == 1}"> PM</c:if>
                                </a>
                                </c:if>
                            </c:forEach>

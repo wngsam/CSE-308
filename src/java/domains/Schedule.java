@@ -19,6 +19,8 @@ public class Schedule {
     private GregorianCalendar showTime;
     private int AMPM;
     private int capacity;
+    private String movieName;
+    private String theaterName;
 
     public String getTime(){
         String s = "";
@@ -27,9 +29,31 @@ public class Schedule {
         }else{
             s+="0"+showTime.get(Calendar.HOUR);
         }
-        return s+":00";
+        String AP = "";
+        if(AMPM==0){
+            AP+= "AM";
+        }else if(AMPM==1){
+            AP+="PM";
+        }
+        return s+":00 "+AP;
     }
 
+    public String getTheaterName() {
+        return theaterName;
+    }
+
+    public void setTheaterName(String theaterName) {
+        this.theaterName = theaterName;
+    }
+    
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+    
     public int getAMPM() {
         return AMPM;
     }

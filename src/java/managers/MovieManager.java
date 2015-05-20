@@ -10,6 +10,7 @@ import dao.ScheduleDAO;
 import domains.Movie;
 import domains.Review;
 import domains.Schedule;
+import domains.Transaction;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class MovieManager {
         
         for(Schedule sch : scheduleList){
             moviesById.get(sch.getMovieId()).addSchedule(sch);
-            
+            sch.setMovieName(moviesById.get(sch.getMovieId()).getTitle());
             schedules.put(sch.getId(),sch);
             
         }
@@ -165,6 +166,11 @@ public class MovieManager {
         }
         
         return confirmation;
+    }
+    //GUEST + NEW
+    public boolean addTransc(Transaction t, int b){
+        movieDAO.addTransc(t,b);
+        return true;
     }
     
     public Movie getCurrentMovie(String movieTitle){
