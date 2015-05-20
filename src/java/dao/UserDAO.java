@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import javax.sql.DataSource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -137,7 +138,7 @@ public class UserDAO {
                         user.setReviews(getUserReviews(userId));
                         List<PaymentMethod> paymentMethods = getPaymentMethodsByUserId(userId);
                         user.setPaymentMethods(paymentMethods);
-                       // user.setTransactions(getUserTransactions(paymentMethods));
+                        user.setTransactions(getUserTransactions(paymentMethods));
                         return user;
                     }
                 }
@@ -210,9 +211,12 @@ public class UserDAO {
     
     //MIGHT BE MISSING TIME
     public Transaction getTransaction(int pmId, PaymentMethod pm){
+        //System.out.println("PMID: "+pmId);
+        Transaction transaction = new Transaction();
         String query = "SELECT * FROM transactions"
               + " WHERE PaymentMethodId="+pmId+";";
-        Transaction transaction = this.jdbcTemplate.queryForObject(
+        try {
+        transaction = this.jdbcTemplate.queryForObject(
                 query, new RowMapper<Transaction>(){
                     @Override
                     public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -223,7 +227,6 @@ public class UserDAO {
                         GregorianCalendar cal = new GregorianCalendar();
                         cal.setTime(rs.getDate("Date"));
                         transaction.setDate(cal);
-                        
                         //int showTimeId = rs.getInt("ShowTimeId");
                         //transaction.setTheater(getTheaterName(showTimeId));
                         //transaction.setMovie(getMovieTitle(showTimeId));
@@ -233,6 +236,9 @@ public class UserDAO {
                 }
         );
         transaction.setPaymentMethod(pm);
+        } catch (EmptyResultDataAccessException e) {
+		return null;
+	}	
         return transaction;
     }
     
