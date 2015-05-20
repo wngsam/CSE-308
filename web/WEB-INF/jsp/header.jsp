@@ -8,6 +8,7 @@
                 <a class="navbar-brand" href="index.htm">Samdango</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="refund.htm">Refund</a></li>
                 <li><a href="giftcardPage.htm">Giftcards</a></li>
                 <li><a href="offersPage.htm">Offers</a></li>
                 <li><a href="index.htm">Visa Signature</a></li>

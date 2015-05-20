@@ -32,11 +32,24 @@ public class Movie {
     private int rates;
     private int starRating;
     private boolean fresh=false;
+    private List<Schedule> schedules = new ArrayList();
             
     public Movie(){
         
     }
 
+    public void addSchedule(Schedule sch){
+        schedules.add(sch);
+    }
+    
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
+    }
+    
     public void calculateStarRating(){
         if(rates!=0){
             starRating = (int)(stars/rates);

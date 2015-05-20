@@ -24,6 +24,20 @@ public class PaymentMethod {
     public PaymentMethod() {
         
     }
+    
+    public PaymentMethod(int id, int userId, String firstName, String lastName, String creditCardNum, String ccv,
+            String address, String zipCode, boolean isPreferred){
+        this.id=id;
+        this.userId=userId;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.creditCardNum=creditCardNum;
+        this.ccv=ccv;
+        this.address=address;
+        this.zipCode=zipCode;
+        this.isPreferred=isPreferred;
+    }
+    
     public int getPaymentMethodId() {
         return id;
     }

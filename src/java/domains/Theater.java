@@ -14,7 +14,7 @@ public class Theater {
     private int id;
     private String name;
     private String address;
-    private String phone;
+    private int phone;
     private double longitude;
     private double latitude;
     
@@ -62,12 +62,14 @@ public class Theater {
         this.address = address;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
+
+    
     
 }

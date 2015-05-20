@@ -83,7 +83,29 @@ public class UserPageController {
         return mv;
     }
     
-    
+    @RequestMapping(value="/preferred={creditCardId}", method = RequestMethod.GET)
+    public ModelAndView preferredPayment(HttpSession session, 
+            @PathVariable("creditCardId") int creditCardId) {
+            
+        ModelAndView mv = new ModelAndView("userPage");
+        mv.addObject("user", session.getAttribute("currentPerson"));
+        mv.addObject("paymentMethod", new PaymentMethod());
+        User user = ((User) session.getAttribute("currentPerson"));
+        List<PaymentMethod> payments = ((User)session.getAttribute("currentPerson")).getPaymentMethods();
+        mv.addObject("payments", payments);
+        mv.addObject("edit", "dag");
+        
+        for (PaymentMethod md : user.getPaymentMethods()) {
+            if (md.getId() == creditCardId) {
+                user.getPreferredPaymentMethod().setIsPreferred(false);
+                user.setPreferredPaymentMethod(md);
+                md.setIsPreferred(true);
+                userManager.setPreferredPayment(creditCardId, user.getId());
+                return mv;
+            }
+        }
+        return mv;
+    }
     @RequestMapping(value="/edit={creditCardId}", method = RequestMethod.GET)
     public ModelAndView editPayment(HttpSession session, 
             @PathVariable("creditCardId") int creditCardId) {
@@ -173,12 +195,18 @@ public class UserPageController {
             return mv;
         
         }
-        
-        //Payment is valid!
+            //Payment is valid!
             User user = ((User)session.getAttribute("currentPerson"));
             paymentMethod.setUserId(user.getId());
+            
             userManager.addPaymentMethod(paymentMethod, user);
             user.getPaymentMethods().add(paymentMethod);
+            if (paymentMethod.getIsPreferred()){
+                if (user.getPreferredPaymentMethod() != null) {
+                    user.getPreferredPaymentMethod().setIsPreferred(false);
+                }
+                user.setPreferredPaymentMethod(paymentMethod);
+            }
             mv.addObject("Success", "Success");
             mv.addObject("payments", payments);
         return mv;

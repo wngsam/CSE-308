@@ -33,7 +33,29 @@ public class User implements Serializable{
     public User(){
         
     }
-
+    
+    public Transaction findT(int id){
+        if(transactions!=null && !transactions.isEmpty()){
+        for(Transaction t : transactions){
+            System.out.println("T SIZE: "+transactions.size());
+            //System.out.println("T ID: "+t.getId());
+            if(t.getId()==id){
+                return t;
+            }
+        }
+        }
+        return null;
+    }
+    
+    public PaymentMethod findPM(int id){
+        for(PaymentMethod pm : paymentMethods){
+            if(pm.getId()==id){
+                return pm;
+            }
+        }
+        return null;
+    }
+    
     public List<String> getFavoriteMovies() {
         return favoriteMovies;
     }
@@ -67,6 +89,9 @@ public class User implements Serializable{
     }
 
     public List<Transaction> getTransactions() {
+        if(transactions==null){
+            transactions= new ArrayList();
+        }
         return transactions;
     }
 

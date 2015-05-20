@@ -75,27 +75,47 @@
                        <td align="left" colspan=2> 
                            <hr>
                            <font size="5">Tell us where you are</font><br>
-                            Looking for movie tickets? Enter your location to see which movie theaters are playing Chappie near you.<br><br>
-			    ENTER ZIP OR CITY, STATE
-                            <form class="navbar-form navbar-center"><div class="form-group">
-				<input type="ENTER ZIP OR CITY, STATE" placeholder="City, State or Zip Code" class="form-control"><button type="GO" class="btn btn-success">GO</button>
+                            Looking for movie tickets? Enter your location to see which movie theaters are playing ${currentMovie.title} near you.<br><br>
+                            ENTER YOUR ZIPCODE<br>
+                            <c:if test="${not empty ZIPC}">
+                                Your zipcode currently is: ${ZIPC}
+                            </c:if>
+                            
+                            <form class="navbar-form navbar-center" method="POST" action="location.htm">
+                                <div class="form-group">
+				<input type="text" class="form-control input-sm" name="zipcode" placeholder="Zipcode">
+                                <button type="submit" class="btn btn-success">GO</button>
                                 </div></form>
                             <hr>
 			</td>                
                     </tr>
-                   
+                    
+                    <c:if test="${empty nearbytheaters}">
+                        <tr><td colspan=2>No theater is playing ${currentMovie.title} near you!
+                        ${currentMovie.schedules.get(0).theaterName}<br><br>
+                        <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
+                               <c:if test="${sch.theaterId eq currentMovie.schedules.get(0).theaterId}">
+                               <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}
+                               </a>
+                               </c:if>
+                        </c:forEach>
+                        </td></tr>
+                    </c:if>
+                        
+                    <c:if test="${not empty nearbytheaters}">
                     <tr>
                        <td colspan=2>
-                           <a href="#" class="btn btn-primary">10:30am</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">1:00pmy</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">3:30pm</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">6:30pm</a>&nbsp;&nbsp;
-                           <br><br>
-                           <a href="#" class="btn btn-primary">9:00pm</a>&nbsp;&nbsp;
-                           <a href="#" class="btn btn-primary">11:00pm</a>
+                           
+                           <c:forEach var="sch" items="${currentMovie.schedules}" varStatus="count">
+                               <c:if test="${sch.theaterId eq 1}">
+                               <a href="buy=${sch.id}.htm" class="btn btn-primary">${sch.getTime()}</a>
+                               </c:if>
+                           </c:forEach>
+                           
                        </td>                          
                     </tr>
-                   
+                    </c:if>
+                    
                     <tr><td><br></td></tr>                   
                </table>
             </td>

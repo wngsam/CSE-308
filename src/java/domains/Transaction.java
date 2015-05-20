@@ -21,6 +21,27 @@ public class Transaction {
     //private String movie;
     private Schedule showtime;
     
+    public Transaction(){
+        
+    }
+    
+    public Transaction(int id, int quantity, double cost, PaymentMethod pm, Schedule st){
+        this.Id=id;
+        this.quantity=quantity;
+        this.cost=cost;
+        this.paymentMethod=pm;
+        this.showtime=st;
+        date = new GregorianCalendar();
+    }
+
+    public Schedule getShowtime() {
+        return showtime;
+    }
+
+    public void setShowtime(Schedule showtime) {
+        this.showtime = showtime;
+    }
+    
     public int getId() {
         return Id;
     }
