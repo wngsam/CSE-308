@@ -148,5 +148,9 @@ public class UserManager {
     public void deletePaymentMethod(int creditCardId) {
         userDAO.deletePaymentMethod(creditCardId);
     }
+
+    public void setPreferredPayment(int creditCardId, int userid) {
+        userDAO.setPreferredPaymentMethod(creditCardId, userid);
+    }
     
 }
