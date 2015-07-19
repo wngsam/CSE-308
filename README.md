@@ -9,3 +9,5 @@ This project is based on the movie site Fandango and was done as a class project
 This project is not fully complete.
 
 Samdango uses Spring MVC and Bootstrap.
+
+![Alt text](https://raw.githubusercontent.com/wngsam/CSE-308-Samdango/master/samss.png "")
